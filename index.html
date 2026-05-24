@@ -35,14 +35,13 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; transition:background 0.1s, color 0.1s; }
 .dropdown a:hover { background:#fff5f5; color:#e00; }
 
-/* ── HERO — slightly reduced ── */
 .hero-slider { position:relative; overflow:hidden; }
 .slides { display:flex; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
 .slide {
   min-width:100%;
-  height: calc(100vh - 220px);
-  min-height: 540px;
-  max-height: 720px;
+  height: calc(100vh - 160px);
+  min-height: 600px;
+  max-height: 780px;
   position:relative; display:flex; align-items:center; flex-shrink:0;
 }
 .slide-1 { background:linear-gradient(135deg,#f5e6b8 0%,#edd89a 50%,#e8c87a 100%); }
@@ -55,10 +54,10 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 .slide-content { position:relative; z-index:2; width:100%; max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 60px; height:100%; }
 
-.char-cluster { position:relative; width:530px; height:100%; flex-shrink:0; display:flex; align-items:flex-end; justify-content:center; }
+.char-cluster { position:relative; width:540px; height:100%; flex-shrink:0; display:flex; align-items:flex-end; justify-content:center; }
 .char-cluster .big-text {
-  position:absolute; bottom:70px; left:0; right:0; text-align:center;
-  font-family:'Fredoka One',sans-serif; font-size:clamp(72px,9vw,108px); letter-spacing:-2px;
+  position:absolute; bottom:74px; left:0; right:0; text-align:center;
+  font-family:'Fredoka One',sans-serif; font-size:clamp(76px,9.5vw,114px); letter-spacing:-2px;
   background:linear-gradient(180deg,#d4aaee 0%,#a870e0 40%,#8040c0 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   filter:drop-shadow(2px 4px 0px rgba(120,60,180,0.3)); z-index:1;
@@ -68,27 +67,26 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 .fig { position:absolute; display:flex; flex-direction:column; align-items:center; animation:figFloat 3s ease-in-out infinite; }
 .fig .emoji { filter:drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
+.fig-1 { bottom:29%; left:28px; animation-delay:0s; }       .fig-1 .emoji { font-size:84px; }
+.fig-2 { bottom:45%; left:155px; animation-delay:0.4s; }    .fig-2 .emoji { font-size:78px; }
+.fig-3 { bottom:51%; left:50%; transform:translateX(-50%); animation-delay:0.7s; z-index:3; } .fig-3 .emoji { font-size:106px; }
+.fig-4 { bottom:43%; right:105px; animation-delay:1s; }     .fig-4 .emoji { font-size:80px; }
+.fig-5 { bottom:27%; right:18px; animation-delay:0.3s; }    .fig-5 .emoji { font-size:78px; }
+.fig-6 { bottom:62%; right:178px; animation-delay:1.3s; }   .fig-6 .emoji { font-size:62px; }
+.star-prop { position:absolute; bottom:37%; left:194px; font-size:94px; z-index:2; animation:figFloat 2.5s ease-in-out 0.5s infinite; }
 
-.fig-1 { bottom:28%; left:30px; animation-delay:0s; }         .fig-1 .emoji { font-size:80px; }
-.fig-2 { bottom:43%; left:150px; animation-delay:0.4s; }      .fig-2 .emoji { font-size:74px; }
-.fig-3 { bottom:49%; left:50%; transform:translateX(-50%); animation-delay:0.7s; z-index:3; } .fig-3 .emoji { font-size:100px; }
-.fig-4 { bottom:41%; right:100px; animation-delay:1s; }       .fig-4 .emoji { font-size:76px; }
-.fig-5 { bottom:26%; right:20px; animation-delay:0.3s; }      .fig-5 .emoji { font-size:74px; }
-.fig-6 { bottom:60%; right:175px; animation-delay:1.3s; }     .fig-6 .emoji { font-size:60px; }
-.star-prop { position:absolute; bottom:36%; left:190px; font-size:90px; z-index:2; animation:figFloat 2.5s ease-in-out 0.5s infinite; }
-
-@keyframes figFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes figFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
 .fig-3 { animation:figFloat3 3s ease-in-out 0.7s infinite; }
-@keyframes figFloat3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
+@keyframes figFloat3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-13px)} }
 
 .slide-text { flex:1; text-align:right; padding-right:20px; }
-.collab-title { font-family:'Fredoka One',sans-serif; font-size:clamp(36px,4vw,62px); line-height:1.1; letter-spacing:-0.5px; color:#fff; text-shadow:3px 3px 0 #c08040,0 0 30px rgba(200,140,40,0.4); margin-bottom:10px; }
+.collab-title { font-family:'Fredoka One',sans-serif; font-size:clamp(38px,4.2vw,64px); line-height:1.1; letter-spacing:-0.5px; color:#fff; text-shadow:3px 3px 0 #c08040,0 0 30px rgba(200,140,40,0.4); margin-bottom:10px; }
 .slide-2 .collab-title { text-shadow:3px 3px 0 #d080b0,0 0 30px rgba(200,80,160,0.4); }
 .slide-3 .collab-title { text-shadow:3px 3px 0 #3080b0,0 0 30px rgba(40,120,200,0.3); }
 .collab-title span { display:block; }
 .collab-title .x { color:#ffdc00; font-size:0.6em; }
-.slide-sub { font-size:17px; color:rgba(255,255,255,0.9); font-weight:700; margin:12px 0 26px; text-shadow:1px 1px 4px rgba(0,0,0,0.2); }
-.shop-btn { display:inline-block; border:2px solid #fff; background:transparent; color:#fff; padding:13px 38px; font-family:'Nunito',sans-serif; font-weight:800; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, color 0.2s; }
+.slide-sub { font-size:17px; color:rgba(255,255,255,0.9); font-weight:700; margin:13px 0 27px; text-shadow:1px 1px 4px rgba(0,0,0,0.2); }
+.shop-btn { display:inline-block; border:2px solid #fff; background:transparent; color:#fff; padding:13px 40px; font-family:'Nunito',sans-serif; font-weight:800; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, color 0.2s; }
 .shop-btn:hover { background:#fff; color:#333; }
 
 .slider-arrow { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.85); border:none; cursor:pointer; font-size:19px; display:flex; align-items:center; justify-content:center; z-index:10; color:#333; box-shadow:0 2px 12px rgba(0,0,0,0.15); transition:background 0.15s; }
@@ -100,15 +98,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dot.active { background:#fff; width:46px; }
 .slide-copy { position:absolute; bottom:14px; right:20px; font-size:10px; color:rgba(255,255,255,0.55); z-index:10; }
 .slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
-
-/* REST */
-.promo-strip { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #eee; border-bottom:1px solid #eee; }
-.promo-item { display:flex; align-items:center; gap:12px; padding:18px 24px; border-right:1px solid #eee; cursor:pointer; transition:background 0.15s; }
-.promo-item:last-child { border-right:none; }
-.promo-item:hover { background:#fafafa; }
-.promo-icon { font-size:26px; }
-.promo-text strong { display:block; font-size:13px; font-weight:800; color:#222; }
-.promo-text span { font-size:11px; color:#888; font-weight:600; }
 
 .section { padding:48px 60px; }
 .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
@@ -162,10 +151,7 @@ footer a:hover { color:#e00; }
 
 <header>
   <div class="header-left">
-    <div class="search-box">
-      <span>🔍</span>
-      <input type="text" placeholder="Search characters, series...">
-    </div>
+    <div class="search-box"><span>🔍</span><input type="text" placeholder="Search characters, series..."></div>
   </div>
   <div class="brand-logo">POP VAULT</div>
   <div class="header-right">
@@ -212,12 +198,7 @@ footer a:hover { color:#e00; }
           <div class="fig fig-6"><span class="emoji">🦆</span></div>
         </div>
         <div class="slide-text">
-          <div class="collab-title">
-            <span>THE MONSTERS</span>
-            <span class="x">✕</span>
-            <span>HELLO KITTY</span>
-            <span>AND FRIENDS</span>
-          </div>
+          <div class="collab-title"><span>THE MONSTERS</span><span class="x">✕</span><span>HELLO KITTY</span><span>AND FRIENDS</span></div>
           <div class="slide-sub">The Monsters × Hello Kitty and Friends</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
@@ -243,12 +224,7 @@ footer a:hover { color:#e00; }
           <div class="fig fig-5"><span class="emoji">🍡</span></div>
         </div>
         <div class="slide-text">
-          <div class="collab-title">
-            <span>SAKURA DREAM</span>
-            <span class="x">✕</span>
-            <span>SPRING</span>
-            <span>COLLECTION 2025</span>
-          </div>
+          <div class="collab-title"><span>SAKURA DREAM</span><span class="x">✕</span><span>SPRING</span><span>COLLECTION 2025</span></div>
           <div class="slide-sub">Limited Edition — Available Now</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
@@ -273,12 +249,7 @@ footer a:hover { color:#e00; }
           <div class="fig fig-5"><span class="emoji">🐚</span></div>
         </div>
         <div class="slide-text">
-          <div class="collab-title">
-            <span>OCEAN DRIFT</span>
-            <span class="x">✕</span>
-            <span>DEEP SEA</span>
-            <span>ADVENTURE</span>
-          </div>
+          <div class="collab-title"><span>OCEAN DRIFT</span><span class="x">✕</span><span>DEEP SEA</span><span>ADVENTURE</span></div>
           <div class="slide-sub">New Series Drop — 12 Figures + 1 Secret</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
@@ -293,13 +264,6 @@ footer a:hover { color:#e00; }
     <div class="dot" onclick="goSlide(1)"></div>
     <div class="dot" onclick="goSlide(2)"></div>
   </div>
-</div>
-
-<div class="promo-strip">
-  <div class="promo-item"><span class="promo-icon">🚚</span><div class="promo-text"><strong>Free Shipping</strong><span>On orders over $49</span></div></div>
-  <div class="promo-item"><span class="promo-icon">🔒</span><div class="promo-text"><strong>Secure Payment</strong><span>100% protected checkout</span></div></div>
-  <div class="promo-item"><span class="promo-icon">✅</span><div class="promo-text"><strong>Authenticity Guaranteed</strong><span>Official licensed figures</span></div></div>
-  <div class="promo-item"><span class="promo-icon">🔄</span><div class="promo-text"><strong>Easy Returns</strong><span>30-day return policy</span></div></div>
 </div>
 
 <section class="section">
