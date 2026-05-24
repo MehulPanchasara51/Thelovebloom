@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Nunito',sans-serif; background:#fff; overflow-x:hidden; }
+
+header {
+  background:#fff; border-bottom:1px solid #e8e8e8;
+  padding:0 40px; height:68px;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  position:sticky; top:0; z-index:200;
+}
+.header-left { display:flex; align-items:center; }
+.search-box { display:flex; align-items:center; gap:8px; border:1.5px solid #ddd; border-radius:999px; padding:7px 14px; width:240px; background:#fafafa; transition:border-color 0.2s; }
+.search-box:focus-within { border-color:#e00; }
+.search-box input { border:none; outline:none; background:transparent; font-family:'Nunito',sans-serif; font-size:13px; color:#333; width:100%; }
+.search-box input::placeholder { color:#aaa; }
+.brand-logo { background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:22px; letter-spacing:2px; padding:9px 22px; border-radius:4px; cursor:pointer; user-select:none; }
+.header-right { display:flex; align-items:center; justify-content:flex-end; gap:6px; }
+.icon-btn { width:38px; height:38px; border-radius:50%; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; transition:background 0.15s; position:relative; color:#333; }
+.icon-btn:hover { background:#f5f5f5; }
+.cart-count { position:absolute; top:4px; right:4px; background:#e00; color:#fff; font-size:9px; font-weight:800; width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:68px; z-index:190; }
+.nav-item { display:flex; align-items:center; gap:4px; padding:0 16px; height:44px; cursor:pointer; font-size:13px; font-weight:700; color:#222; letter-spacing:0.2px; border-bottom:3px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; position:relative; user-select:none; }
+.nav-item:hover { color:#e00; border-bottom-color:#e00; }
+.nav-item .arrow { font-size:9px; color:#999; }
+.nav-item.offers { color:#e00; }
+.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #e00; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+.nav-item:hover .dropdown { display:block; }
+.dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; transition:background 0.1s, color 0.1s; }
+.dropdown a:hover { background:#fff5f5; color:#e00; }
+
+/* ── HERO — slightly reduced ── */
+.hero-slider { position:relative; overflow:hidden; }
+.slides { display:flex; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.slide {
+  min-width:100%;
+  height: calc(100vh - 220px);
+  min-height: 540px;
+  max-height: 720px;
+  position:relative; display:flex; align-items:center; flex-shrink:0;
+}
+.slide-1 { background:linear-gradient(135deg,#f5e6b8 0%,#edd89a 50%,#e8c87a 100%); }
+.slide-2 { background:linear-gradient(135deg,#ffd6e8 0%,#f5b8d0 50%,#ebb0c8 100%); }
+.slide-3 { background:linear-gradient(135deg,#c8e8f8 0%,#a8d8f0 50%,#88c8e8 100%); }
+
+.slide-bg-deco { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.deco-star { position:absolute; opacity:0.35; animation:twinkle 2.5s ease-in-out infinite; }
+@keyframes twinkle { 0%,100%{opacity:0.35;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.15)} }
+
+.slide-content { position:relative; z-index:2; width:100%; max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 60px; height:100%; }
+
+.char-cluster { position:relative; width:530px; height:100%; flex-shrink:0; display:flex; align-items:flex-end; justify-content:center; }
+.char-cluster .big-text {
+  position:absolute; bottom:70px; left:0; right:0; text-align:center;
+  font-family:'Fredoka One',sans-serif; font-size:clamp(72px,9vw,108px); letter-spacing:-2px;
+  background:linear-gradient(180deg,#d4aaee 0%,#a870e0 40%,#8040c0 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  filter:drop-shadow(2px 4px 0px rgba(120,60,180,0.3)); z-index:1;
+}
+.slide-2 .char-cluster .big-text { background:linear-gradient(180deg,#ffb8d8 0%,#ff78b0 40%,#d04880 100%); -webkit-background-clip:text; background-clip:text; }
+.slide-3 .char-cluster .big-text { background:linear-gradient(180deg,#a0d8f8 0%,#50a8e0 40%,#2878b8 100%); -webkit-background-clip:text; background-clip:text; }
+
+.fig { position:absolute; display:flex; flex-direction:column; align-items:center; animation:figFloat 3s ease-in-out infinite; }
+.fig .emoji { filter:drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
+
+.fig-1 { bottom:28%; left:30px; animation-delay:0s; }         .fig-1 .emoji { font-size:80px; }
+.fig-2 { bottom:43%; left:150px; animation-delay:0.4s; }      .fig-2 .emoji { font-size:74px; }
+.fig-3 { bottom:49%; left:50%; transform:translateX(-50%); animation-delay:0.7s; z-index:3; } .fig-3 .emoji { font-size:100px; }
+.fig-4 { bottom:41%; right:100px; animation-delay:1s; }       .fig-4 .emoji { font-size:76px; }
+.fig-5 { bottom:26%; right:20px; animation-delay:0.3s; }      .fig-5 .emoji { font-size:74px; }
+.fig-6 { bottom:60%; right:175px; animation-delay:1.3s; }     .fig-6 .emoji { font-size:60px; }
+.star-prop { position:absolute; bottom:36%; left:190px; font-size:90px; z-index:2; animation:figFloat 2.5s ease-in-out 0.5s infinite; }
+
+@keyframes figFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.fig-3 { animation:figFloat3 3s ease-in-out 0.7s infinite; }
+@keyframes figFloat3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
+
+.slide-text { flex:1; text-align:right; padding-right:20px; }
+.collab-title { font-family:'Fredoka One',sans-serif; font-size:clamp(36px,4vw,62px); line-height:1.1; letter-spacing:-0.5px; color:#fff; text-shadow:3px 3px 0 #c08040,0 0 30px rgba(200,140,40,0.4); margin-bottom:10px; }
+.slide-2 .collab-title { text-shadow:3px 3px 0 #d080b0,0 0 30px rgba(200,80,160,0.4); }
+.slide-3 .collab-title { text-shadow:3px 3px 0 #3080b0,0 0 30px rgba(40,120,200,0.3); }
+.collab-title span { display:block; }
+.collab-title .x { color:#ffdc00; font-size:0.6em; }
+.slide-sub { font-size:17px; color:rgba(255,255,255,0.9); font-weight:700; margin:12px 0 26px; text-shadow:1px 1px 4px rgba(0,0,0,0.2); }
+.shop-btn { display:inline-block; border:2px solid #fff; background:transparent; color:#fff; padding:13px 38px; font-family:'Nunito',sans-serif; font-weight:800; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, color 0.2s; }
+.shop-btn:hover { background:#fff; color:#333; }
+
+.slider-arrow { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.85); border:none; cursor:pointer; font-size:19px; display:flex; align-items:center; justify-content:center; z-index:10; color:#333; box-shadow:0 2px 12px rgba(0,0,0,0.15); transition:background 0.15s; }
+.slider-arrow:hover { background:#fff; }
+.slider-arrow.prev { left:20px; }
+.slider-arrow.next { right:20px; }
+.slider-dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:7px; z-index:10; }
+.dot { width:30px; height:4px; border-radius:999px; background:rgba(255,255,255,0.45); cursor:pointer; transition:background 0.2s, width 0.2s; }
+.dot.active { background:#fff; width:46px; }
+.slide-copy { position:absolute; bottom:14px; right:20px; font-size:10px; color:rgba(255,255,255,0.55); z-index:10; }
+.slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
+
+/* REST */
+.promo-strip { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #eee; border-bottom:1px solid #eee; }
+.promo-item { display:flex; align-items:center; gap:12px; padding:18px 24px; border-right:1px solid #eee; cursor:pointer; transition:background 0.15s; }
+.promo-item:last-child { border-right:none; }
+.promo-item:hover { background:#fafafa; }
+.promo-icon { font-size:26px; }
+.promo-text strong { display:block; font-size:13px; font-weight:800; color:#222; }
+.promo-text span { font-size:11px; color:#888; font-weight:600; }
+
+.section { padding:48px 60px; }
+.section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
+.section-head h2 { font-size:22px; font-weight:900; color:#111; letter-spacing:-0.5px; }
+.section-head a { font-size:12px; font-weight:800; color:#e00; text-decoration:none; letter-spacing:0.5px; text-transform:uppercase; }
+.section-head a:hover { text-decoration:underline; }
+
+.banner-duo { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.banner-card { border-radius:12px; overflow:hidden; position:relative; cursor:pointer; height:220px; display:flex; align-items:flex-end; transition:transform 0.2s; }
+.banner-card:hover { transform:scale(1.01); }
+.b1{background:linear-gradient(135deg,#ffe8f0,#ffc8e0)} .b2{background:linear-gradient(135deg,#e0f0ff,#b8d8f8)}
+.b3{background:linear-gradient(135deg,#e8ffe0,#c8f0b0)} .b4{background:linear-gradient(135deg,#fff8e0,#ffe8a0)}
+.banner-emoji { position:absolute; font-size:100px; top:10px; right:20px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1)); animation:figFloat 3.5s ease-in-out infinite; }
+.banner-info { position:relative; z-index:1; padding:18px; }
+.banner-info .tag { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#e00; background:rgba(255,255,255,0.9); padding:3px 10px; border-radius:999px; display:inline-block; margin-bottom:8px; }
+.banner-info h3 { font-size:18px; font-weight:900; color:#111; letter-spacing:-0.5px; margin-bottom:4px; }
+.banner-info p { font-size:12px; color:#666; font-weight:600; }
+
+.products { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.prod-card { border:1.5px solid #eee; border-radius:12px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; }
+.prod-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.1); transform:translateY(-3px); }
+.prod-thumb { height:150px; display:flex; align-items:center; justify-content:center; font-size:72px; position:relative; }
+.t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
+.prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
+.badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
+.prod-info { padding:12px; }
+.prod-series { font-size:10px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px; }
+.prod-name { font-size:13px; font-weight:800; color:#222; margin-bottom:8px; }
+.prod-foot { display:flex; justify-content:space-between; align-items:center; }
+.prod-price { font-size:15px; font-weight:900; color:#e00; }
+.prod-cart { width:28px; height:28px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
+.prod-cart:hover { transform:scale(1.12); background:#c00; }
+
+.chars-row { display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+.char-pill { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 20px; border:1.5px solid #eee; border-radius:12px; cursor:pointer; transition:border-color 0.15s, background 0.15s; min-width:88px; }
+.char-pill:hover { border-color:#e00; background:#fff5f5; }
+.char-pill .ce { font-size:44px; }
+.char-pill span { font-size:11px; font-weight:800; color:#333; }
+
+footer { background:#111; color:#888; padding:40px 60px 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr; gap:32px; }
+.ft-brand .logo { font-family:'Fredoka One',sans-serif; font-size:20px; color:#fff; background:#e00; display:inline-block; padding:5px 12px; border-radius:3px; margin-bottom:12px; }
+.ft-brand p { font-size:12px; line-height:1.8; max-width:260px; }
+footer h4 { font-size:12px; font-weight:800; color:#ccc; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; }
+footer a { display:block; font-size:12px; color:#888; text-decoration:none; margin-bottom:8px; transition:color 0.15s; }
+footer a:hover { color:#e00; }
+.footer-bottom { background:#111; border-top:1px solid #222; padding:14px 60px; display:flex; justify-content:space-between; }
+.footer-bottom p { font-size:11px; color:#555; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" placeholder="Search characters, series...">
+    </div>
+  </div>
+  <div class="brand-logo">POP VAULT</div>
+  <div class="header-right">
+    <button class="icon-btn">🎧</button>
+    <button class="icon-btn">👤</button>
+    <button class="icon-btn">🤍</button>
+    <button class="icon-btn">🛒<span class="cart-count">0</span></button>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-item">NEW & FEATURED <span class="arrow">▾</span><div class="dropdown"><a href="#">New Arrivals</a><a href="#">Coming Soon</a><a href="#">Best Sellers</a><a href="#">Back in Stock</a></div></div>
+  <div class="nav-item">POP NOW</div>
+  <div class="nav-item">CATEGORIES <span class="arrow">▾</span><div class="dropdown"><a href="#">Blind Boxes</a><a href="#">Figures</a><a href="#">Plush</a><a href="#">Accessories</a><a href="#">Mega</a></div></div>
+  <div class="nav-item">CHARACTERS <span class="arrow">▾</span><div class="dropdown"><a href="#">LABUBU</a><a href="#">MOLLY</a><a href="#">DIMOO</a><a href="#">SKULLPANDA</a><a href="#">CRYBABY</a><a href="#">View All</a></div></div>
+  <div class="nav-item">COLLABS <span class="arrow">▾</span><div class="dropdown"><a href="#">Hello Kitty</a><a href="#">Disney</a><a href="#">Naruto</a><a href="#">View All</a></div></div>
+  <div class="nav-item">MEGA <span class="arrow">▾</span></div>
+  <div class="nav-item offers">OFFERS 🔥 <span class="arrow">▾</span></div>
+  <div class="nav-item">ABOUT US <span class="arrow">▾</span></div>
+  <div class="nav-item">STORE PICKUP</div>
+</nav>
+
+<div class="hero-slider">
+  <div class="slides" id="slides">
+
+    <div class="slide slide-1">
+      <div class="slide-bg-deco">
+        <span class="deco-star" style="top:10%;left:52%;font-size:38px;animation-delay:0s">⭐</span>
+        <span class="deco-star" style="top:16%;right:8%;font-size:24px;animation-delay:0.8s">✦</span>
+        <span class="deco-star" style="top:68%;right:10%;font-size:34px;animation-delay:0.4s">⭐</span>
+        <span class="deco-star" style="top:76%;left:55%;font-size:20px;animation-delay:1.2s">♡</span>
+        <span class="deco-star" style="top:28%;left:54%;font-size:18px;animation-delay:0.6s">♡</span>
+      </div>
+      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-content">
+        <div class="char-cluster">
+          <div class="big-text">LABUBU</div>
+          <div class="star-prop">⭐</div>
+          <div class="fig fig-1"><span class="emoji">🐷</span></div>
+          <div class="fig fig-2"><span class="emoji">🐰</span></div>
+          <div class="fig fig-3"><span class="emoji">👾</span></div>
+          <div class="fig fig-4"><span class="emoji">🐱</span></div>
+          <div class="fig fig-5"><span class="emoji">🐸</span></div>
+          <div class="fig fig-6"><span class="emoji">🦆</span></div>
+        </div>
+        <div class="slide-text">
+          <div class="collab-title">
+            <span>THE MONSTERS</span>
+            <span class="x">✕</span>
+            <span>HELLO KITTY</span>
+            <span>AND FRIENDS</span>
+          </div>
+          <div class="slide-sub">The Monsters × Hello Kitty and Friends</div>
+          <button class="shop-btn">SHOP NOW</button>
+        </div>
+      </div>
+      <div class="slide-copy">© 2025 SANRIO CO., LTD. Used Under License</div>
+    </div>
+
+    <div class="slide slide-2">
+      <div class="slide-bg-deco">
+        <span class="deco-star" style="top:12%;left:50%;font-size:32px;animation-delay:0s">🌸</span>
+        <span class="deco-star" style="top:20%;right:10%;font-size:22px;animation-delay:0.6s">✦</span>
+        <span class="deco-star" style="top:70%;right:14%;font-size:28px;animation-delay:1s">🌸</span>
+        <span class="deco-star" style="top:54%;left:52%;font-size:16px;animation-delay:1.4s">♡</span>
+      </div>
+      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-content">
+        <div class="char-cluster">
+          <div class="big-text">SAKURA</div>
+          <div class="fig fig-1"><span class="emoji">🌸</span></div>
+          <div class="fig fig-2"><span class="emoji">🦋</span></div>
+          <div class="fig fig-3"><span class="emoji">🌷</span></div>
+          <div class="fig fig-4"><span class="emoji">🌺</span></div>
+          <div class="fig fig-5"><span class="emoji">🍡</span></div>
+        </div>
+        <div class="slide-text">
+          <div class="collab-title">
+            <span>SAKURA DREAM</span>
+            <span class="x">✕</span>
+            <span>SPRING</span>
+            <span>COLLECTION 2025</span>
+          </div>
+          <div class="slide-sub">Limited Edition — Available Now</div>
+          <button class="shop-btn">SHOP NOW</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide slide-3">
+      <div class="slide-bg-deco">
+        <span class="deco-star" style="top:10%;left:52%;font-size:34px;animation-delay:0s">🌊</span>
+        <span class="deco-star" style="top:20%;right:8%;font-size:24px;animation-delay:0.9s">✦</span>
+        <span class="deco-star" style="top:70%;right:12%;font-size:28px;animation-delay:0.5s">🐚</span>
+        <span class="deco-star" style="top:46%;left:50%;font-size:16px;animation-delay:1.3s">✦</span>
+      </div>
+      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-content">
+        <div class="char-cluster">
+          <div class="big-text">OCEAN</div>
+          <div class="fig fig-1"><span class="emoji">🐋</span></div>
+          <div class="fig fig-2"><span class="emoji">🐠</span></div>
+          <div class="fig fig-3"><span class="emoji">🦈</span></div>
+          <div class="fig fig-4"><span class="emoji">🐙</span></div>
+          <div class="fig fig-5"><span class="emoji">🐚</span></div>
+        </div>
+        <div class="slide-text">
+          <div class="collab-title">
+            <span>OCEAN DRIFT</span>
+            <span class="x">✕</span>
+            <span>DEEP SEA</span>
+            <span>ADVENTURE</span>
+          </div>
+          <div class="slide-sub">New Series Drop — 12 Figures + 1 Secret</div>
+          <button class="shop-btn">SHOP NOW</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="slider-arrow prev" onclick="changeSlide(-1)">&#8592;</button>
+  <button class="slider-arrow next" onclick="changeSlide(1)">&#8594;</button>
+  <div class="slider-dots" id="dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<div class="promo-strip">
+  <div class="promo-item"><span class="promo-icon">🚚</span><div class="promo-text"><strong>Free Shipping</strong><span>On orders over $49</span></div></div>
+  <div class="promo-item"><span class="promo-icon">🔒</span><div class="promo-text"><strong>Secure Payment</strong><span>100% protected checkout</span></div></div>
+  <div class="promo-item"><span class="promo-icon">✅</span><div class="promo-text"><strong>Authenticity Guaranteed</strong><span>Official licensed figures</span></div></div>
+  <div class="promo-item"><span class="promo-icon">🔄</span><div class="promo-text"><strong>Easy Returns</strong><span>30-day return policy</span></div></div>
+</div>
+
+<section class="section">
+  <div class="section-head"><h2>NEW & FEATURED</h2><a href="#">VIEW ALL →</a></div>
+  <div class="banner-duo">
+    <div class="banner-card b1"><span class="banner-emoji">🐰</span><div class="banner-info"><span class="tag">🔥 Hot Right Now</span><h3>The Monsters Series</h3><p>LABUBU blind boxes from ¥99</p></div></div>
+    <div class="banner-card b2"><span class="banner-emoji">🌸</span><div class="banner-info"><span class="tag">✦ New Drop</span><h3>Sakura Dream</h3><p>Spring limited edition · 12 figures</p></div></div>
+  </div>
+  <div class="banner-duo" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="banner-card b3" style="height:180px"><span class="banner-emoji" style="font-size:80px;top:5px">🌿</span><div class="banner-info"><span class="tag">Limited</span><h3>Forest Folk</h3></div></div>
+    <div class="banner-card b4" style="height:180px"><span class="banner-emoji" style="font-size:80px;top:5px">⭐</span><div class="banner-info"><span class="tag">Restocked</span><h3>Stardust Series</h3></div></div>
+    <div class="banner-card" style="height:180px;background:linear-gradient(135deg,#ffe0f8,#f0b8f0)"><span class="banner-emoji" style="font-size:80px;top:5px">🦋</span><div class="banner-info"><span class="tag">Secret</span><h3>Flutter SP</h3></div></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="section-head"><h2>POPULAR RIGHT NOW</h2><a href="#">VIEW ALL →</a></div>
+  <div class="products">
+    <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span>🐰</div><div class="prod-info"><div class="prod-series">The Monsters</div><div class="prod-name">LABUBU Blind Box</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-ltd">LIMITED</span>🌿</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Mushie Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span>⭐</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Nebula Puff</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">SECRET</span>🦋</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Flutter SP</div><div class="prod-foot"><span class="prod-price">¥399</span><button class="prod-cart">+</button></div></div></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="section-head"><h2>SHOP BY CHARACTER</h2><a href="#">VIEW ALL →</a></div>
+  <div class="chars-row">
+    <div class="char-pill"><span class="ce">🐰</span><span>LABUBU</span></div>
+    <div class="char-pill"><span class="ce">🐸</span><span>KERO</span></div>
+    <div class="char-pill"><span class="ce">🌸</span><span>BLOSSOM</span></div>
+    <div class="char-pill"><span class="ce">🐋</span><span>WHALEY</span></div>
+    <div class="char-pill"><span class="ce">⭐</span><span>NEBULA</span></div>
+    <div class="char-pill"><span class="ce">🦊</span><span>FOXLYN</span></div>
+    <div class="char-pill"><span class="ce">🍄</span><span>MUSHIE</span></div>
+    <div class="char-pill"><span class="ce">🦋</span><span>FLUTTER</span></div>
+    <div class="char-pill"><span class="ce">🌙</span><span>LUNARA</span></div>
+    <div class="char-pill"><span class="ce">🐻</span><span>CUBBY</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand"><div class="logo">POP VAULT</div><p>The home of designer art toys, blind boxes, and collectible figures. Bringing tiny worlds to life since 2019.</p></div>
+  <div><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Blind Boxes</a><a href="#">Limited Edition</a><a href="#">Characters</a><a href="#">Collabs</a></div>
+  <div><h4>Support</h4><a href="#">Shipping Info</a><a href="#">Returns</a><a href="#">Track Order</a><a href="#">FAQ</a><a href="#">Contact Us</a></div>
+  <div><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Store Locations</a></div>
+  <div><h4>Follow Us</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a><a href="#">Discord</a><a href="#">WeChat</a></div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 PopVault Inc. All rights reserved.</p>
+  <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+</div>
+
+<script>
+let cur=0; const total=3;
+const slides=document.getElementById('slides');
+const dots=document.querySelectorAll('.dot');
+let timer=setInterval(()=>changeSlide(1),4500);
+function goSlide(n){cur=n;slides.style.transform='translateX(-'+(cur*100)+'%)';dots.forEach((d,i)=>d.classList.toggle('active',i===cur));clearInterval(timer);timer=setInterval(()=>changeSlide(1),4500);}
+function changeSlide(dir){cur=(cur+dir+total)%total;goSlide(cur);}
+</script>
+</body>
+</html>
