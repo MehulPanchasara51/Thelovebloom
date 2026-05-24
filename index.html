@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Pop Vault</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Bloom</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   BASE STYLES (Original Desktop)
+   BASE DESKTOP LAYOUT (Default PC View)
    ========================================================================== */
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Nunito',sans-serif; background:#fff; overflow-x:hidden; }
@@ -29,8 +29,7 @@ header {
 .icon-btn:hover { background:#f5f5f5; }
 .cart-count { position:absolute; top:4px; right:4px; background:#e00; color:#fff; font-size:9px; font-weight:800; width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:68px; z-index:190; scrollbar-width: none; }
-nav::-webkit-scrollbar { display: none; }
+nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:68px; z-index:190; }
 .nav-item { display:flex; align-items:center; gap:4px; padding:0 16px; height:44px; cursor:pointer; font-size:13px; font-weight:700; color:#222; letter-spacing:0.2px; border-bottom:3px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; position:relative; user-select:none; }
 .nav-item:hover { color:#e00; border-bottom-color:#e00; }
 .nav-item .arrow { font-size:9px; color:#999; }
@@ -42,7 +41,13 @@ nav::-webkit-scrollbar { display: none; }
 
 .hero-slider { position:relative; overflow:hidden; }
 .slides { display:flex; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-.slide { min-width:100%; height:calc(100vh - 160px); min-height:600px; max-height:780px; position:relative; display:flex; align-items:center; flex-shrink:0; }
+.slide {
+  min-width:100%;
+  height: calc(100vh - 160px);
+  min-height: 600px;
+  max-height: 780px;
+  position:relative; display:flex; align-items:center; flex-shrink:0;
+}
 .slide-1 { background:linear-gradient(135deg,#f5e6b8 0%,#edd89a 50%,#e8c87a 100%); }
 .slide-2 { background:linear-gradient(135deg,#ffd6e8 0%,#f5b8d0 50%,#ebb0c8 100%); }
 .slide-3 { background:linear-gradient(135deg,#c8e8f8 0%,#a8d8f0 50%,#88c8e8 100%); }
@@ -54,7 +59,13 @@ nav::-webkit-scrollbar { display: none; }
 .slide-content { position:relative; z-index:2; width:100%; max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 60px; height:100%; }
 
 .char-cluster { position:relative; width:540px; height:100%; flex-shrink:0; display:flex; align-items:flex-end; justify-content:center; }
-.char-cluster .big-text { position:absolute; bottom:74px; left:0; right:0; text-align:center; font-family:'Fredoka One',sans-serif; font-size:clamp(76px,9.5vw,114px); letter-spacing:-2px; background:linear-gradient(180deg,#d4aaee 0%,#a870e0 40%,#8040c0 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(2px 4px 0px rgba(120,60,180,0.3)); z-index:1; }
+.char-cluster .big-text {
+  position:absolute; bottom:74px; left:0; right:0; text-align:center;
+  font-family:'Fredoka One',sans-serif; font-size:clamp(76px,9.5vw,114px); letter-spacing:-2px;
+  background:linear-gradient(180deg,#d4aaee 0%,#a870e0 40%,#8040c0 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  filter:drop-shadow(2px 4px 0px rgba(120,60,180,0.3)); z-index:1;
+}
 .slide-2 .char-cluster .big-text { background:linear-gradient(180deg,#ffb8d8 0%,#ff78b0 40%,#d04880 100%); -webkit-background-clip:text; background-clip:text; }
 .slide-3 .char-cluster .big-text { background:linear-gradient(180deg,#a0d8f8 0%,#50a8e0 40%,#2878b8 100%); -webkit-background-clip:text; background-clip:text; }
 
@@ -124,7 +135,7 @@ nav::-webkit-scrollbar { display: none; }
 .prod-cart { width:28px; height:28px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
 .prod-cart:hover { transform:scale(1.12); background:#c00; }
 
-.chars-row { display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.chars-row { display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
 .char-pill { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 20px; border:1.5px solid #eee; border-radius:12px; cursor:pointer; transition:border-color 0.15s, background 0.15s; min-width:88px; }
 .char-pill:hover { border-color:#e00; background:#fff5f5; }
 .char-pill .ce { font-size:44px; }
@@ -140,86 +151,121 @@ footer a:hover { color:#e00; }
 .footer-bottom p { font-size:11px; color:#555; }
 
 /* ==========================================================================
-   RESPONSIVE STYLES (Tablets & Mobile)
+   RESPONSIVE MEDIA QUERIES (Isolates and fixes Mobile/Tablet views)
    ========================================================================== */
 
-/* Tablets (1024px and below) */
+/* Tablets & Medium Screens (1024px and below) */
 @media (max-width: 1024px) {
   .products { grid-template-columns: repeat(3, 1fr); }
-  .char-cluster { width: 450px; }
+  .char-cluster { width: 440px; }
   .slide-content { padding: 0 40px; }
 }
 
 /* Mobile Devices (768px and below) */
 @media (max-width: 768px) {
-  /* Header adjustments */
-  header { height: 110px; display: flex; flex-wrap: wrap; padding: 12px 20px; align-items: center; justify-content: space-between; }
-  .brand-logo { font-size: 18px; padding: 6px 14px; margin-right: auto; }
-  .header-right { margin-left: auto; gap: 4px; }
-  .header-left { width: 100%; margin-top: 10px; display: flex; order: 3; }
+  header {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .brand-logo { font-size: 19px; padding: 6px 14px; order: 1; margin-right: auto; }
+  .header-right { order: 2; gap: 4px; margin-left: auto; }
+  .header-left { width: 100%; order: 3; display: flex; }
   .search-box { width: 100%; }
   
-  /* Scrollable Nav */
-  nav { top: 110px; padding: 0 10px; justify-content: flex-start; overflow-x: auto; }
+  nav { top: 108px; padding: 0 10px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
   .nav-item { padding: 0 12px; font-size: 12px; }
   
-  /* Hero Slider adjustments */
-  .slide { height: auto; min-height: 90vh; padding: 60px 0 40px; flex-direction: column; justify-content: center; }
-  .slide-content { flex-direction: column; padding: 0 20px; justify-content: center; }
+  /* Carousel structural logic fixes - prevents character elements masking buttons */
+  .slide { height: auto; min-height: 520px; padding: 40px 0 30px; }
+  .slide-content { flex-direction: column; justify-content: center; padding: 0 20px; text-align: center; }
   
-  /* Scaling down the character cluster so absolutely positioned emojis don't overflow */
-  .char-cluster { width: 100%; transform: scale(0.65); transform-origin: bottom center; margin-bottom: -15%; }
-  .slide-text { text-align: center; padding-right: 0; width: 100%; z-index: 5; margin-top: 20px; }
+  .char-cluster { 
+    width: 100%; 
+    height: 190px; 
+    align-items: center; 
+    margin-bottom: 10px;
+    flex-shrink: initial;
+  }
+  .char-cluster .big-text { font-size: 50px; bottom: 10px; }
   
-  .collab-title { font-size: clamp(32px, 8vw, 42px); margin-bottom: 5px; }
-  .collab-title span { display: inline-block; margin: 0 4px; }
-  .slide-sub { font-size: 15px; margin: 10px 0 20px; }
-  .slider-arrow { display: none; } /* Hide arrows, rely on dots/swipe for mobile */
-  .slide-copy { bottom: 20px; right: 0; width: 100%; text-align: center; font-size: 9px; }
+  /* Adaptive scaling for floating visual props on small touch devices */
+  .fig-1 { bottom: 5%; left: 6%; }       .fig-1 .emoji { font-size: 40px !important; }
+  .fig-2 { bottom: 25%; left: 20%; }     .fig-2 .emoji { font-size: 36px !important; }
+  .fig-3 { bottom: 35%; left: 50%; }     .fig-3 .emoji { font-size: 50px !important; }
+  .fig-4 { bottom: 25%; right: 20%; }    .fig-4 .emoji { font-size: 38px !important; }
+  .fig-5 { bottom: 5%; right: 6%; }       .fig-5 .emoji { font-size: 36px !important; }
+  .fig-6 { bottom: 52%; right: 34%; }    .fig-6 .emoji { font-size: 30px !important; }
+  .star-prop { bottom: 18%; left: 34%; font-size: 40px; }
   
-  /* Layout Padding & Margins */
-  .section { padding: 32px 20px; }
+  .slide-text { text-align: center; padding-right: 0; width: 100%; margin-top: 5px; position: relative; z-index: 5; }
+  .collab-title { font-size: 26px; line-height: 1.2; margin-bottom: 6px; }
+  .collab-title span { display: inline-block; margin: 0 3px; }
+  .slide-sub { font-size: 14px; margin: 8px 0 16px; }
+  .shop-btn { padding: 11px 32px; font-size: 13px; position: relative; z-index: 10; }
+  
+  .slider-arrow { display: none; } /* Relies elegantly on touch-swipes on handheld panels */
+  .slide-copy { bottom: 10px; right: 0; width: 100%; text-align: center; font-size: 9px; }
+  
+  .section { padding: 24px 16px; }
   .section-head h2 { font-size: 18px; }
   
-  /* Force Grids to Stack or Shrink */
   .banner-duo { grid-template-columns: 1fr !important; gap: 12px; }
-  .banner-card { height: 160px !important; }
-  .banner-emoji { font-size: 80px; }
+  .banner-card { height: 140px !important; }
+  .banner-emoji { font-size: 70px; }
   
   .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .prod-thumb { height: 130px; font-size: 60px; }
-  .prod-info { padding: 10px; }
+  .prod-thumb { height: 120px; font-size: 55px; }
+  .prod-info { padding: 8px; }
   .prod-name { font-size: 12px; }
   
-  /* Footer Stacking */
-  footer { grid-template-columns: 1fr 1fr; padding: 32px 20px 20px; gap: 24px; }
-  .ft-brand { grid-column: 1 / -1; }
-  .ft-brand p { max-width: 100%; }
-  .footer-bottom { flex-direction: column; padding: 16px 20px; gap: 12px; text-align: center; }
+  /* Horizontal Compact Footer adjustments to reduce vertical scrolling */
+  footer { 
+    grid-template-columns: 1fr; 
+    padding: 30px 16px 20px; 
+    gap: 18px; 
+  }
+  .ft-brand { text-align: center; margin-bottom: 5px; }
+  .ft-brand p { max-width: 100%; margin: 0 auto; }
+  
+  footer h4 { 
+    margin-bottom: 6px; 
+    font-size: 11px; 
+    border-bottom: 1px solid #222; 
+    padding-bottom: 4px; 
+  }
+  footer a { 
+    display: inline-block; 
+    font-size: 11px; 
+    margin-right: 14px; 
+    margin-bottom: 6px; 
+  }
+  
+  .footer-bottom { flex-direction: column; padding: 12px 16px; gap: 8px; text-align: center; }
 }
 
-/* Small Mobile Devices (480px and below) */
+/* Extra Small Panels (480px and below) */
 @media (max-width: 480px) {
-  .char-cluster { transform: scale(0.5); margin-bottom: -25%; }
-  .collab-title { line-height: 1.2; }
   .collab-title span { display: block; margin: 0; }
-  .prod-thumb { height: 110px; font-size: 50px; }
-  footer { grid-template-columns: 1fr; }
+  .products { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="brand-logo">POP VAULT</div>
-  <div class="header-right">
-    <button class="icon-btn">🎧</button>
-    <button class="icon-btn">👤</button>
-    <button class="icon-btn">🤍</button>
-    <button class="icon-btn">🛒<span class="cart-count">0</span></button>
-  </div>
   <div class="header-left">
     <div class="search-box"><span>🔍</span><input type="text" placeholder="Search characters, series..."></div>
+  </div>
+  <div class="brand-logo">LOVE BLOOM</div>
+  <div class="header-right">
+    <button class="icon-btn">👤</button>
+    <button class="icon-btn">🛒<span class="cart-count">0</span></button>
   </div>
 </header>
 
@@ -246,7 +292,7 @@ footer a:hover { color:#e00; }
         <span class="deco-star" style="top:76%;left:55%;font-size:20px;animation-delay:1.2s">♡</span>
         <span class="deco-star" style="top:28%;left:54%;font-size:18px;animation-delay:0.6s">♡</span>
       </div>
-      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
         <div class="char-cluster">
           <div class="big-text">LABUBU</div>
@@ -274,7 +320,7 @@ footer a:hover { color:#e00; }
         <span class="deco-star" style="top:70%;right:14%;font-size:28px;animation-delay:1s">🌸</span>
         <span class="deco-star" style="top:54%;left:52%;font-size:16px;animation-delay:1.4s">♡</span>
       </div>
-      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
         <div class="char-cluster">
           <div class="big-text">SAKURA</div>
@@ -299,7 +345,7 @@ footer a:hover { color:#e00; }
         <span class="deco-star" style="top:70%;right:12%;font-size:28px;animation-delay:0.5s">🐚</span>
         <span class="deco-star" style="top:46%;left:50%;font-size:16px;animation-delay:1.3s">✦</span>
       </div>
-      <div class="slide-brand-badge">POP VAULT</div>
+      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
         <div class="char-cluster">
           <div class="big-text">OCEAN</div>
@@ -368,49 +414,47 @@ footer a:hover { color:#e00; }
 </section>
 
 <footer>
-  <div class="ft-brand"><div class="logo">POP VAULT</div><p>The home of designer art toys, blind boxes, and collectible figures. Bringing tiny worlds to life since 2019.</p></div>
+  <div class="ft-brand"><div class="logo">LOVE BLOOM</div><p>The home of designer art toys, blind boxes, and collectible figures. Bringing tiny worlds to life since 2019.</p></div>
   <div><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Blind Boxes</a><a href="#">Limited Edition</a><a href="#">Characters</a><a href="#">Collabs</a></div>
   <div><h4>Support</h4><a href="#">Shipping Info</a><a href="#">Returns</a><a href="#">Track Order</a><a href="#">FAQ</a><a href="#">Contact Us</a></div>
   <div><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Store Locations</a></div>
   <div><h4>Follow Us</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a><a href="#">Discord</a><a href="#">WeChat</a></div>
 </footer>
 <div class="footer-bottom">
-  <p>© 2025 PopVault Inc. All rights reserved.</p>
+  <p>© 2025 LoveBloom Inc. All rights reserved.</p>
   <p>Privacy Policy · Terms of Service · Cookie Settings</p>
 </div>
 
 <script>
-let cur = 0; 
-const total = 3;
-const slides = document.getElementById('slides');
-const dots = document.querySelectorAll('.dot');
-let timer = setInterval(() => changeSlide(1), 4500);
+let cur=0; const total=3;
+const slides=document.getElementById('slides');
+const dots=document.querySelectorAll('.dot');
+let timer=setInterval(()=>changeSlide(1),4500);
 
-function goSlide(n) {
-  cur = n;
-  slides.style.transform = 'translateX(-' + (cur * 100) + '%)';
-  dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+function goSlide(n){
+  cur=n;
+  slides.style.transform='translateX(-'+(cur*100)+'%)';
+  dots.forEach((d,i)=>d.classList.toggle('active',i===cur));
   clearInterval(timer);
-  timer = setInterval(() => changeSlide(1), 4500);
+  timer=setInterval(()=>changeSlide(1),4500);
 }
 
-function changeSlide(dir) {
-  cur = (cur + dir + total) % total;
+function changeSlide(dir){
+  cur=(cur+dir+total)%total;
   goSlide(cur);
 }
 
-// Added touch support for mobile swiping
+// Added intuitive touch swipe listener support for high-performance mobile scrolling
 let touchStartX = 0;
 let touchEndX = 0;
-
 slides.addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].screenX;
 }, { passive: true });
 
 slides.addEventListener('touchend', e => {
   touchEndX = e.changedTouches[0].screenX;
-  if (touchStartX - touchEndX > 50) changeSlide(1);  // Swiped left
-  if (touchEndX - touchStartX > 50) changeSlide(-1); // Swiped right
+  if (touchStartX - touchEndX > 50) changeSlide(1);  
+  if (touchEndX - touchStartX > 50) changeSlide(-1); 
 }, { passive: true });
 </script>
 </body>
