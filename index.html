@@ -20,7 +20,7 @@ header {
 }
 .header-left { display:flex; align-items:center; }
 .search-box { display:flex; align-items:center; gap:8px; border:1.5px solid #ddd; border-radius:999px; padding:7px 14px; width:240px; background:#fafafa; transition:border-color 0.2s; }
-.search-box:focus-within { border-color:#e00; }
+.search-box:focus-within { border-color:#222; }
 .search-box input { border:none; outline:none; background:transparent; font-family:'Nunito',sans-serif; font-size:13px; color:#333; width:100%; }
 .search-box input::placeholder { color:#aaa; }
 
@@ -59,19 +59,19 @@ header {
 .header-right { display:flex; align-items:center; justify-content:flex-end; gap:6px; }
 .icon-btn { width:38px; height:38px; border-radius:50%; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; transition:background 0.15s; position:relative; color:#333; }
 .icon-btn:hover { background:#f5f5f5; }
-.cart-count { position:absolute; top:4px; right:4px; background:#e00; color:#fff; font-size:9px; font-weight:800; width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.cart-count { position:absolute; top:4px; right:4px; background:#222; color:#fff; font-size:9px; font-weight:800; width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
 .mobile-burger-btn { display: none; }
 
 nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:76px; z-index:190; }
 .nav-item { display:flex; align-items:center; gap:4px; padding:0 24px; height:44px; cursor:pointer; font-size:14px; font-weight:800; color:#222; letter-spacing:0.5px; border-bottom:3px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; position:relative; user-select:none; text-transform:uppercase; }
-.nav-item:hover { color:#e00; border-bottom-color:#e00; }
+.nav-item:hover { color:#111; border-bottom-color:#111; }
 .nav-item .arrow { font-size:9px; color:#999; }
-.nav-item.offers { color:#e00; }
-.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #e00; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+.nav-item.offers { color:#111; }
+.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #111; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
 .nav-item:hover .dropdown { display:block; }
 .dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; text-transform:none; letter-spacing:0; transition:background 0.1s, color 0.1s; }
-.dropdown a:hover { background:#fff5f5; color:#e00; }
+.dropdown a:hover { background:#f5f5f5; color:#000; }
 
 /* ==========================================================================
    HERO BANNER CAROUSEL SLIDER 
@@ -184,7 +184,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dot.active { background:#fff; }
 
 .slide-copy { position:absolute; bottom:24px; right:20px; font-size:10px; color:rgba(255,255,255,0.55); z-index:10; }
-.slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
+.slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#222; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
 
 .section { padding:80px 60px; }
 
@@ -209,7 +209,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .arrival-name { font-size: 16px; font-weight: 600; color: #111; line-height: 1.5; margin-bottom: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; font-family: 'Nunito', sans-serif; }
 .arrival-price { font-size: 18px; font-weight: 700; color: #b58248; letter-spacing: 0.1px; font-family: 'Nunito', sans-serif; }
 .arrival-link { font-size: 14.5px; font-weight: 600; color: #333; text-decoration: underline; text-underline-offset: 4px; display: inline-block; width: max-content; text-transform: lowercase; }
-.arrival-link:hover { color: #e00; }
+.arrival-link:hover { color: #111; }
 
 .arrival-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 50%; background: #ededed; border: none; cursor: pointer; font-size: 32px; display: flex; align-items: center; justify-content: center; color: #7e7e7e; z-index: 10; transition: background 0.2s, color 0.2s, transform 0.2s; padding-bottom: 6px; }
 .arrival-arrow:hover { background: #e0e0e0; color: #333; transform: translateY(-50%) scale(1.05); }
@@ -229,14 +229,14 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; }
 .t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
 .prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
-.badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
+.badge-new{background:#222;color:#fff} .badge-hot{background:#444;color:#fff} .badge-ltd{background:#777;color:#fff} .badge-sold{background:#555;color:#fff}
 .prod-info { padding:16px; }
 .prod-series { font-size:11px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
 .prod-name { font-size:14px; font-weight:800; color:#222; margin-bottom:12px; }
 .prod-foot { display:flex; justify-content:space-between; align-items:center; }
-.prod-price { font-size:16px; font-weight:900; color:#e00; }
-.prod-cart { width:32px; height:32px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
-.prod-cart:hover { transform:scale(1.12); background:#c00; }
+.prod-price { font-size:16px; font-weight:900; color:#222; }
+.prod-cart { width:32px; height:32px; border-radius:50%; background:#222; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
+.prod-cart:hover { transform:scale(1.12); background:#000; }
 
 .prod-card.hidden-product { display: none; }
 
@@ -324,7 +324,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   cursor: pointer;
   text-decoration: underline;
 }
-.ft-signup-btn:hover { color: #e00; }
+.ft-signup-btn:hover { color: #111; }
 
 .ft-contact-sub {
   border: 1px solid #222;
@@ -442,8 +442,8 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   cursor: pointer; text-decoration: none;
   transition: background 0.15s, color 0.15s;
 }
-.mobile-menu-item:hover, .mobile-menu-item.active { background: #fff5f5; color: #e00; }
-.mobile-menu-item.offers-item { color: #e00; }
+.mobile-menu-item:hover, .mobile-menu-item.active { background: #fff5f5; color: #111; }
+.mobile-menu-item.offers-item { color: #111; }
 .mobile-menu-item .toggle-arrow { font-size: 10px; color: #aaa; transition: transform 0.2s; }
 .mobile-menu-item.expanded .toggle-arrow { transform: rotate(180deg); }
 .mobile-submenu {
@@ -458,7 +458,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   transition: color 0.15s;
 }
 .mobile-submenu a:last-child { border-bottom: none; }
-.mobile-submenu a:hover { color: #e00; }
+.mobile-submenu a:hover { color: #111; }
 .mobile-search-row {
   padding: 16px 20px;
   border-bottom: 1px solid #f0f0f0;
@@ -482,7 +482,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   }
   .header-left, .search-box { display: none !important; }
   
-  /* CRITICAL MOBILE FIX: Force explicit proportional heights to prevent clipping/hiding */
+  /* FIXED MOBILE CONSTRAINTS: Keeps image framed proportionally without squishing or cutting off layout */
   .brand-logo { 
     height: 38px !important;
     min-height: 38px !important;
@@ -560,16 +560,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .arrival-info { padding: 12px 0 4px; gap: 6px; }
   .arrival-name { height: auto; -webkit-line-clamp: initial; display: block; overflow: visible; font-size: 13px; margin-bottom: 4px; }
   .arrival-price { font-size: 14px; margin-bottom: 4px; }
-  .arrival-link { font-size: 13px; }
-
-  /* Products grid */
-  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .prod-thumb { font-size: 50px; }
-  .prod-info { padding: 10px 10px 12px; }
-  .prod-series { font-size: 10px; }
-  .prod-name { font-size: 12px; margin-bottom: 10px; }
-  .prod-price { font-size: 14px; }
-  .prod-cart { width: 30px; height: 30px; font-size: 15px; min-width: 30px; }
 
   /* Footer */
   .footer-top-bar { padding: 16px 20px; }
@@ -821,7 +811,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
   <div class="products" id="productsGrid">
     <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span>🐰</div><div class="prod-info"><div class="prod-series">The Monsters</div><div class="prod-name">LABUBU Blind Box</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart"></button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2">🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-ltd">LIMITED</span>🌿</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Mushie Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span>⭐</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Nebula Puff</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">SECRET</span>🦋</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Flutter SP</div><div class="prod-foot"><span class="prod-price">¥399</span><button class="prod-cart">+</button></div></div></div>
