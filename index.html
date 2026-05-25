@@ -29,8 +29,7 @@ header {
 .icon-btn:hover { background:#f5f5f5; }
 .cart-count { position:absolute; top:4px; right:4px; background:#e00; color:#fff; font-size:9px; font-weight:800; width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-/* Desktop view helper classes for mobile navigation elements */
-.mobile-action-group, .mobile-burger-btn { display: none; }
+.mobile-burger-btn { display: none; }
 
 nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:68px; z-index:190; }
 .nav-item { display:flex; align-items:center; gap:4px; padding:0 24px; height:44px; cursor:pointer; font-size:14px; font-weight:800; color:#222; letter-spacing:0.5px; border-bottom:3px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; position:relative; user-select:none; text-transform:uppercase; }
@@ -368,42 +367,105 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .arrival-card { width: calc((100% - 48px) / 3); gap: 24px; }
 }
 
+/* ==========================================================================
+   MOBILE MENU DRAWER
+   ========================================================================== */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.mobile-menu-overlay.open { display: block; opacity: 1; }
+.mobile-menu-drawer {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 82vw; max-width: 300px;
+  background: #fff;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: flex; flex-direction: column;
+}
+.mobile-menu-overlay.open .mobile-menu-drawer { transform: translateX(0); }
+.mobile-menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+}
+.mobile-menu-header .drawer-logo {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 18px; letter-spacing: 1.5px;
+  background: #e00; color: #fff;
+  padding: 5px 14px; border-radius: 3px;
+}
+.mobile-menu-close {
+  background: transparent; border: none;
+  font-size: 22px; color: #555; cursor: pointer; padding: 4px 6px;
+}
+.mobile-menu-close:hover { color: #000; }
+.mobile-menu-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 20px;
+  font-size: 13px; font-weight: 800; color: #222;
+  letter-spacing: 0.6px; text-transform: uppercase;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-menu-item:hover, .mobile-menu-item.active { background: #fff5f5; color: #e00; }
+.mobile-menu-item.offers-item { color: #e00; }
+.mobile-menu-item .toggle-arrow { font-size: 10px; color: #aaa; transition: transform 0.2s; }
+.mobile-menu-item.expanded .toggle-arrow { transform: rotate(180deg); }
+.mobile-submenu {
+  display: none; background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+.mobile-submenu.open { display: block; }
+.mobile-submenu a {
+  display: block; padding: 11px 20px 11px 34px;
+  font-size: 13px; font-weight: 600; color: #555;
+  text-decoration: none; border-bottom: 1px solid #f0f0f0;
+  transition: color 0.15s;
+}
+.mobile-submenu a:last-child { border-bottom: none; }
+.mobile-submenu a:hover { color: #e00; }
+.mobile-search-row {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.mobile-search-row .search-box {
+  display: flex !important;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
-  /* FIXED: Adapted main wrapper block rules to perfectly match the user's uploaded layout screenshot reference */
+  /* Header */
   header { 
-    height: auto; 
+    height: 56px; 
     display: flex; 
-    flex-direction: column;
-    padding: 16px; 
-    gap: 16px; 
-    border-bottom: 1px solid #e8e8e8;
-  }
-  
-  /* Hides normal left column and shifts the brand-logo to the top-center */
-  .header-left { display: none; }
-  .brand-logo { 
-    font-size: 20px; 
-    padding: 8px 30px; 
-    order: 1; 
-    margin: 0 auto; 
-    display: block;
-    width: max-content;
-  }
-  
-  /* Positions action loops block on the top right row channel */
-  .header-right { 
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    order: 2; 
-    gap: 12px; 
-    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 14px; 
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
   }
-  /* Hides profile button icon on mobile devices */
-  .header-right .icon-btn:nth-child(1) { display: none; }
-  
-  /* FIXED & ADDED: Activates custom floating menu controls bar loop */
+  .header-left, .search-box { display: none !important; }
+  .brand-logo { 
+    font-size: 17px; 
+    padding: 5px 14px; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .header-right { gap: 4px; }
+  .header-right .icon-btn { width: 34px; height: 34px; font-size: 16px; }
+  /* Show search icon on mobile (was hidden as nth-child(1)) */
+  .header-right .icon-btn:nth-child(1) { display: flex; }
   .mobile-burger-btn {
     display: flex;
     background: transparent;
@@ -411,102 +473,105 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     font-size: 22px;
     color: #222;
     cursor: pointer;
-    padding: 4px;
+    padding: 4px 6px;
     align-items: center;
     justify-content: center;
   }
-  
-  /* FIXED & ADDED: Expanded single pill search wrapper layout container */
-  header::after {
-    content: '';
-    display: none;
-  }
-  .search-box { 
-    display: flex;
-    width: 100%; 
-    order: 3; 
-    margin: 0;
-    border: 1.5px solid #757575;
-    background: #fff;
-    padding: 12px 20px;
-    border-radius: 999px;
-  }
-  .search-box input {
-    font-size: 15px;
-  }
-  
-  /* Desktop horizontal text links menu panel is disabled for cleaner rendering */
   nav { display: none !important; }
-  
-  .slide { height: auto; min-height: 440px; padding: 40px 0 0px; }
-  .slide-content { padding: 0 15px 55px 15px; justify-content: flex-end; }
-  
-  .char-cluster .big-text { font-size: 44px; bottom: auto; top: 15%; }
-  
-  .fig-1 { bottom: 22%; left: 4%; }       .fig-1 .emoji { font-size: 34px !important; }
-  .fig-2 { bottom: 35%; left: 16%; }      .fig-2 .emoji { font-size: 30px !important; }
-  .fig-3 { bottom: 45%; left: 50%; }      .fig-3 .emoji { font-size: 42px !important; }
-  .fig-4 { bottom: 35%; right: 16%; }     .fig-4 .emoji { font-size: 32px !important; }
-  .fig-5 { bottom: 22%; right: 4%; }       .fig-5 .emoji { font-size: 30px !important; }
-  .fig-6 { bottom: 60%; right: 30%; }     .fig-6 .emoji { font-size: 26px !important; }
-  .star-prop { bottom: 26%; left: 30%; font-size: 34px; }
-  
-  .slide-text { max-width: 95%; margin-top: 0; }
-  .collab-title { font-size: clamp(14px, 4.5vw, 22px); margin-bottom: 16px; }
-  .shop-btn { padding: 10px 34px; font-size: 12px; }
-  
+
+  /* Hero slider */
+  .slide { height: auto; min-height: 420px; }
+  .slide-content { padding: 0 16px 52px 16px; justify-content: flex-end; }
+  .char-cluster .big-text { font-size: clamp(38px, 10vw, 52px); bottom: auto; top: 12%; }
+  .fig-1 { bottom: 20%; left: 4%; }       .fig-1 .emoji { font-size: 32px !important; }
+  .fig-2 { bottom: 34%; left: 18%; }      .fig-2 .emoji { font-size: 28px !important; }
+  .fig-3 { bottom: 44%; left: 50%; }      .fig-3 .emoji { font-size: 40px !important; }
+  .fig-4 { bottom: 34%; right: 18%; }     .fig-4 .emoji { font-size: 28px !important; }
+  .fig-5 { bottom: 20%; right: 4%; }      .fig-5 .emoji { font-size: 28px !important; }
+  .fig-6 { bottom: 58%; right: 28%; }     .fig-6 .emoji { font-size: 24px !important; }
+  .star-prop { bottom: 26%; left: 28%; font-size: 30px; }
+  .slide-text { max-width: 100%; }
+  /* KEY FIX: allow long titles to wrap on mobile */
+  .collab-title { 
+    font-size: clamp(14px, 4.2vw, 20px); 
+    white-space: normal; 
+    margin-bottom: 14px;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  .shop-btn { padding: 10px 32px; font-size: 12px; }
   .slider-arrow { display: none; }
-  .slider-dots { bottom: 16px; }
+  .slider-dots { bottom: 14px; }
   .slide-copy { display: none; }
-  
-  .section { padding: 36px 20px; }
-  
-  .arrival-section-wrapper { padding: 36px 0; }
-  .arrival-section-head { margin-bottom: 24px; }
+  .slide-brand-badge { font-size: 11px; padding: 4px 10px; top: 14px; left: 14px; }
+
+  /* Sections */
+  .section { padding: 32px 16px; }
+  .shop-all-section-head h2,
+  .recommended-section-head h2 { font-size: 24px; }
+
+  /* New Arrivals — KEY FIX: wrapper must allow horizontal scroll */
+  .arrival-section-wrapper { padding: 32px 0; }
+  .arrival-section-head { margin-bottom: 20px; padding: 0 16px; }
   .arrival-section-head h2 { font-size: 24px; margin-bottom: 6px; }
-  .arrival-slider-container { padding: 0; }
+  .arrival-section-head p { font-size: 13px; }
+  .arrival-slider-container { padding: 0; overflow: hidden; }
+  .arrival-track-wrapper { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .arrival-track-wrapper::-webkit-scrollbar { display: none; }
   .arrival-arrow { display: none; }
-  .arrival-track { overflow-x: auto; padding: 0 20px 8px; gap: 18px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  .arrival-track::-webkit-scrollbar { display: none; }
-  .arrival-card { width: 220px; }
-  .arrival-info { padding: 14px 0 4px; gap: 6px; }
-  .arrival-thumb { font-size: 90px; }
+  .arrival-track { padding: 0 16px 10px; gap: 14px; overflow: visible; }
+  .arrival-card { width: 200px; flex-shrink: 0; }
+  .arrival-thumb { font-size: 80px; border-radius: 8px; }
+  .arrival-info { padding: 12px 0 4px; gap: 6px; }
   .arrival-name { height: auto; -webkit-line-clamp: initial; display: block; overflow: visible; font-size: 13px; margin-bottom: 4px; }
-  .arrival-price { margin-bottom: 6px; font-size: 14px; }
-  
-  /* Grid frameworks update strictly into 2-column uniform boxes layouts */
-  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .prod-thumb { font-size: 55px; }
-  .prod-info { padding: 12px; }
-  .prod-name { font-size: 13px; }
-  
-  .footer-payments-bar { flex-direction: column; gap: 16px; text-align: center; }
-  
-  /* Organized mobile block layout stack order flow metrics */
+  .arrival-price { font-size: 14px; margin-bottom: 4px; }
+  .arrival-link { font-size: 13px; }
+
+  /* Products grid */
+  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .prod-thumb { font-size: 50px; }
+  .prod-info { padding: 10px 10px 12px; }
+  .prod-series { font-size: 10px; }
+  .prod-name { font-size: 12px; margin-bottom: 10px; }
+  .prod-price { font-size: 14px; }
+  .prod-cart { width: 30px; height: 30px; font-size: 15px; min-width: 30px; }
+
+  /* View More */
+  .view-more-container { margin-top: 32px; }
+  .view-more-btn { width: 100%; padding: 14px 20px; }
+
+  /* Footer */
+  .footer-top-bar { padding: 16px 20px; }
+  .footer-payments-bar { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
   .main-black-footer { 
     grid-template-columns: 1fr; 
-    padding: 40px 20px; 
-    gap: 36px; 
+    padding: 36px 20px 24px; 
+    gap: 0;
     display: flex;
     flex-direction: column;
   }
-  .main-black-footer > div:nth-child(1) { order: 1; }
-  .main-black-footer > div:nth-child(2) { order: 2; border-top: 1px solid #111; padding-top: 20px; }
-  .main-black-footer > div:nth-child(3) { order: 3; border-top: 1px solid #111; padding-top: 20px; }
-  .main-black-footer > div:nth-child(4) { order: 4; border-top: 1px solid #111; padding-top: 20px; }
-  
-  .ft-social-panel { order: -1; margin-bottom: 24px; margin-top: 0; border-top: none; padding-top: 0; text-align: center; }
+  .main-black-footer > div { padding-bottom: 28px; }
+  .main-black-footer > div:nth-child(2),
+  .main-black-footer > div:nth-child(3),
+  .main-black-footer > div:nth-child(4) { border-top: 1px solid #1a1a1a; padding-top: 28px; }
+  .ft-social-panel { margin-top: 0; border-top: none; padding-top: 0; text-align: center; }
   .ft-social-links { justify-content: center; }
+  .ft-region-selector { width: 100%; justify-content: center; }
+  .ft-input-container { margin-bottom: 24px; }
 }
 
 @media (max-width: 480px) {
-  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .slide { min-height: 380px; }
+  .arrival-card { width: 170px; }
+  .arrival-thumb { font-size: 66px; }
 }
 </style>
 </head>
 <body>
 
 <header>
+  <button class="mobile-burger-btn">☰</button>
   <div class="header-left">
     <div class="search-box"><span>🔍</span><input type="text" placeholder="Search flowers, arrangements..."></div>
   </div>
@@ -514,7 +579,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   <div class="header-right">
     <button class="icon-btn">👤</button>
     <button class="icon-btn">🛒<span class="cart-count">0</span></button>
-    <button class="mobile-burger-btn">☰</button>
   </div>
 </header>
 
@@ -525,6 +589,39 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   <div class="nav-item">OCCASION <span class="arrow">▾</span><div class="dropdown"><a href="#">Anniversary</a><a href="#">Birthday</a><a href="#">Romance</a><a href="#">Celebrations</a></div></div>
   <div class="nav-item offers">OFFERS 🔥 <span class="arrow">▾</span><div class="dropdown"><a href="#">Bundle Deals</a><a href="#">Seasonal Sale</a><a href="#">First Order Promo</a></div></div>
 </nav>
+
+<!-- Mobile Menu Drawer -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu-drawer">
+    <div class="mobile-menu-header">
+      <span class="drawer-logo">LOVE BLOOM</span>
+      <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+    </div>
+    <div class="mobile-search-row">
+      <div class="search-box" style="width:100%"><span>🔍</span><input type="text" placeholder="Search flowers, arrangements..."></div>
+    </div>
+    <a href="#" class="mobile-menu-item">HOME</a>
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-item mobile-menu-toggle">FLOWER <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-submenu">
+        <a href="#">Fresh Bouquets</a><a href="#">Luxury Roses</a><a href="#">Dried Flowers</a><a href="#">Potted Plants</a>
+      </div>
+    </div>
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-item mobile-menu-toggle">BANQUET <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-submenu">
+        <a href="#">Wedding Decor</a><a href="#">Corporate Events</a><a href="#">Party Styling</a><a href="#">Table Centerpieces</a>
+      </div>
+    </div>
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-item mobile-menu-toggle">OCCASION <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-submenu">
+        <a href="#">Anniversary</a><a href="#">Birthday</a><a href="#">Romance</a><a href="#">Celebrations</a>
+      </div>
+    </div>
+    <div class="mobile-menu-item offers-item">OFFERS 🔥</div>
+  </div>
+</div>
 
 <div class="hero-slider">
   <div class="slides" id="slides">
@@ -798,36 +895,95 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 <script>
 /* ==========================================================================
-   HERO BANNER CAROUSEL LOGIC
+   HERO BANNER CAROUSEL — INFINITE CLONE LOOP (no jump)
+   Strategy: clone last slide → prepend, clone first slide → append.
+   Track layout: [clone-last] [slide-1] [slide-2] [slide-3] [clone-first]
+   cur is 1-based (1 = real first slide). After transition hits a clone,
+   we silently snap to the real counterpart with transition disabled.
    ========================================================================= */
-let cur=0; const total=3;
-const slides=document.getElementById('slides');
-const dots=document.querySelectorAll('.dot');
-let timer=setInterval(()=>changeSlide(1),4500);
+const slidesEl   = document.getElementById('slides');
+const dots       = document.querySelectorAll('.dot');
+const realSlides = Array.from(slidesEl.querySelectorAll('.slide'));
+const total      = realSlides.length; // 3
 
-function goSlide(n){
-  cur=n;
-  slides.style.transform='translateX(-'+(cur*100)+'%)';
-  dots.forEach((d,i)=>d.classList.toggle('active', i===cur));
-  clearInterval(timer);
-  timer=setInterval(()=>changeSlide(1),4500);
+// Build clones
+const cloneFirst = realSlides[0].cloneNode(true);
+const cloneLast  = realSlides[total - 1].cloneNode(true);
+slidesEl.appendChild(cloneFirst);          // position total+1
+slidesEl.insertBefore(cloneLast, realSlides[0]); // position 0
+
+// Total slides in DOM: total + 2  (clone-last, s1, s2, s3, clone-first)
+let cur = 1;          // start on real slide 1
+let isTransitioning = false;
+let timer;
+
+function setPos(index, animate) {
+  slidesEl.style.transition = animate
+    ? 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)'
+    : 'none';
+  slidesEl.style.transform = `translateX(-${index * 100}%)`;
 }
 
-function changeSlide(dir){
-  cur=(cur+dir+total)%total;
-  goSlide(cur);
+function updateDots(index) {
+  // Convert 1-based cur to 0-based real index
+  const realIndex = (index - 1 + total) % total;
+  dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
 }
 
+// Initialise without animation
+setPos(cur, false);
+updateDots(cur);
+
+function changeSlide(dir) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  cur += dir;
+  setPos(cur, true);
+  updateDots(cur);
+}
+
+// goSlide(n) — called by dot onclick handlers (n is 0-based)
+function goSlide(n) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  cur = n + 1; // shift to 1-based
+  setPos(cur, true);
+  updateDots(cur);
+}
+
+// After each transition: silently snap from clone to real slide
+slidesEl.addEventListener('transitionend', () => {
+  if (cur === 0) {
+    // Landed on clone-of-last → snap to real last
+    setPos(total, false);
+    cur = total;
+  } else if (cur === total + 1) {
+    // Landed on clone-of-first → snap to real first
+    setPos(1, false);
+    cur = 1;
+  }
+  isTransitioning = false;
+});
+
+function startTimer() {
+  timer = setInterval(() => changeSlide(1), 4500);
+}
+startTimer();
+
+// Touch swipe support
 let touchStartX = 0;
-let touchEndX = 0;
-slides.addEventListener('touchstart', e => {
+
+slidesEl.addEventListener('touchstart', e => {
+  clearInterval(timer);
   touchStartX = e.changedTouches[0].screenX;
 }, { passive: true });
 
-slides.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  if (touchStartX - touchEndX > 50) changeSlide(1);  
-  if (touchEndX - touchStartX > 50) changeSlide(-1); 
+slidesEl.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].screenX;
+  if (diff > 40)       changeSlide(1);
+  else if (diff < -40) changeSlide(-1);
+  clearInterval(timer);
+  startTimer();
 }, { passive: true });
 
 /* ==========================================================================
@@ -869,6 +1025,46 @@ window.addEventListener('resize', () => {
   arrivalIndex = 0;
   const track = document.getElementById('arrivalTrack');
   if(track) track.style.transform = 'translateX(0px)';
+});
+
+/* ==========================================================================
+   MOBILE MENU DRAWER LOGIC
+   ========================================================================== */
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+document.querySelector('.mobile-burger-btn').addEventListener('click', () => {
+  mobileMenuOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', (e) => {
+  if (e.target === mobileMenuOverlay) closeMobileMenu();
+});
+
+function closeMobileMenu() {
+  mobileMenuOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
+  item.addEventListener('click', () => {
+    const submenu = item.nextElementSibling;
+    const arrow = item.querySelector('.toggle-arrow');
+    const isOpen = submenu.classList.contains('open');
+    // Close all other submenus
+    document.querySelectorAll('.mobile-submenu.open').forEach(s => s.classList.remove('open'));
+    document.querySelectorAll('.mobile-menu-toggle.expanded').forEach(t => {
+      t.classList.remove('expanded');
+      t.querySelector('.toggle-arrow').textContent = '▾';
+    });
+    if (!isOpen) {
+      submenu.classList.add('open');
+      item.classList.add('expanded');
+      arrow.textContent = '▴';
+    }
+  });
 });
 </script>
 </body>
