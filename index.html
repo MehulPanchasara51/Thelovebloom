@@ -469,25 +469,39 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 }
 
 @media (max-width: 768px) {
-  /* Header */
+  /* Header Mobile Base Rules Override */
   header { 
-    height: 60px; 
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px; 
-    border-bottom: 1px solid #e8e8e8;
-    position: relative;
+    height: 60px !important; 
+    display: flex !important; 
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 14px !important; 
+    border-bottom: 1px solid #e8e8e8 !important;
+    position: relative !important;
   }
   .header-left, .search-box { display: none !important; }
   
-  /* Centering Rules mapped directly to image framework limits */
+  /* CRITICAL MOBILE FIX: Force explicit proportional heights to prevent clipping/hiding */
   .brand-logo { 
-    height: 36px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .brand-logo img {
+    height: 100% !important;
+    width: auto !important;
+    max-height: 38px !important;
+    display: block !important;
+    object-fit: contain !important;
   }
   
   .header-right { gap: 4px; }
@@ -807,7 +821,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
   <div class="products" id="productsGrid">
     <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span>🐰</div><div class="prod-info"><div class="prod-series">The Monsters</div><div class="prod-name">LABUBU Blind Box</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart"></button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-ltd">LIMITED</span>🌿</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Mushie Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span>⭐</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Nebula Puff</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">SECRET</span>🦋</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Flutter SP</div><div class="prod-foot"><span class="prod-price">¥399</span><button class="prod-cart">+</button></div></div></div>
@@ -913,7 +927,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 <script>
 /* ==========================================================================
-   HERO BANNER CAROUSEL — INFINITE CLONE LOOP (no jump)
+   HERO BANNER CAROUSEL — INFINITE CLONE LOOP
    ========================================================================= */
 const slidesEl   = document.getElementById('slides');
 const dots       = document.querySelectorAll('.dot');
