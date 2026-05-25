@@ -40,7 +40,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dropdown a:hover { background:#fff5f5; color:#e00; }
 
 /* ==========================================================================
-   LOCKED SLIDER SECTION
+   HERO BANNER CAROUSEL SLIDER 
    ========================================================================= */
 .hero-slider { position:relative; overflow:hidden; }
 .slides { display:flex; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
@@ -191,7 +191,9 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .products { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
 .prod-card { border:1.5px solid #eee; border-radius:12px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; display: block; }
 .prod-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.1); transform:translateY(-3px); }
-.prod-thumb { height:180px; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; }
+
+/* CHANGED: Swapped out variable height limits for strict 1:1 perfect square aspect ratios */
+.prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; }
 .t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
 .prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
 .badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
@@ -217,7 +219,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .recommended-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
 
 /* ==========================================================================
-   PREMIUM BLACK FOOTER MODULATOR
+   PREMIUM LUXURY BLACK BRAND FOOTER MODULE
    ========================================================================= */
 .footer-top-bar {
   background: #fff;
@@ -321,12 +323,14 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   background: transparent;
 }
 
+/* CHANGED: Shifted social layouts block right below subscription fields inside row 1 */
 .ft-social-panel {
   border-top: 1px solid #161616;
   padding-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 20px;
 }
 .ft-social-panel span { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
 .ft-social-links { display: flex; gap: 16px; }
@@ -370,11 +374,31 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .header-left { width: 100%; order: 3; display: flex; }
   .search-box { width: 100%; }
   
-  nav { top: 108px; padding: 0 10px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-  nav::-webkit-scrollbar { display: none; }
-  .nav-item { padding: 0 14px; font-size: 13px; }
+  /* CHANGED: Configured main menu row to map out into a structured wrapped 3-line panel */
+  nav { 
+    height: auto; 
+    padding: 12px 10px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px 14px;
+    top: auto;
+    position: relative;
+  }
+  .nav-item { 
+    padding: 4px 6px; 
+    font-size: 12px; 
+    height: auto; 
+    border-bottom: none;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+  .nav-item:hover { border-color: #e00; }
+  .nav-item .dropdown { display: none !important; } /* Safeguards touch triggers on small phone formats */
   
-  .slide { height: auto; min-height: 480px; padding: 40px 0 0px; }
+  .slide { height: auto; min-height: 440px; padding: 40px 0 0px; }
   .slide-content { padding: 0 15px 55px 15px; justify-content: flex-end; }
   
   .char-cluster .big-text { font-size: 44px; bottom: auto; top: 15%; }
@@ -411,12 +435,27 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .arrival-price { margin-bottom: 6px; font-size: 14px; }
   
   .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .prod-thumb { height: 120px; font-size: 55px; }
+  .prod-thumb { height: auto; font-size: 55px; }
   .prod-info { padding: 8px; }
   .prod-name { font-size: 12px; }
   
   .footer-payments-bar { flex-direction: column; gap: 16px; text-align: center; }
-  .main-black-footer { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
+  
+  /* CHANGED: Organized mobile stack hierarchy - placing the social icon channel right at the top */
+  .main-black-footer { 
+    grid-template-columns: 1fr; 
+    padding: 40px 20px; 
+    gap: 36px; 
+    display: flex;
+    flex-direction: column;
+  }
+  .main-black-footer > div:nth-child(1) { order: 1; }
+  .main-black-footer > div:nth-child(2) { order: 2; border-top: 1px solid #111; padding-top: 20px; }
+  .main-black-footer > div:nth-child(3) { order: 3; border-top: 1px solid #111; padding-top: 20px; }
+  .main-black-footer > div:nth-child(4) { order: 4; border-top: 1px solid #111; padding-top: 20px; }
+  
+  .ft-social-panel { order: -1; margin-bottom: 24px; margin-top: 0; border-top: none; padding-top: 0; text-align: center; }
+  .ft-social-links { justify-content: center; }
 }
 
 @media (max-width: 480px) {
@@ -652,7 +691,16 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 <div class="main-black-footer">
   <div>
-    <h4>JOIN THE COMMUNITY</h4>
+    <div class="ft-social-panel">
+      <span>FOLLOW US ON</span>
+      <div class="ft-social-links">
+        <a href="#">📘</a>
+        <a href="#">📸</a>
+        <a href="#">🎵</a>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 30px;">JOIN THE COMMUNITY</h4>
     <p>Be the first to catch our new releases, exclusive offers, and more.</p>
     <div class="ft-input-container">
       <input type="text" placeholder="Your email address">
@@ -679,15 +727,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <a href="#" class="ft-action-link" style="display:inline-block; margin-top:8px;">Visit Help Center (FAQs)</a>
     <br>
     <button class="ft-region-selector">CHANGE COUNTRY/REGION &nbsp;🇺🇸 US</button>
-    
-    <div class="ft-social-panel">
-      <span>FOLLOW US ON</span>
-      <div class="ft-social-links">
-        <a href="#">📘</a>
-        <a href="#">📸</a>
-        <a href="#">🎵</a>
-      </div>
-    </div>
   </div>
 
   <div>
