@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Love Bloom</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
@@ -39,6 +39,9 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; text-transform:none; letter-spacing:0; transition:background 0.1s, color 0.1s; }
 .dropdown a:hover { background:#fff5f5; color:#e00; }
 
+/* ==========================================================================
+   LOCKED SLIDER SECTION
+   ========================================================================= */
 .hero-slider { position:relative; overflow:hidden; }
 .slides { display:flex; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
 .slide {
@@ -150,13 +153,9 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
 
 .section { padding:80px 60px; }
-.section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:36px; }
-.section-head h2 { font-size:24px; font-weight:900; color:#111; letter-spacing:-0.5px; }
-.section-head a { font-size:12px; font-weight:800; color:#e00; text-decoration:none; letter-spacing:0.5px; text-transform:uppercase; }
-.section-head a:hover { text-decoration:underline; }
 
 /* ==========================================================================
-   NEW ARRIVALS CAROUSEL (Reduced 50% Card Gap Spacing Layout)
+   NEW ARRIVALS CAROUSEL SECTION
    ========================================================================= */
 .arrival-section-wrapper { padding: 90px 0; background: #fff; }
 .arrival-section-head { text-align: center; margin-bottom: 60px; padding: 0 20px; }
@@ -166,10 +165,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .arrival-slider-container { position: relative; width: 100%; max-width: 1680px; margin: 0 auto; padding: 0 140px; }
 .arrival-track-wrapper { width: 100%; overflow: hidden; }
 
-/* CHANGED: Reduced the gap space between cards by 50% down to 24px */
 .arrival-track { display: flex; gap: 24px; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-
-/* CHANGED: Adjusted width calculation to divide remaining track space with 24px gaps */
 .arrival-card { width: calc((100% - 72px) / 4); flex-shrink: 0; display: flex; flex-direction: column; background: #fff; text-decoration: none; }
 
 .arrival-thumb { width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 136px; border-radius: 10px; overflow: hidden; transition: transform 0.2s ease; user-select: none; }
@@ -187,37 +183,165 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .arrival-arrow.next-arr { right: 24px; }
 
 /* ==========================================================================
-   POPULAR PRODUCTS GRID STYLES
+   SHOP ALL PRODUCTS STYLES
    ========================================================================= */
+.shop-all-section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
+.shop-all-section-head h2 { font-size: 38px; font-weight: 800; color: #000; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
+
 .products { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
-.prod-card { border:1.5px solid #eee; border-radius:12px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; }
+.prod-card { border:1.5px solid #eee; border-radius:12px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; display: block; }
 .prod-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.1); transform:translateY(-3px); }
-.prod-thumb { height:160px; display:flex; align-items:center; justify-content:center; font-size:76px; position:relative; }
+.prod-thumb { height:180px; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; }
 .t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
 .prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
 .badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
-.prod-info { padding:14px; }
-.prod-series { font-size:10px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
-.prod-name { font-size:13.5px; font-weight:800; color:#222; margin-bottom:10px; }
+.prod-info { padding:16px; }
+.prod-series { font-size:11px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.prod-name { font-size:14px; font-weight:800; color:#222; margin-bottom:12px; }
 .prod-foot { display:flex; justify-content:space-between; align-items:center; }
-.prod-price { font-size:15.5px; font-weight:900; color:#e00; }
-.prod-cart { width:30px; height:30px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
+.prod-price { font-size:16px; font-weight:900; color:#e00; }
+.prod-cart { width:32px; height:32px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
 .prod-cart:hover { transform:scale(1.12); background:#c00; }
 
-.chars-row { display:flex; gap:16px; overflow-x:auto; padding-bottom:6px; scrollbar-width:none; }
-.char-pill { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 24px; border:1.5px solid #eee; border-radius:12px; cursor:pointer; transition:border-color 0.15s, background 0.15s; min-width:96px; }
-.char-pill:hover { border-color:#e00; background:#fff5f5; }
-.char-pill .ce { font-size:46px; }
-.char-pill span { font-size:11.5px; font-weight:800; color:#333; }
+.prod-card.hidden-product { display: none; }
 
-footer { background:#111; color:#888; padding:50px 60px 25px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr; gap:36px; }
-.ft-brand .logo { font-family:'Fredoka One',sans-serif; font-size:20px; color:#fff; background:#e00; display:inline-block; padding:5px 12px; border-radius:3px; margin-bottom:12px; }
-.ft-brand p { font-size:12px; line-height:1.8; max-width:260px; }
-footer h4 { font-size:12px; font-weight:800; color:#ccc; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; }
-footer a { display:block; font-size:12px; color:#888; text-decoration:none; margin-bottom:8px; transition:color 0.15s; }
-footer a:hover { color:#e00; }
-.footer-bottom { background:#111; border-top:1px solid #222; padding:14px 60px; display:flex; justify-content:space-between; }
-.footer-bottom p { font-size:11px; color:#555; }
+.view-more-container { display:flex; justify-content:center; margin-top:50px; }
+.view-more-btn { background:transparent; color:#222; border:2px solid #222; padding:12px 50px; font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; letter-spacing:1px; cursor:pointer; border-radius:4px; transition:background 0.2s, color 0.2s, border-color 0.2s; text-transform:uppercase; }
+.view-more-btn:hover { background:#222; color:#fff; }
+
+/* ==========================================================================
+   RECOMMENDED FOR YOU SECTION
+   ========================================================================= */
+.recommended-section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
+.recommended-section-head h2 { font-size: 38px; font-weight: 800; color: #000; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
+.recommended-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+
+/* ==========================================================================
+   PREMIUM BLACK FOOTER MODULATOR
+   ========================================================================= */
+.footer-top-bar {
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  padding: 20px 40px;
+  position: relative;
+  text-align: center;
+}
+.back-to-top-btn {
+  display: inline-block;
+  font-size: 12px;
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-to-top-btn:hover { color: #000; }
+
+.main-black-footer {
+  background: #000;
+  color: #888;
+  padding: 64px 60px 40px;
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr;
+  gap: 48px;
+}
+.main-black-footer h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+.main-black-footer p { font-size: 13px; line-height: 1.6; color: #888; margin-bottom: 14px; }
+.main-black-footer a {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.15s;
+}
+.main-black-footer a:hover { color: #fff; }
+
+.ft-input-container {
+  display: flex;
+  background: #fff;
+  border-radius: 2px;
+  padding: 2px;
+  margin-bottom: 32px;
+  align-items: center;
+  border: 1px solid #333;
+}
+.ft-input-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+}
+.ft-signup-btn {
+  background: transparent;
+  color: #000;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ft-signup-btn:hover { color: #e00; }
+
+.ft-contact-sub {
+  border: 1px solid #222;
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ft-contact-sub div p { margin-bottom: 0; }
+.ft-contact-sub div p.ft-label { font-size: 13px; font-weight: 700; color: #fff; }
+.ft-contact-sub div p.ft-desc { font-size: 12px; color: #666; margin-top: 2px; }
+.ft-action-link { font-size: 13px; font-weight: 700; color: #fff; text-decoration: underline; }
+
+.ft-region-selector {
+  margin-top: 24px;
+  margin-bottom: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #222;
+  padding: 10px 16px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+}
+
+.ft-social-panel {
+  border-top: 1px solid #161616;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ft-social-panel span { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+.ft-social-links { display: flex; gap: 16px; }
+.ft-social-links a { display: inline-block; font-size: 20px; color: #fff; text-decoration: none; transition: opacity 0.15s; margin-bottom: 0; }
+.ft-social-links a:hover { opacity: 0.7; }
+
+.footer-payments-bar {
+  background: #000;
+  border-top: 1px solid #161616;
+  padding: 24px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-payments-bar p { font-size: 11px; color: #555; }
 
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES (Isolates and fixes Mobile/Tablet views)
@@ -233,7 +357,8 @@ footer a:hover { color:#e00; }
 
 @media (max-width: 1024px) {
   .section { padding: 48px 40px; }
-  .products { grid-template-columns: repeat(3, 1fr); }
+  .products, .recommended-grid { grid-template-columns: repeat(3, 1fr); }
+  .main-black-footer { grid-template-columns: 1fr; gap: 32px; }
   .arrival-slider-container { padding: 0 45px; }
   .arrival-card { width: calc((100% - 48px) / 3); gap: 24px; }
 }
@@ -272,7 +397,6 @@ footer a:hover { color:#e00; }
   
   .section { padding: 36px 20px; }
   
-  /* Mobile Swipe track layout responsive updates */
   .arrival-section-wrapper { padding: 36px 0; }
   .arrival-section-head { margin-bottom: 24px; }
   .arrival-section-head h2 { font-size: 24px; margin-bottom: 6px; }
@@ -286,23 +410,17 @@ footer a:hover { color:#e00; }
   .arrival-name { height: auto; -webkit-line-clamp: initial; display: block; overflow: visible; font-size: 13px; margin-bottom: 4px; }
   .arrival-price { margin-bottom: 6px; font-size: 14px; }
   
-  .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .prod-thumb { height: 120px; font-size: 55px; }
   .prod-info { padding: 8px; }
   .prod-name { font-size: 12px; }
   
-  footer { grid-template-columns: 1fr; padding: 30px 16px 20px; gap: 18px; }
-  .ft-brand { text-align: center; margin-bottom: 5px; }
-  .ft-brand p { max-width: 100%; margin: 0 auto; }
-  
-  footer h4 { margin-bottom: 6px; font-size: 11px; border-bottom: 1px solid #222; padding-bottom: 4px; }
-  footer a { display: inline-block; font-size: 11px; margin-right: 14px; margin-bottom: 6px; }
-  
-  .footer-bottom { flex-direction: column; padding: 12px 16px; gap: 8px; text-align: center; }
+  .footer-payments-bar { flex-direction: column; gap: 16px; text-align: center; }
+  .main-black-footer { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
 }
 
 @media (max-width: 480px) {
-  .products { grid-template-columns: 1fr; }
+  .products, .recommended-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -487,43 +605,114 @@ footer a:hover { color:#e00; }
   </div>
 </div>
 
-<section class="section" style="padding-top:0">
-  <div class="section-head"><h2>POPULAR RIGHT NOW</h2><a href="#">VIEW ALL →</a></div>
-  <div class="products">
+<section class="section" style="padding-top:0; padding-bottom:40px;">
+  <div class="shop-all-section-head">
+    <h2>Shop All</h2>
+  </div>
+  <div class="products" id="productsGrid">
     <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span>🐰</div><div class="prod-info"><div class="prod-series">The Monsters</div><div class="prod-name">LABUBU Blind Box</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-ltd">LIMITED</span>🌿</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Mushie Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span>⭐</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Nebula Puff</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
     <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">SECRET</span>🦋</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Flutter SP</div><div class="prod-foot"><span class="prod-price">¥399</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2">🦊</div><div class="prod-info"><div class="prod-series">Fairy Garden</div><div class="prod-name">Foxlyn Vinyl Charm</div><div class="prod-foot"><span class="prod-price">¥119</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t3">🍄</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Toadstool Cottage Box</div><div class="prod-foot"><span class="prod-price">¥89</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t1">🐸</div><div class="prod-info"><div class="prod-series">Pond Friends</div><div class="prod-name">Kero Classic Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t5">🌙</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Lunara Eclipse Edition</div><div class="prod-foot"><span class="prod-price">¥159</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4">🐻</div><div class="prod-info"><div class="prod-series">Cozy Pack</div><div class="prod-name">Cubby Plush Keychain</div><div class="prod-foot"><span class="prod-price">¥79</span><button class="prod-cart">+</button></div></div></div>
+    
+    <div class="prod-card hidden-product"><div class="prod-thumb t1">🌹</div><div class="prod-info"><div class="prod-series">Fresh Drop</div><div class="prod-name">Velvet Rose Collector Doll</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t3">🌱</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Sprout Elf Vinyl Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t5">🔮</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Starlight Mystic Globe</div><div class="prod-foot"><span class="prod-price">¥249</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t2">💐</div><div class="prod-info"><div class="prod-series">Botanical Art</div><div class="prod-name">Luxury Handcraft Bouquet</div><div class="prod-foot"><span class="prod-price">¥199</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t4">✨</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Cosmic Sparkle Variant</div><div class="prod-foot"><span class="prod-price">¥179</span><button class="prod-cart">+</button></div></div></div>
+  </div>
+  
+  <div class="view-more-container">
+    <button class="view-more-btn" id="viewMoreBtn">View More</button>
   </div>
 </section>
 
-<section class="section" style="padding-top:0">
-  <div class="section-head"><h2>SHOP BY CHARACTER</h2><a href="#">VIEW ALL →</a></div>
-  <div class="chars-row">
-    <div class="char-pill"><span class="ce">🐰</span><span>LABUBU</span></div>
-    <div class="char-pill"><span class="ce">🐸</span><span>KERO</span></div>
-    <div class="char-pill"><span class="ce">🌸</span><span>BLOSSOM</span></div>
-    <div class="char-pill"><span class="ce">🐋</span><span>WHALEY</span></div>
-    <div class="char-pill"><span class="ce">⭐</span><span>NEBULA</span></div>
-    <div class="char-pill"><span class="ce">🦊</span><span>FOXLYN</span></div>
-    <div class="char-pill"><span class="ce">🍄</span><span>MUSHIE</span></div>
-    <div class="char-pill"><span class="ce">🦋</span><span>FLUTTER</span></div>
-    <div class="char-pill"><span class="ce">🌙</span><span>LUNARA</span></div>
-    <div class="char-pill"><span class="ce">🐻</span><span>CUBBY</span></div>
+<section class="section" style="padding-top:20px; padding-bottom:80px;">
+  <div class="recommended-section-head">
+    <h2>Recommended for you</h2>
+  </div>
+  <div class="recommended-grid">
+    <div class="prod-card"><div class="prod-thumb t3">💐</div><div class="prod-info"><div class="prod-series">Botanical Art</div><div class="prod-name">Luxury Rose Banquet Arrangement</div><div class="prod-foot"><span class="prod-price">¥299</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t1">🌹</div><div class="prod-info"><div class="prod-series">Fresh Flowers</div><div class="prod-name">Classic Crimson Romance Bouquet</div><div class="prod-foot"><span class="prod-price">¥189</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t5">🌷</div><div class="prod-info"><div class="prod-series">Spring Edition</div><div class="prod-name">Pastel Tulip Wonderland Set</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4">🌻</div><div class="prod-info"><div class="prod-series">Bright Accents</div><div class="prod-name">Sunny Day Meadow Sunflower</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2">🔮</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Starlight Garden Crystal Globe</div><div class="prod-foot"><span class="prod-price">¥249</span><button class="prod-cart">+</button></div></div></div>
   </div>
 </section>
 
-<footer>
-  <div class="ft-brand"><div class="logo">LOVE BLOOM</div><p>The home of designer art toys, blind boxes, and collectible figures. Bringing tiny worlds to life since 2019.</p></div>
-  <div><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Blind Boxes</a><a href="#">Limited Edition</a><a href="#">Characters</a><a href="#">Collabs</a></div>
-  <div><h4>Support</h4><a href="#">Shipping Info</a><a href="#">Returns</a><a href="#">Track Order</a><a href="#">FAQ</a><a href="#">Contact Us</a></div>
-  <div><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Store Locations</a></div>
-  <div><h4>Follow Us</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a><a href="#">Discord</a><a href="#">WeChat</a></div>
-</footer>
-<div class="footer-bottom">
+<div class="footer-top-bar">
+  <a href="#" class="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to top</a>
+</div>
+
+<div class="main-black-footer">
+  <div>
+    <h4>JOIN THE COMMUNITY</h4>
+    <p>Be the first to catch our new releases, exclusive offers, and more.</p>
+    <div class="ft-input-container">
+      <input type="text" placeholder="Your email address">
+      <button class="ft-signup-btn">Sign Me Up</button>
+    </div>
+    
+    <h4 style="margin-bottom:12px;">Contact Us</h4>
+    <div class="ft-contact-sub">
+      <div>
+        <p class="ft-label">Chat</p>
+        <p class="ft-desc">Monday - Sunday 8:00am - 2:00am PDT</p>
+      </div>
+      <a href="#" class="ft-action-link">Chat with us</a>
+    </div>
+    
+    <div class="ft-contact-sub">
+      <div>
+        <p class="ft-label">Email</p>
+        <p class="ft-desc">na.support@popmart.com</p>
+      </div>
+      <a href="#" class="ft-action-link">Email us</a>
+    </div>
+    
+    <a href="#" class="ft-action-link" style="display:inline-block; margin-top:8px;">Visit Help Center (FAQs)</a>
+    <br>
+    <button class="ft-region-selector">CHANGE COUNTRY/REGION &nbsp;🇺🇸 US</button>
+    
+    <div class="ft-social-panel">
+      <span>FOLLOW US ON</span>
+      <div class="ft-social-links">
+        <a href="#">📘</a>
+        <a href="#">📸</a>
+        <a href="#">🎵</a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h4>SUPPORT</h4>
+    <a href="#">FAQ</a><a href="#">SHIPPING INFO</a><a href="#">PRIVACY POLICY</a>
+    <a href="#">TERMS & CONDITIONS</a><a href="#">TRACK YOUR ORDER</a><a href="#">FIND A STORE</a>
+    <a href="#">RETURNS</a><a href="#">POP BLOCKS</a><a href="#">ORDER FAILURE GUIDE</a>
+    <a href="#">EXCHANGE</a><a href="#">AUTHENTICITY CHECK</a><a href="#">STORE POLICY</a>
+  </div>
+
+  <div>
+    <h4>ABOUT US</h4>
+    <a href="#">NEWS</a><a href="#">ARTISTS</a><a href="#">ABOUT POP MART</a>
+    <a href="#">INVESTOR RELATIONS</a><a href="#">CONTACT US</a><a href="#">CAREERS</a>
+  </div>
+
+  <div>
+    <h4>SHOP</h4>
+    <a href="#">LAUNCH CALENDAR</a><a href="#">TRENDING</a><a href="#">BLIND BOXES</a>
+    <a href="#">MEGA COLLECTIONS</a><a href="#">ACCESSORIES</a>
+  </div>
+</div>
+
+<div class="footer-payments-bar">
   <p>© 2026 LoveBloom Inc. All rights reserved.</p>
-  <p>Privacy Policy · Terms of Service · Cookie Settings</p>
 </div>
 
 <script>
@@ -569,7 +758,7 @@ function scrollArrivals(direction) {
   const card = document.querySelector('.arrival-card');
   if(!card) return;
   
-  const gapValue = 24; // Updated translation gap to synchronize flawlessly with updated CSS layout gaps
+  const gapValue = 24; 
   const cardWidth = card.offsetWidth + gapValue; 
   const visibleCards = window.innerWidth > 1200 ? 4 : (window.innerWidth > 768 ? 3 : 1);
   const totalCards = document.querySelectorAll('.arrival-card').length;
@@ -582,9 +771,23 @@ function scrollArrivals(direction) {
   track.style.transform = `translateX(-${arrivalIndex * cardWidth}px)`;
 }
 
+/* ==========================================================================
+   VIEW MORE CLICK LOGIC FUNCTION
+   ========================================================================= */
+document.getElementById('viewMoreBtn').addEventListener('click', function() {
+  const hiddenProducts = document.querySelectorAll('#productsGrid .hidden-product');
+  
+  hiddenProducts.forEach(product => {
+    product.style.display = 'block';
+  });
+  
+  this.style.display = 'none';
+});
+
 window.addEventListener('resize', () => {
   arrivalIndex = 0;
-  document.getElementById('arrivalTrack').style.transform = 'translateX(0px)';
+  const track = document.getElementById('arrivalTrack');
+  if(track) track.style.transform = 'translateX(0px)';
 });
 </script>
 </body>
