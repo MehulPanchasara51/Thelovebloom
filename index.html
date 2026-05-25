@@ -20,7 +20,7 @@ header {
 }
 .header-left { display:flex; align-items:center; }
 .search-box { display:flex; align-items:center; gap:8px; border:1.5px solid #ddd; border-radius:999px; padding:7px 14px; width:240px; background:#fafafa; transition:border-color 0.2s; }
-.search-box:focus-within { border-color:#e00; }
+.search-box:focus-within { border-color:#111; }
 .search-box input { border:none; outline:none; background:transparent; font-family:'Nunito',sans-serif; font-size:13px; color:#333; width:100%; }
 .search-box input::placeholder { color:#aaa; }
 .brand-logo { cursor:pointer; user-select:none; display:flex; align-items:center; justify-content:center; }
@@ -34,13 +34,13 @@ header {
 
 nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:center; justify-content:center; padding:0 20px; height:44px; position:sticky; top:95px; z-index:190; }
 .nav-item { display:flex; align-items:center; gap:4px; padding:0 24px; height:44px; cursor:pointer; font-size:14px; font-weight:800; color:#222; letter-spacing:0.5px; border-bottom:3px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; position:relative; user-select:none; text-transform:uppercase; }
-.nav-item:hover { color:#e00; border-bottom-color:#e00; }
+.nav-item:hover { color:#000; border-bottom-color:#000; }
 .nav-item .arrow { font-size:9px; color:#999; }
-.nav-item.offers { color:#e00; }
-.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #e00; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+.nav-item.offers { color:#000; }
+.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #000; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
 .nav-item:hover .dropdown { display:block; }
 .dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; text-transform:none; letter-spacing:0; transition:background 0.1s, color 0.1s; }
-.dropdown a:hover { background:#fff5f5; color:#e00; }
+.dropdown a:hover { background:#f5f5f5; color:#000; }
 
 /* ==========================================================================
    HERO BANNER CAROUSEL SLIDER 
@@ -52,15 +52,11 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   height: calc(100vh - 187px);
   min-height: 540px;
   max-height: 780px;
-  position:relative; display:flex; align-items:center; flex-shrink:0;
+  position:relative; display:flex; align-items:stretch; flex-shrink:0;
 }
-.slide-1 { background:linear-gradient(135deg,#f5e6b8 0%,#edd89a 50%,#e8c87a 100%); }
-.slide-2 { background:linear-gradient(135deg,#ffd6e8 0%,#f5b8d0 50%,#ebb0c8 100%); }
-.slide-3 { background:linear-gradient(135deg,#c8e8f8 0%,#a8d8f0 50%,#88c8e8 100%); }
-
-.slide-bg-deco { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-.deco-star { position:absolute; opacity:0.35; animation:twinkle 2.5s ease-in-out infinite; }
-@keyframes twinkle { 0%,100%{opacity:0.35;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.15)} }
+.slide-1 { background:linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%); }
+.slide-2 { background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%); }
+.slide-3 { background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%); }
 
 .slide-content { 
   position:relative; 
@@ -72,46 +68,9 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   flex-direction:column;
   align-items:center; 
   justify-content:flex-end; 
-  padding:0 40px 76px 40px; 
+  padding:0 40px 60px; 
   height:100%; 
 }
-
-.char-cluster { 
-  position:absolute; 
-  inset:0;
-  width:100%; 
-  height:100%; 
-  flex-shrink:0; 
-  display:flex; 
-  align-items:flex-end; 
-  justify-content:center; 
-  pointer-events:none;
-  opacity:0.85;
-  z-index:1;
-}
-.char-cluster .big-text {
-  position:absolute; bottom:74px; left:0; right:0; text-align:center;
-  font-family:'Fredoka One',sans-serif; font-size:clamp(76px,9.5vw,114px); letter-spacing:-2px;
-  background:linear-gradient(180deg,#d4aaee 0%,#a870e0 40%,#8040c0 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  filter:drop-shadow(2px 4px 0px rgba(120,60,180,0.3)); z-index:1;
-}
-.slide-2 .char-cluster .big-text { background:linear-gradient(180deg,#ffb8d8 0%,#ff78b0 40%,#d04880 100%); -webkit-background-clip:text; background-clip:text; }
-.slide-3 .char-cluster .big-text { background:linear-gradient(180deg,#a0d8f8 0%,#50a8e0 40%,#2878b8 100%); -webkit-background-clip:text; background-clip:text; }
-
-.fig { position:absolute; display:flex; flex-direction:column; align-items:center; animation:figFloat 3s ease-in-out infinite; }
-.fig .emoji { filter:drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
-.fig-1 { bottom:29%; left:40px; animation-delay:0s; }       .fig-1 .emoji { font-size:84px; }
-.fig-2 { bottom:45%; left:180px; animation-delay:0.4s; }    .fig-2 .emoji { font-size:78px; }
-.fig-3 { bottom:51%; left:50%; transform:translateX(-50%); animation-delay:0.7s; z-index:3; } .fig-3 .emoji { font-size:106px; }
-.fig-4 { bottom:43%; right:180px; animation-delay:1s; }     .fig-4 .emoji { font-size:80px; }
-.fig-5 { bottom:27%; right:40px; animation-delay:0.3s; }    .fig-5 .emoji { font-size:78px; }
-.fig-6 { bottom:62%; right:280px; animation-delay:1.3s; }   .fig-6 .emoji { font-size:62px; }
-.star-prop { position:absolute; bottom:37%; left:240px; font-size:94px; z-index:2; animation:figFloat 2.5s ease-in-out 0.5s infinite; }
-
-@keyframes figFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
-.fig-3 { animation:figFloat3 3s ease-in-out 0.7s infinite; }
-@keyframes figFloat3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-13px)} }
 
 .slide-text { 
   position:relative;
@@ -126,25 +85,22 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 }
 .collab-title { 
   font-family:'Nunito',sans-serif; 
-  font-weight:700; 
-  font-size:clamp(18px, 3.2vw, 38px); 
+  font-weight:800; 
+  font-size:clamp(16px, 2.4vw, 32px); 
   line-height:1.2; 
-  letter-spacing:0.5px; 
+  letter-spacing:1px; 
   color:#fff; 
-  text-shadow:0 2px 12px rgba(0,0,0,0.4); 
-  margin-bottom:20px; 
-  white-space:nowrap; 
-  overflow:hidden;
-  text-overflow:ellipsis;
-  width:100%;
+  text-shadow:0 2px 16px rgba(0,0,0,0.25); 
+  margin-bottom:28px; 
   text-align:center;
+  text-transform:uppercase;
 }
 
 .shop-btn { display:inline-block; border:1px solid rgba(255,255,255,0.85); background:transparent; color:#fff; padding:12px 46px; font-family:'Nunito',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, border-color 0.2s, color 0.2s; outline:none; }
 .shop-btn:hover { background:#fff; color:#333; border-color:#fff; }
 
-.slider-arrow { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.85); border:none; cursor:pointer; font-size:19px; display:flex; align-items:center; justify-content:center; z-index:10; color:#333; box-shadow:0 2px 12px rgba(0,0,0,0.15); transition:background 0.15s; }
-.slider-arrow:hover { background:#fff; }
+.slider-arrow { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.12); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.25); cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; z-index:10; color:rgba(255,255,255,0.9); box-shadow:none; transition:background 0.2s; }
+.slider-arrow:hover { background:rgba(255,255,255,0.22); }
 .slider-arrow.prev { left:20px; }
 .slider-arrow.next { right:20px; }
 
@@ -152,10 +108,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .dot { flex:1; height:2px; background:rgba(255,255,255,0.3); cursor:pointer; transition:background 0.2s; border-radius:0; }
 .dot.active { background:#fff; }
 
-.slide-copy { position:absolute; bottom:24px; right:20px; font-size:10px; color:rgba(255,255,255,0.55); z-index:10; }
-.slide-brand-badge { position:absolute; top:22px; left:22px; z-index:10; background:#e00; color:#fff; font-family:'Fredoka One',sans-serif; font-size:14px; letter-spacing:1.5px; padding:5px 13px; border-radius:3px; }
-
-.section { padding:80px 60px; }
+.section { padding:80px 240px; }
 
 /* ==========================================================================
    NEW ARRIVALS CAROUSEL SECTION
@@ -165,25 +118,28 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .arrival-section-head h2 { font-size: 38px; font-weight: 800; color: #000; margin-bottom: 14px; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
 .arrival-section-head p { font-size: 14.5px; color: #555; font-weight: 600; }
 
-.arrival-slider-container { position: relative; width: 100%; max-width: 1680px; margin: 0 auto; padding: 0 140px; }
+.arrival-slider-container { position: relative; width: 100%; max-width: 1680px; margin: 0 auto; padding: 0 70px; }
 .arrival-track-wrapper { width: 100%; overflow: hidden; }
 
 .arrival-track { display: flex; gap: 24px; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .arrival-card { width: calc((100% - 72px) / 4); flex-shrink: 0; display: flex; flex-direction: column; background: #fff; text-decoration: none; }
 
-.arrival-thumb { width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 136px; border-radius: 10px; overflow: hidden; transition: transform 0.2s ease; user-select: none; }
+.arrival-thumb { width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 160px; border-radius: 0; overflow: hidden; transition: transform 0.2s ease; user-select: none; }
 .arrival-card:hover .arrival-thumb { transform: translateY(-5px); }
 
 .arrival-info { padding: 26px 0 4px; display: flex; flex-direction: column; gap: 14px; text-align: left; }
 .arrival-name { font-size: 16px; font-weight: 600; color: #111; line-height: 1.5; margin-bottom: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; font-family: 'Nunito', sans-serif; }
-.arrival-price { font-size: 18px; font-weight: 700; color: #b58248; letter-spacing: 0.1px; font-family: 'Nunito', sans-serif; }
+.arrival-price { font-size: 18px; font-weight: 700; color: #111; letter-spacing: 0.1px; font-family: 'Nunito', sans-serif; }
 .arrival-link { font-size: 14.5px; font-weight: 600; color: #333; text-decoration: underline; text-underline-offset: 4px; display: inline-block; width: max-content; text-transform: lowercase; }
-.arrival-link:hover { color: #e00; }
+.arrival-link:hover { color: #000; }
 
-.arrival-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 50%; background: #ededed; border: none; cursor: pointer; font-size: 32px; display: flex; align-items: center; justify-content: center; color: #7e7e7e; z-index: 10; transition: background 0.2s, color 0.2s, transform 0.2s; padding-bottom: 6px; }
-.arrival-arrow:hover { background: #e0e0e0; color: #333; transform: translateY(-50%) scale(1.05); }
-.arrival-arrow.prev-arr { left: 24px; }
-.arrival-arrow.next-arr { right: 24px; }
+.arrival-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.15); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); z-index: 10; transition: background 0.2s; }
+.arrival-arrow:hover { background: rgba(0,0,0,0.25); }
+.arrival-arrow.prev-arr { left: 13px; }
+.arrival-arrow.next-arr { right: 13px; }
+
+.arrival-cta { display: none; }
+.arrival-signin-btn { display: none; }
 
 /* ==========================================================================
    SHOP ALL PRODUCTS STYLES
@@ -191,21 +147,21 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .shop-all-section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
 .shop-all-section-head h2 { font-size: 38px; font-weight: 800; color: #000; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
 
-.products { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
-.prod-card { border:1.5px solid #eee; border-radius:12px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; display: block; }
+.products { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.prod-card { border:1.5px solid #e8e8e8; border-radius:0; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; display: block; }
 .prod-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.1); transform:translateY(-3px); }
 
-.prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; }
+.prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:52px; position:relative; }
 .t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
 .prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
 .badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
-.prod-info { padding:16px; }
-.prod-series { font-size:11px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
-.prod-name { font-size:14px; font-weight:800; color:#222; margin-bottom:12px; }
+.prod-info { padding:12px; }
+.prod-series { font-size:10px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px; }
+.prod-name { font-size:12px; font-weight:800; color:#222; margin-bottom:10px; }
 .prod-foot { display:flex; justify-content:space-between; align-items:center; }
-.prod-price { font-size:16px; font-weight:900; color:#e00; }
-.prod-cart { width:32px; height:32px; border-radius:50%; background:#e00; border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s; }
-.prod-cart:hover { transform:scale(1.12); background:#c00; }
+.prod-price { font-size:13px; font-weight:900; color:#111; }
+.prod-cart { width:26px; height:26px; border-radius:0; background:#111; border:none; color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.15s; }
+.prod-cart:hover { background:#333; }
 
 .prod-card.hidden-product { display: none; }
 
@@ -216,9 +172,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 /* ==========================================================================
    RECOMMENDED FOR YOU SECTION
    ========================================================================= */
-.recommended-section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
-.recommended-section-head h2 { font-size: 38px; font-weight: 800; color: #000; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
-.recommended-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+
 
 /* ==========================================================================
    PREMIUM LUXURY BLACK BRAND FOOTER MODULE
@@ -361,8 +315,9 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 }
 
 @media (max-width: 1024px) {
-  .section { padding: 48px 40px; }
-  .products, .recommended-grid { grid-template-columns: repeat(3, 1fr); }
+  .section { padding: 48px 80px; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .rec-grid { grid-template-columns: repeat(2, 1fr); }
   .main-black-footer { grid-template-columns: 1fr; gap: 32px; }
   .arrival-slider-container { padding: 0 45px; }
   .arrival-card { width: calc((100% - 48px) / 3); gap: 24px; }
@@ -415,8 +370,8 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   cursor: pointer; text-decoration: none;
   transition: background 0.15s, color 0.15s;
 }
-.mobile-menu-item:hover, .mobile-menu-item.active { background: #fff5f5; color: #e00; }
-.mobile-menu-item.offers-item { color: #e00; }
+.mobile-menu-item:hover, .mobile-menu-item.active { background: #f5f5f5; color: #000; }
+.mobile-menu-item.offers-item { color: #000; }
 .mobile-menu-item .toggle-arrow { font-size: 10px; color: #aaa; transition: transform 0.2s; }
 .mobile-menu-item.expanded .toggle-arrow { transform: rotate(180deg); }
 .mobile-submenu {
@@ -431,7 +386,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   transition: color 0.15s;
 }
 .mobile-submenu a:last-child { border-bottom: none; }
-.mobile-submenu a:hover { color: #e00; }
+.mobile-submenu a:hover { color: #000; }
 .mobile-search-row {
   padding: 16px 20px;
   border-bottom: 1px solid #f0f0f0;
@@ -479,15 +434,13 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
   /* Hero slider */
   .slide { height: auto; min-height: 420px; }
-  .slide-content { padding: 0 16px 52px 16px; justify-content: flex-end; }
-  .char-cluster .big-text { font-size: clamp(38px, 10vw, 52px); bottom: auto; top: 12%; }
-  .fig-1 { bottom: 20%; left: 4%; }       .fig-1 .emoji { font-size: 32px !important; }
-  .fig-2 { bottom: 34%; left: 18%; }      .fig-2 .emoji { font-size: 28px !important; }
-  .fig-3 { bottom: 44%; left: 50%; }      .fig-3 .emoji { font-size: 40px !important; }
-  .fig-4 { bottom: 34%; right: 18%; }     .fig-4 .emoji { font-size: 28px !important; }
-  .fig-5 { bottom: 20%; right: 4%; }      .fig-5 .emoji { font-size: 28px !important; }
-  .fig-6 { bottom: 58%; right: 28%; }     .fig-6 .emoji { font-size: 24px !important; }
-  .star-prop { bottom: 26%; left: 28%; font-size: 30px; }
+  .slide-content { padding: 0 16px 40px 16px; justify-content: flex-end; }
+  .fig-1 .emoji { font-size: 32px !important; }
+  .fig-2 .emoji { font-size: 28px !important; }
+  .fig-3 .emoji { font-size: 40px !important; }
+  .fig-4 .emoji { font-size: 28px !important; }
+  .fig-5 .emoji { font-size: 28px !important; }
+  .fig-6 .emoji { font-size: 24px !important; }
   .slide-text { max-width: 100%; }
   /* KEY FIX: allow long titles to wrap on mobile */
   .collab-title { 
@@ -500,11 +453,8 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .shop-btn { padding: 10px 32px; font-size: 12px; }
   .slider-arrow { display: none; }
   .slider-dots { bottom: 14px; }
-  .slide-copy { display: none; }
-  .slide-brand-badge { font-size: 11px; padding: 4px 10px; top: 14px; left: 14px; }
-
   /* Sections */
-  .section { padding: 32px 16px; }
+  .section { padding: 32px 24px; }
   .shop-all-section-head h2,
   .recommended-section-head h2 { font-size: 24px; }
 
@@ -564,6 +514,80 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .arrival-card { width: 170px; }
   .arrival-thumb { font-size: 66px; }
 }
+
+/* Mobile Search Bar */
+.mobile-search-bar {
+  display: none;
+  position: sticky;
+  top: 72px;
+  z-index: 195;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 10px 16px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.mobile-search-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.mobile-search-bar .search-box {
+  width: 100%;
+  border-radius: 0;
+  border: 1.5px solid #ddd;
+  background: #f9f9f9;
+}
+.mobile-search-bar .search-box:focus-within { border-color: #111; }
+.mobile-search-icon-btn { display: none; }
+
+@media (max-width: 768px) {
+  .mobile-search-bar { display: block; }
+  .mobile-search-icon-btn { display: flex; }
+}
+
+
+/* ==========================================================================
+   RECOMMENDED SECTION — redesigned
+   ========================================================================== */
+.rec-section { padding: 60px 240px 80px; background: #fafafa; border-top: 1px solid #efefef; }
+.rec-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+.rec-head-left .rec-label { font-size: 11px; font-weight: 800; color: rgb(0,165,134); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.rec-head-left h2 { font-size: 32px; font-weight: 900; color: #000; font-family: 'Nunito', sans-serif; }
+.rec-view-all { font-size: 13px; font-weight: 700; color: #333; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; margin-bottom: 6px; }
+.rec-view-all:hover { color: #000; }
+.rec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.rec-card { background: #fff; cursor: pointer; border: 1px solid #efefef; transition: box-shadow 0.2s, transform 0.2s; }
+.rec-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-3px); }
+.rec-thumb { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+.rec-info { padding: 10px 10px 12px; }
+.rec-series { font-size: 10px; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+.rec-name { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 10px; line-height: 1.4; }
+.rec-foot { display: flex; justify-content: space-between; align-items: center; }
+.rec-price { font-size: 13px; font-weight: 900; color: #111; }
+
+/* ==========================================================================
+   FOOTER — redesigned
+   ========================================================================== */
+.ft-brand-col { display: flex; flex-direction: column; gap: 24px; }
+.ft-brand-desc { font-size: 13px; color: #777; line-height: 1.7; max-width: 280px; }
+.ft-newsletter-label { font-size: 11px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.ft-social-row { display: flex; gap: 16px; align-items: center; margin-top: 4px; }
+.ft-social-row a { color: #888; transition: color 0.15s; }
+.ft-social-row a:hover { color: #fff; }
+.ft-payment-icons { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ft-payment-icons span { font-size: 10px; font-weight: 800; color: #555; border: 1px solid #333; padding: 3px 8px; letter-spacing: 0.5px; }
+.footer-payments-bar { background: #000; border-top: 1px solid #1a1a1a; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-payments-bar p { font-size: 11px; color: #555; }
+
+@media (max-width: 768px) {
+  .rec-section { padding: 40px 24px 48px; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .rec-head-left h2 { font-size: 22px; }
+  .ft-brand-col { gap: 16px; }
+  .ft-brand-desc { max-width: 100%; }
+  .footer-payments-bar { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
+}
+
 </style>
 </head>
 <body>
@@ -571,34 +595,43 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 <header>
   <button class="mobile-burger-btn">☰</button>
   <div class="header-left">
-    <div class="search-box"><span>🔍</span><input type="text" placeholder="Search flowers, arrangements..."></div>
+    <div class="search-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search flowers, arrangements..."></div>
   </div>
   <div class="brand-logo">
     <svg viewBox="0 0 2366 805" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
       <g transform="matrix(1,0,0,1,-50.004456,-1313.716387)">
         <g transform="matrix(1,0,0,1,-58,1)">
           <g transform="matrix(0.701217,0,0,0.701217,881.204188,-29.9435)">
-            <path d="M584.317,2190.721L583.859,2318.626C583.859,2337.386 585.842,2351.455 589.808,2360.835C594.079,2369.788 602.774,2374.265 615.892,2374.265L731.667,2374.265C745.701,2374.691 752.718,2389.613 752.718,2419.032C752.718,2441.628 750.735,2458.043 746.769,2468.275C742.803,2478.507 734.718,2483.837 722.515,2484.263C679.5,2485.968 636.942,2486.821 594.842,2486.821C552.742,2486.821 499.049,2486.395 433.763,2485.542C422.78,2485.542 413.78,2481.918 406.764,2474.67C400.052,2466.996 396.239,2456.551 395.324,2443.334C392.883,2406.241 391.663,2347.831 391.663,2268.104C391.663,2187.95 392.273,2134.017 393.493,2106.304C395.018,2078.165 397.917,2059.619 402.188,2050.666C406.459,2041.286 414.848,2036.596 427.356,2036.596L549.996,2036.596C562.809,2036.596 571.199,2041.286 575.165,2050.666C579.436,2060.045 582.029,2075.181 582.944,2096.072C583.859,2116.963 584.317,2148.513 584.317,2190.721ZM1008.065,2497.053C971.15,2497.053 937.745,2490.445 907.848,2477.228C877.95,2463.585 853.697,2445.465 835.087,2422.869C816.478,2400.272 802.292,2375.117 792.53,2347.405C782.768,2319.266 777.886,2290.061 777.886,2259.79C777.886,2229.519 782.768,2200.527 792.53,2172.815C802.597,2144.675 816.783,2119.308 835.087,2096.711C853.697,2074.115 877.95,2055.995 907.848,2042.352C937.745,2028.709 970.54,2021.887 1006.234,2021.887C1041.928,2021.887 1073.503,2028.069 1100.959,2040.433C1128.416,2052.797 1150.534,2069.638 1167.313,2090.955C1201.481,2134.443 1218.565,2186.032 1218.565,2245.721C1218.565,2275.991 1213.837,2305.623 1204.379,2334.614C1195.227,2363.606 1181.956,2390.04 1164.567,2413.915C1147.483,2437.365 1125.366,2456.764 1098.214,2472.112C1071.062,2487.034 1041.012,2495.348 1008.065,2497.053ZM1098.671,2248.918C1098.671,2228.453 1093.485,2210.76 1083.113,2195.838C1072.74,2180.489 1056.876,2172.815 1035.521,2172.815C1014.471,2172.815 997.692,2180.702 985.184,2196.477C972.676,2212.252 966.422,2231.438 966.422,2254.034C966.422,2276.631 972.981,2294.751 986.099,2308.394C999.217,2322.037 1014.929,2328.859 1033.233,2328.859C1051.843,2328.859 1067.401,2320.545 1079.909,2303.917C1092.418,2287.289 1098.671,2268.957 1098.671,2248.918ZM1528.368,2451.008C1522.876,2465.504 1513.267,2476.802 1499.539,2484.903C1486.115,2493.003 1471.472,2497.053 1455.608,2497.053C1439.744,2497.053 1425.253,2493.216 1412.135,2485.542C1399.017,2477.868 1389.559,2466.783 1383.763,2452.287C1338.002,2334.188 1295.444,2218.221 1256.089,2104.386C1251.513,2090.742 1249.225,2080.297 1249.225,2073.049C1249.225,2050.026 1256.7,2038.515 1271.648,2038.515L1403.898,2037.236C1415.186,2037.236 1423.728,2040.007 1429.524,2045.549C1435.626,2051.092 1440.964,2062.177 1445.54,2078.804L1489.929,2237.406C1491.759,2244.228 1495.115,2247.639 1499.996,2247.639C1504.877,2247.639 1508.538,2244.228 1510.979,2237.406L1570.926,2055.782C1574.892,2044.27 1579.163,2037.875 1583.739,2036.596C1585.57,2036.17 1588.773,2035.957 1593.349,2035.957L1645.974,2037.236C1651.77,2037.236 1655.889,2041.073 1658.329,2048.747C1659.245,2051.731 1659.702,2055.355 1659.702,2059.619C1659.702,2063.882 1656.194,2075.607 1649.177,2094.793C1642.466,2113.978 1624.619,2167.272 1595.637,2254.674C1566.96,2342.075 1544.537,2407.52 1528.368,2451.008ZM1740.7,2484.263C1732.157,2484.263 1724.836,2480.426 1718.734,2472.752C1712.938,2464.651 1709.124,2451.647 1707.294,2433.741C1705.768,2415.408 1705.006,2361.048 1705.006,2270.662C1705.006,2179.85 1706.074,2120.587 1708.209,2092.874C1710.65,2057.061 1721.48,2038.728 1740.7,2037.875C1762.665,2037.022 1853.729,2036.596 2013.893,2036.596C2031.892,2036.596 2040.892,2052.584 2040.892,2084.56C2040.892,2109.715 2032.96,2122.292 2017.096,2122.292L1916.422,2122.292C1910.015,2122.292 1904.829,2125.277 1900.863,2131.246C1897.202,2137.214 1895.372,2144.889 1895.372,2154.269L1895.372,2200.314C1895.372,2213.105 1899.49,2219.5 1907.727,2219.5L1991.013,2219.5C1995.894,2219.5 1999.555,2220.14 2001.995,2221.418C2004.741,2222.697 2007.182,2226.535 2009.317,2232.93C2011.453,2238.899 2012.521,2248.918 2012.521,2262.988C2012.521,2277.057 2010.69,2286.437 2007.029,2291.127C2003.673,2295.816 1998.029,2298.162 1990.097,2298.162L1915.507,2298.162C1907.88,2298.162 1902.541,2300.933 1899.49,2306.475C1896.745,2311.592 1895.372,2319.692 1895.372,2330.777L1895.372,2362.114C1895.372,2380.447 1901.626,2389.613 1914.134,2389.613L2028.079,2389.613C2033.57,2389.613 2038.452,2391.958 2042.723,2396.648C2046.994,2400.912 2049.129,2410.718 2049.129,2426.066C2049.129,2440.988 2046.536,2454.418 2041.35,2466.356C2036.164,2478.294 2030.062,2484.263 2023.045,2484.263L1740.7,2484.263ZM412.09,2594.735C440.084,2593.472 475.076,2592.841 517.066,2592.841C559.057,2592.841 588.066,2593.472 604.095,2594.735C620.349,2595.681 634.684,2604.357 647.101,2620.763C659.518,2637.169 665.726,2656.099 665.726,2677.553C665.726,2703.739 657.599,2722.985 641.344,2735.289C639.764,2736.551 638.974,2738.129 638.974,2740.022C638.974,2741.599 639.764,2742.703 641.344,2743.334C653.083,2747.751 662.904,2757.216 670.805,2771.729C678.932,2786.242 682.996,2803.437 682.996,2823.313C682.996,2848.238 676.111,2870.796 662.339,2890.988C648.568,2911.18 627.46,2922.222 599.015,2924.115C570.57,2925.693 550.027,2926.481 537.384,2926.481C524.742,2926.481 482.526,2926.008 410.736,2925.062C404.189,2925.062 398.884,2922.222 394.82,2916.543C390.757,2910.549 388.386,2903.766 387.709,2896.193C385.903,2868.429 385,2828.046 385,2775.042C385,2721.723 385.79,2676.291 387.37,2638.746C388.047,2623.287 389.966,2612.245 393.127,2605.619C396.288,2598.678 402.609,2595.05 412.09,2594.735ZM523.162,2788.293L522.823,2849.815C522.823,2852.655 523.5,2855.179 524.855,2857.387C526.209,2859.28 528.015,2860.227 530.273,2860.227C544.044,2860.227 555.332,2856.441 564.136,2848.869C573.167,2841.297 577.681,2829.465 577.681,2813.375C577.681,2796.969 573.053,2785.611 563.798,2779.301C556.348,2774.253 548.221,2771.729 539.416,2771.729C537.158,2771.729 534.901,2771.887 532.644,2772.203C526.322,2772.834 523.162,2778.197 523.162,2788.293ZM522.823,2658.15L523.162,2696.956C523.162,2702.951 525.758,2705.948 530.95,2705.948C553.752,2705.948 565.152,2696.956 565.152,2678.973C565.152,2658.15 554.993,2647.738 534.675,2647.738L530.95,2647.738C525.532,2647.738 522.823,2651.209 522.823,2658.15ZM857.044,2708.314L856.705,2802.964C856.705,2816.846 858.172,2827.257 861.107,2834.198C864.268,2840.824 870.702,2844.136 880.409,2844.136L966.083,2844.136C976.468,2844.452 981.66,2855.494 981.66,2877.264C981.66,2893.985 980.193,2906.132 977.258,2913.703C974.323,2921.276 968.341,2925.219 959.311,2925.535C927.479,2926.797 895.986,2927.428 864.832,2927.428C833.678,2927.428 793.945,2927.112 745.634,2926.481C737.506,2926.481 730.847,2923.8 725.654,2918.436C720.688,2912.757 717.866,2905.027 717.189,2895.247C715.383,2867.799 714.48,2824.575 714.48,2765.577C714.48,2706.263 714.931,2666.353 715.834,2645.845C716.963,2625.022 719.108,2611.298 722.268,2604.673C725.429,2597.732 731.637,2594.261 740.893,2594.261L831.646,2594.261C841.128,2594.261 847.336,2597.732 850.271,2604.673C853.432,2611.614 855.351,2622.814 856.028,2638.273C856.705,2653.733 857.044,2677.08 857.044,2708.314ZM1172.264,2935C1144.948,2935 1120.228,2930.11 1098.104,2920.329C1075.98,2910.233 1058.033,2896.824 1044.261,2880.103C1030.491,2863.382 1019.993,2844.767 1012.769,2824.26C1005.544,2803.437 1001.933,2781.825 1001.933,2759.425C1001.933,2737.024 1005.544,2715.571 1012.769,2695.063C1020.219,2674.24 1030.716,2655.468 1044.261,2638.746C1058.033,2622.025 1075.98,2608.617 1098.104,2598.521C1120.228,2588.425 1144.497,2583.377 1170.91,2583.377C1197.323,2583.377 1220.689,2587.951 1241.007,2597.101C1261.325,2606.25 1277.692,2618.713 1290.109,2634.487C1315.393,2666.668 1328.035,2704.844 1328.035,2749.013C1328.035,2771.414 1324.536,2793.341 1317.537,2814.795C1310.765,2836.249 1300.945,2855.81 1288.076,2873.478C1275.434,2890.83 1259.067,2905.185 1238.975,2916.543C1218.883,2927.586 1196.646,2933.738 1172.264,2935ZM1239.314,2751.38C1239.314,2736.235 1235.476,2723.143 1227.8,2712.1C1220.124,2700.742 1208.385,2695.063 1192.582,2695.063C1177.005,2695.063 1164.589,2700.9 1155.333,2712.573C1146.077,2724.247 1141.449,2738.444 1141.449,2755.166C1141.449,2771.887 1146.303,2785.296 1156.01,2795.392C1165.718,2805.487 1177.344,2810.536 1190.889,2810.536C1204.66,2810.536 1216.174,2804.383 1225.43,2792.079C1234.686,2779.775 1239.314,2766.208 1239.314,2751.38ZM1524.625,2935C1497.308,2935 1472.588,2930.11 1450.464,2920.329C1428.34,2910.233 1410.393,2896.824 1396.622,2880.103C1382.851,2863.382 1372.353,2844.767 1365.129,2824.26C1357.905,2803.437 1354.293,2781.825 1354.293,2759.425C1354.293,2737.024 1357.905,2715.571 1365.129,2695.063C1372.579,2674.24 1383.077,2655.468 1396.622,2638.746C1410.393,2622.025 1428.34,2608.617 1450.464,2598.521C1472.588,2588.425 1496.857,2583.377 1523.27,2583.377C1549.683,2583.377 1573.049,2587.951 1593.367,2597.101C1613.685,2606.25 1630.052,2618.713 1642.469,2634.487C1667.753,2666.668 1680.396,2704.844 1680.396,2749.013C1680.396,2771.414 1676.896,2793.341 1669.898,2814.795C1663.125,2836.249 1653.305,2855.81 1640.437,2873.478C1627.795,2890.83 1611.428,2905.185 1591.335,2916.543C1571.243,2927.586 1549.006,2933.738 1524.625,2935ZM1591.674,2751.38C1591.674,2736.235 1587.836,2723.143 1580.16,2712.1C1572.485,2700.742 1560.745,2695.063 1544.943,2695.063C1529.365,2695.063 1516.949,2700.9 1507.693,2712.573C1498.437,2724.247 1493.809,2738.444 1493.809,2755.166C1493.809,2771.887 1498.663,2785.296 1508.37,2795.392C1518.078,2805.487 1529.704,2810.536 1543.25,2810.536C1557.021,2810.536 1568.534,2804.383 1577.79,2792.079C1587.046,2779.775 1591.674,2766.208 1591.674,2751.38ZM1831.947,2618.87C1840.3,2633.383 1849.895,2652.155 1860.731,2675.187C1871.567,2697.903 1879.13,2713.046 1883.419,2720.619C1887.708,2728.19 1891.095,2731.976 1893.578,2731.976C1896.287,2731.976 1898.657,2729.926 1900.689,2725.824C1902.721,2721.723 1910.171,2705.948 1923.039,2678.499C1935.907,2651.051 1946.518,2630.228 1954.87,2616.031C1963.223,2601.518 1969.883,2594.104 1974.85,2593.788C1979.816,2593.472 1986.25,2593.315 1994.152,2593.315C2002.053,2593.315 2011.309,2593.63 2021.92,2594.261C2032.53,2594.892 2039.528,2598.836 2042.915,2606.092C2046.527,2613.033 2048.672,2622.972 2049.349,2635.907C2050.704,2669.034 2051.38,2713.046 2051.38,2767.943C2051.38,2822.524 2050.365,2865.59 2048.333,2897.14C2047.882,2904.712 2045.849,2911.495 2042.237,2917.49C2038.625,2923.484 2033.659,2926.481 2027.338,2926.481C2013.567,2926.797 1998.215,2926.955 1981.284,2926.955C1964.578,2926.955 1951.259,2926.481 1941.325,2925.535C1937.713,2925.219 1934.44,2923.326 1931.505,2919.856C1928.796,2916.07 1927.328,2911.18 1927.103,2905.185L1925.071,2827.099C1924.845,2819.527 1923.603,2815.268 1921.346,2814.322C1919.314,2813.375 1917.395,2815.426 1915.589,2820.474C1903.624,2850.131 1888.724,2883.258 1870.89,2919.856C1866.6,2929.005 1860.957,2933.58 1853.958,2933.58C1846.96,2933.58 1841.203,2929.005 1836.688,2919.856C1828.787,2904.081 1815.354,2870.638 1796.391,2819.527C1795.262,2816.372 1793.907,2814.479 1792.327,2813.848C1790.972,2813.218 1789.731,2814.006 1788.602,2816.214C1787.474,2818.423 1786.909,2822.051 1786.909,2827.099L1785.216,2905.185C1784.99,2911.18 1783.071,2916.07 1779.459,2919.856C1775.847,2923.326 1771.671,2925.219 1766.93,2925.535L1733.405,2925.535C1727.31,2925.219 1722.343,2922.222 1718.505,2916.543C1714.893,2910.864 1712.749,2904.397 1712.071,2897.14C1710.265,2869.061 1709.362,2825.522 1709.362,2766.523C1709.362,2707.21 1709.927,2663.671 1711.055,2635.907C1711.733,2622.656 1713.877,2612.403 1717.489,2605.146C1721.102,2597.889 1727.536,2594.261 1736.791,2594.261C1784.2,2594.261 1809.823,2594.735 1813.661,2595.681C1817.499,2596.627 1823.594,2604.357 1831.947,2618.87Z" style="fill:rgb(210,0,31);"/>
+            <path d="M584.317,2190.721L583.859,2318.626C583.859,2337.386 585.842,2351.455 589.808,2360.835C594.079,2369.788 602.774,2374.265 615.892,2374.265L731.667,2374.265C745.701,2374.691 752.718,2389.613 752.718,2419.032C752.718,2441.628 750.735,2458.043 746.769,2468.275C742.803,2478.507 734.718,2483.837 722.515,2484.263C679.5,2485.968 636.942,2486.821 594.842,2486.821C552.742,2486.821 499.049,2486.395 433.763,2485.542C422.78,2485.542 413.78,2481.918 406.764,2474.67C400.052,2466.996 396.239,2456.551 395.324,2443.334C392.883,2406.241 391.663,2347.831 391.663,2268.104C391.663,2187.95 392.273,2134.017 393.493,2106.304C395.018,2078.165 397.917,2059.619 402.188,2050.666C406.459,2041.286 414.848,2036.596 427.356,2036.596L549.996,2036.596C562.809,2036.596 571.199,2041.286 575.165,2050.666C579.436,2060.045 582.029,2075.181 582.944,2096.072C583.859,2116.963 584.317,2148.513 584.317,2190.721ZM1008.065,2497.053C971.15,2497.053 937.745,2490.445 907.848,2477.228C877.95,2463.585 853.697,2445.465 835.087,2422.869C816.478,2400.272 802.292,2375.117 792.53,2347.405C782.768,2319.266 777.886,2290.061 777.886,2259.79C777.886,2229.519 782.768,2200.527 792.53,2172.815C802.597,2144.675 816.783,2119.308 835.087,2096.711C853.697,2074.115 877.95,2055.995 907.848,2042.352C937.745,2028.709 970.54,2021.887 1006.234,2021.887C1041.928,2021.887 1073.503,2028.069 1100.959,2040.433C1128.416,2052.797 1150.534,2069.638 1167.313,2090.955C1201.481,2134.443 1218.565,2186.032 1218.565,2245.721C1218.565,2275.991 1213.837,2305.623 1204.379,2334.614C1195.227,2363.606 1181.956,2390.04 1164.567,2413.915C1147.483,2437.365 1125.366,2456.764 1098.214,2472.112C1071.062,2487.034 1041.012,2495.348 1008.065,2497.053ZM1098.671,2248.918C1098.671,2228.453 1093.485,2210.76 1083.113,2195.838C1072.74,2180.489 1056.876,2172.815 1035.521,2172.815C1014.471,2172.815 997.692,2180.702 985.184,2196.477C972.676,2212.252 966.422,2231.438 966.422,2254.034C966.422,2276.631 972.981,2294.751 986.099,2308.394C999.217,2322.037 1014.929,2328.859 1033.233,2328.859C1051.843,2328.859 1067.401,2320.545 1079.909,2303.917C1092.418,2287.289 1098.671,2268.957 1098.671,2248.918ZM1528.368,2451.008C1522.876,2465.504 1513.267,2476.802 1499.539,2484.903C1486.115,2493.003 1471.472,2497.053 1455.608,2497.053C1439.744,2497.053 1425.253,2493.216 1412.135,2485.542C1399.017,2477.868 1389.559,2466.783 1383.763,2452.287C1338.002,2334.188 1295.444,2218.221 1256.089,2104.386C1251.513,2090.742 1249.225,2080.297 1249.225,2073.049C1249.225,2050.026 1256.7,2038.515 1271.648,2038.515L1403.898,2037.236C1415.186,2037.236 1423.728,2040.007 1429.524,2045.549C1435.626,2051.092 1440.964,2062.177 1445.54,2078.804L1489.929,2237.406C1491.759,2244.228 1495.115,2247.639 1499.996,2247.639C1504.877,2247.639 1508.538,2244.228 1510.979,2237.406L1570.926,2055.782C1574.892,2044.27 1579.163,2037.875 1583.739,2036.596C1585.57,2036.17 1588.773,2035.957 1593.349,2035.957L1645.974,2037.236C1651.77,2037.236 1655.889,2041.073 1658.329,2048.747C1659.245,2051.731 1659.702,2055.355 1659.702,2059.619C1659.702,2063.882 1656.194,2075.607 1649.177,2094.793C1642.466,2113.978 1624.619,2167.272 1595.637,2254.674C1566.96,2342.075 1544.537,2407.52 1528.368,2451.008ZM1740.7,2484.263C1732.157,2484.263 1724.836,2480.426 1718.734,2472.752C1712.938,2464.651 1709.124,2451.647 1707.294,2433.741C1705.768,2415.408 1705.006,2361.048 1705.006,2270.662C1705.006,2179.85 1706.074,2120.587 1708.209,2092.874C1710.65,2057.061 1721.48,2038.728 1740.7,2037.875C1762.665,2037.022 1853.729,2036.596 2013.893,2036.596C2031.892,2036.596 2040.892,2052.584 2040.892,2084.56C2040.892,2109.715 2032.96,2122.292 2017.096,2122.292L1916.422,2122.292C1910.015,2122.292 1904.829,2125.277 1900.863,2131.246C1897.202,2137.214 1895.372,2144.889 1895.372,2154.269L1895.372,2200.314C1895.372,2213.105 1899.49,2219.5 1907.727,2219.5L1991.013,2219.5C1995.894,2219.5 1999.555,2220.14 2001.995,2221.418C2004.741,2222.697 2007.182,2226.535 2009.317,2232.93C2011.453,2238.899 2012.521,2248.918 2012.521,2262.988C2012.521,2277.057 2010.69,2286.437 2007.029,2291.127C2003.673,2295.816 1998.029,2298.162 1990.097,2298.162L1915.507,2298.162C1907.88,2298.162 1902.541,2300.933 1899.49,2306.475C1896.745,2311.592 1895.372,2319.692 1895.372,2330.777L1895.372,2362.114C1895.372,2380.447 1901.626,2389.613 1914.134,2389.613L2028.079,2389.613C2033.57,2389.613 2038.452,2391.958 2042.723,2396.648C2046.994,2400.912 2049.129,2410.718 2049.129,2426.066C2049.129,2440.988 2046.536,2454.418 2041.35,2466.356C2036.164,2478.294 2030.062,2484.263 2023.045,2484.263L1740.7,2484.263ZM412.09,2594.735C440.084,2593.472 475.076,2592.841 517.066,2592.841C559.057,2592.841 588.066,2593.472 604.095,2594.735C620.349,2595.681 634.684,2604.357 647.101,2620.763C659.518,2637.169 665.726,2656.099 665.726,2677.553C665.726,2703.739 657.599,2722.985 641.344,2735.289C639.764,2736.551 638.974,2738.129 638.974,2740.022C638.974,2741.599 639.764,2742.703 641.344,2743.334C653.083,2747.751 662.904,2757.216 670.805,2771.729C678.932,2786.242 682.996,2803.437 682.996,2823.313C682.996,2848.238 676.111,2870.796 662.339,2890.988C648.568,2911.18 627.46,2922.222 599.015,2924.115C570.57,2925.693 550.027,2926.481 537.384,2926.481C524.742,2926.481 482.526,2926.008 410.736,2925.062C404.189,2925.062 398.884,2922.222 394.82,2916.543C390.757,2910.549 388.386,2903.766 387.709,2896.193C385.903,2868.429 385,2828.046 385,2775.042C385,2721.723 385.79,2676.291 387.37,2638.746C388.047,2623.287 389.966,2612.245 393.127,2605.619C396.288,2598.678 402.609,2595.05 412.09,2594.735ZM523.162,2788.293L522.823,2849.815C522.823,2852.655 523.5,2855.179 524.855,2857.387C526.209,2859.28 528.015,2860.227 530.273,2860.227C544.044,2860.227 555.332,2856.441 564.136,2848.869C573.167,2841.297 577.681,2829.465 577.681,2813.375C577.681,2796.969 573.053,2785.611 563.798,2779.301C556.348,2774.253 548.221,2771.729 539.416,2771.729C537.158,2771.729 534.901,2771.887 532.644,2772.203C526.322,2772.834 523.162,2778.197 523.162,2788.293ZM522.823,2658.15L523.162,2696.956C523.162,2702.951 525.758,2705.948 530.95,2705.948C553.752,2705.948 565.152,2696.956 565.152,2678.973C565.152,2658.15 554.993,2647.738 534.675,2647.738L530.95,2647.738C525.532,2647.738 522.823,2651.209 522.823,2658.15ZM857.044,2708.314L856.705,2802.964C856.705,2816.846 858.172,2827.257 861.107,2834.198C864.268,2840.824 870.702,2844.136 880.409,2844.136L966.083,2844.136C976.468,2844.452 981.66,2855.494 981.66,2877.264C981.66,2893.985 980.193,2906.132 977.258,2913.703C974.323,2921.276 968.341,2925.219 959.311,2925.535C927.479,2926.797 895.986,2927.428 864.832,2927.428C833.678,2927.428 793.945,2927.112 745.634,2926.481C737.506,2926.481 730.847,2923.8 725.654,2918.436C720.688,2912.757 717.866,2905.027 717.189,2895.247C715.383,2867.799 714.48,2824.575 714.48,2765.577C714.48,2706.263 714.931,2666.353 715.834,2645.845C716.963,2625.022 719.108,2611.298 722.268,2604.673C725.429,2597.732 731.637,2594.261 740.893,2594.261L831.646,2594.261C841.128,2594.261 847.336,2597.732 850.271,2604.673C853.432,2611.614 855.351,2622.814 856.028,2638.273C856.705,2653.733 857.044,2677.08 857.044,2708.314ZM1172.264,2935C1144.948,2935 1120.228,2930.11 1098.104,2920.329C1075.98,2910.233 1058.033,2896.824 1044.261,2880.103C1030.491,2863.382 1019.993,2844.767 1012.769,2824.26C1005.544,2803.437 1001.933,2781.825 1001.933,2759.425C1001.933,2737.024 1005.544,2715.571 1012.769,2695.063C1020.219,2674.24 1030.716,2655.468 1044.261,2638.746C1058.033,2622.025 1075.98,2608.617 1098.104,2598.521C1120.228,2588.425 1144.497,2583.377 1170.91,2583.377C1197.323,2583.377 1220.689,2587.951 1241.007,2597.101C1261.325,2606.25 1277.692,2618.713 1290.109,2634.487C1315.393,2666.668 1328.035,2704.844 1328.035,2749.013C1328.035,2771.414 1324.536,2793.341 1317.537,2814.795C1310.765,2836.249 1300.945,2855.81 1288.076,2873.478C1275.434,2890.83 1259.067,2905.185 1238.975,2916.543C1218.883,2927.586 1196.646,2933.738 1172.264,2935ZM1239.314,2751.38C1239.314,2736.235 1235.476,2723.143 1227.8,2712.1C1220.124,2700.742 1208.385,2695.063 1192.582,2695.063C1177.005,2695.063 1164.589,2700.9 1155.333,2712.573C1146.077,2724.247 1141.449,2738.444 1141.449,2755.166C1141.449,2771.887 1146.303,2785.296 1156.01,2795.392C1165.718,2805.487 1177.344,2810.536 1190.889,2810.536C1204.66,2810.536 1216.174,2804.383 1225.43,2792.079C1234.686,2779.775 1239.314,2766.208 1239.314,2751.38ZM1524.625,2935C1497.308,2935 1472.588,2930.11 1450.464,2920.329C1428.34,2910.233 1410.393,2896.824 1396.622,2880.103C1382.851,2863.382 1372.353,2844.767 1365.129,2824.26C1357.905,2803.437 1354.293,2781.825 1354.293,2759.425C1354.293,2737.024 1357.905,2715.571 1365.129,2695.063C1372.579,2674.24 1383.077,2655.468 1396.622,2638.746C1410.393,2622.025 1428.34,2608.617 1450.464,2598.521C1472.588,2588.425 1496.857,2583.377 1523.27,2583.377C1549.683,2583.377 1573.049,2587.951 1593.367,2597.101C1613.685,2606.25 1630.052,2618.713 1642.469,2634.487C1667.753,2666.668 1680.396,2704.844 1680.396,2749.013C1680.396,2771.414 1676.896,2793.341 1669.898,2814.795C1663.125,2836.249 1653.305,2855.81 1640.437,2873.478C1627.795,2890.83 1611.428,2905.185 1591.335,2916.543C1571.243,2927.586 1549.006,2933.738 1524.625,2935ZM1591.674,2751.38C1591.674,2736.235 1587.836,2723.143 1580.16,2712.1C1572.485,2700.742 1560.745,2695.063 1544.943,2695.063C1529.365,2695.063 1516.949,2700.9 1507.693,2712.573C1498.437,2724.247 1493.809,2738.444 1493.809,2755.166C1493.809,2771.887 1498.663,2785.296 1508.37,2795.392C1518.078,2805.487 1529.704,2810.536 1543.25,2810.536C1557.021,2810.536 1568.534,2804.383 1577.79,2792.079C1587.046,2779.775 1591.674,2766.208 1591.674,2751.38ZM1831.947,2618.87C1840.3,2633.383 1849.895,2652.155 1860.731,2675.187C1871.567,2697.903 1879.13,2713.046 1883.419,2720.619C1887.708,2728.19 1891.095,2731.976 1893.578,2731.976C1896.287,2731.976 1898.657,2729.926 1900.689,2725.824C1902.721,2721.723 1910.171,2705.948 1923.039,2678.499C1935.907,2651.051 1946.518,2630.228 1954.87,2616.031C1963.223,2601.518 1969.883,2594.104 1974.85,2593.788C1979.816,2593.472 1986.25,2593.315 1994.152,2593.315C2002.053,2593.315 2011.309,2593.63 2021.92,2594.261C2032.53,2594.892 2039.528,2598.836 2042.915,2606.092C2046.527,2613.033 2048.672,2622.972 2049.349,2635.907C2050.704,2669.034 2051.38,2713.046 2051.38,2767.943C2051.38,2822.524 2050.365,2865.59 2048.333,2897.14C2047.882,2904.712 2045.849,2911.495 2042.237,2917.49C2038.625,2923.484 2033.659,2926.481 2027.338,2926.481C2013.567,2926.797 1998.215,2926.955 1981.284,2926.955C1964.578,2926.955 1951.259,2926.481 1941.325,2925.535C1937.713,2925.219 1934.44,2923.326 1931.505,2919.856C1928.796,2916.07 1927.328,2911.18 1927.103,2905.185L1925.071,2827.099C1924.845,2819.527 1923.603,2815.268 1921.346,2814.322C1919.314,2813.375 1917.395,2815.426 1915.589,2820.474C1903.624,2850.131 1888.724,2883.258 1870.89,2919.856C1866.6,2929.005 1860.957,2933.58 1853.958,2933.58C1846.96,2933.58 1841.203,2929.005 1836.688,2919.856C1828.787,2904.081 1815.354,2870.638 1796.391,2819.527C1795.262,2816.372 1793.907,2814.479 1792.327,2813.848C1790.972,2813.218 1789.731,2814.006 1788.602,2816.214C1787.474,2818.423 1786.909,2822.051 1786.909,2827.099L1785.216,2905.185C1784.99,2911.18 1783.071,2916.07 1779.459,2919.856C1775.847,2923.326 1771.671,2925.219 1766.93,2925.535L1733.405,2925.535C1727.31,2925.219 1722.343,2922.222 1718.505,2916.543C1714.893,2910.864 1712.749,2904.397 1712.071,2897.14C1710.265,2869.061 1709.362,2825.522 1709.362,2766.523C1709.362,2707.21 1709.927,2663.671 1711.055,2635.907C1711.733,2622.656 1713.877,2612.403 1717.489,2605.146C1721.102,2597.889 1727.536,2594.261 1736.791,2594.261C1784.2,2594.261 1809.823,2594.735 1813.661,2595.681C1817.499,2596.627 1823.594,2604.357 1831.947,2618.87Z" style="fill:rgb(0,165,134);"/>
           </g>
           <g transform="matrix(0.491929,0,0,0.491929,52.08752,1128.175422)">
-            <path d="M1117.044,1950.142C917.005,1916.946 504.903,1836.41 504.903,1836.41C439.315,1824.892 386.066,1764.573 386.066,1701.796L386.066,526.669C386.066,463.892 439.315,422.276 504.903,433.794C504.903,433.794 1064.237,527.18 1126.767,537.899C1189.297,548.617 1272.527,545.384 1323.724,537.899C1374.922,530.413 1933.021,436.353 1933.021,436.353C1998.609,425.069 2051.858,466.876 2051.858,529.653L2051.858,1704.78C2051.858,1767.558 1998.609,1827.686 1933.021,1838.969C1933.021,1838.969 1513.113,1919.525 1315.28,1951.413C1305.893,1952.926 1281.744,1955.71 1270.927,1946.54C1258.835,1936.289 1260.58,1913.4 1261.188,1903.551C1269.823,1763.683 1373.675,1625.015 1488.344,1559.065C1589.883,1500.666 1647.304,1499.13 1650.86,1512.638C1654.415,1526.145 1641.369,1531.069 1536.796,1608.52C1444.685,1676.742 1415.43,1729.436 1430.808,1735.691C1446.185,1741.945 1605.21,1737.479 1707.387,1676.143C1861.623,1583.555 1919.449,1379.726 1927.439,1346.105C1935.428,1312.484 1937.833,1301.501 1922.392,1295.641C1906.95,1289.78 1749.422,1278.382 1573.135,1356.198C1396.847,1434.014 1312.586,1553.791 1269.302,1667.059C1238.13,1748.629 1221.671,1830.011 1202.33,1883.084C1198.891,1892.523 1190.302,1923.169 1172.795,1936.689C1152.049,1952.711 1121.891,1950.946 1117.044,1950.142ZM574.967,525.05C520.911,525.05 477.024,568.931 477.024,622.981C477.024,677.031 520.911,720.912 574.967,720.912C629.023,720.912 672.91,677.031 672.91,622.981C672.91,568.931 629.023,525.05 574.967,525.05ZM1144.455,1647.607C1124.479,1583.182 1066.455,1456.614 906.923,1375.374C757.384,1299.224 622.008,1288.64 549.855,1289.796C515.159,1290.351 495.358,1313.521 501.6,1345.318C516.672,1422.095 566.53,1568.237 731.285,1671.096C850.571,1745.568 956.045,1745.657 1009.036,1738.866C1032.092,1735.911 1037.096,1721.419 1020.201,1704.044C988.629,1671.575 926.402,1614.168 829.198,1552C686.859,1460.966 900.814,1494.801 1122.11,1662.92C1132.813,1671.05 1152.207,1672.611 1144.455,1647.607ZM1289.967,1393.433C1352.688,1341.147 1440.477,1267.986 1511.561,1208.842C1669.57,1077.37 1714.452,963.484 1714.452,850.544C1714.452,755.771 1649.37,601.811 1471.184,596.203C1354.621,592.534 1283.709,646.282 1245.916,689.224C1240.276,695.632 1230.627,709.573 1220.957,709.801C1211.004,710.037 1201.029,696.376 1195.381,689.915C1157.742,646.861 1086.695,592.515 969.506,596.203C791.32,601.811 726.238,755.771 726.238,850.544C726.238,963.484 771.12,1077.37 929.13,1208.842C1000.489,1268.216 1088.685,1341.716 1151.454,1394.042C1163.04,1403.7 1199.883,1429.437 1220.91,1429.437C1241.936,1429.437 1278.032,1403.382 1289.967,1393.433Z" style="fill:rgb(210,0,31);"/>
+            <path d="M1117.044,1950.142C917.005,1916.946 504.903,1836.41 504.903,1836.41C439.315,1824.892 386.066,1764.573 386.066,1701.796L386.066,526.669C386.066,463.892 439.315,422.276 504.903,433.794C504.903,433.794 1064.237,527.18 1126.767,537.899C1189.297,548.617 1272.527,545.384 1323.724,537.899C1374.922,530.413 1933.021,436.353 1933.021,436.353C1998.609,425.069 2051.858,466.876 2051.858,529.653L2051.858,1704.78C2051.858,1767.558 1998.609,1827.686 1933.021,1838.969C1933.021,1838.969 1513.113,1919.525 1315.28,1951.413C1305.893,1952.926 1281.744,1955.71 1270.927,1946.54C1258.835,1936.289 1260.58,1913.4 1261.188,1903.551C1269.823,1763.683 1373.675,1625.015 1488.344,1559.065C1589.883,1500.666 1647.304,1499.13 1650.86,1512.638C1654.415,1526.145 1641.369,1531.069 1536.796,1608.52C1444.685,1676.742 1415.43,1729.436 1430.808,1735.691C1446.185,1741.945 1605.21,1737.479 1707.387,1676.143C1861.623,1583.555 1919.449,1379.726 1927.439,1346.105C1935.428,1312.484 1937.833,1301.501 1922.392,1295.641C1906.95,1289.78 1749.422,1278.382 1573.135,1356.198C1396.847,1434.014 1312.586,1553.791 1269.302,1667.059C1238.13,1748.629 1221.671,1830.011 1202.33,1883.084C1198.891,1892.523 1190.302,1923.169 1172.795,1936.689C1152.049,1952.711 1121.891,1950.946 1117.044,1950.142ZM574.967,525.05C520.911,525.05 477.024,568.931 477.024,622.981C477.024,677.031 520.911,720.912 574.967,720.912C629.023,720.912 672.91,677.031 672.91,622.981C672.91,568.931 629.023,525.05 574.967,525.05ZM1144.455,1647.607C1124.479,1583.182 1066.455,1456.614 906.923,1375.374C757.384,1299.224 622.008,1288.64 549.855,1289.796C515.159,1290.351 495.358,1313.521 501.6,1345.318C516.672,1422.095 566.53,1568.237 731.285,1671.096C850.571,1745.568 956.045,1745.657 1009.036,1738.866C1032.092,1735.911 1037.096,1721.419 1020.201,1704.044C988.629,1671.575 926.402,1614.168 829.198,1552C686.859,1460.966 900.814,1494.801 1122.11,1662.92C1132.813,1671.05 1152.207,1672.611 1144.455,1647.607ZM1289.967,1393.433C1352.688,1341.147 1440.477,1267.986 1511.561,1208.842C1669.57,1077.37 1714.452,963.484 1714.452,850.544C1714.452,755.771 1649.37,601.811 1471.184,596.203C1354.621,592.534 1283.709,646.282 1245.916,689.224C1240.276,695.632 1230.627,709.573 1220.957,709.801C1211.004,710.037 1201.029,696.376 1195.381,689.915C1157.742,646.861 1086.695,592.515 969.506,596.203C791.32,601.811 726.238,755.771 726.238,850.544C726.238,963.484 771.12,1077.37 929.13,1208.842C1000.489,1268.216 1088.685,1341.716 1151.454,1394.042C1163.04,1403.7 1199.883,1429.437 1220.91,1429.437C1241.936,1429.437 1278.032,1403.382 1289.967,1393.433Z" style="fill:rgb(0,165,134);"/>
           </g>
         </g>
       </g>
     </svg>
   </div>
   <div class="header-right">
-    <button class="icon-btn">👤</button>
-    <button class="icon-btn">🛒<span class="cart-count">0</span></button>
+    <button class="icon-btn mobile-search-icon-btn" id="mobileSearchIconBtn" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    <button class="icon-btn" title="Account"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.8 3.6-6.5 8-6.5s8 2.7 8 6.5"/></svg></button>
+    <button class="icon-btn" title="Cart"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count">0</span></button>
   </div>
 </header>
 
+<!-- Mobile Sticky Search Bar -->
+<div class="mobile-search-bar" id="mobileSearchBar">
+  <div class="search-box">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" placeholder="Search flowers, arrangements...">
+  </div>
+</div>
+
 <nav>
   <div class="nav-item">HOME</div>
-  <div class="nav-item">FLOWER <span class="arrow">▾</span><div class="dropdown"><a href="#">Fresh Bouquets</a><a href="#">Luxury Roses</a><a href="#">Dried Flowers</a><a href="#">Potted Plants</a></div></div>
-  <div class="nav-item">BANQUET <span class="arrow">▾</span><div class="dropdown"><a href="#">Wedding Decor</a><a href="#">Corporate Events</a><a href="#">Party Styling</a><a href="#">Table Centerpieces</a></div></div>
-  <div class="nav-item">OCCASION <span class="arrow">▾</span><div class="dropdown"><a href="#">Anniversary</a><a href="#">Birthday</a><a href="#">Romance</a><a href="#">Celebrations</a></div></div>
-  <div class="nav-item offers">OFFERS 🔥 <span class="arrow">▾</span><div class="dropdown"><a href="#">Bundle Deals</a><a href="#">Seasonal Sale</a><a href="#">First Order Promo</a></div></div>
+  <div class="nav-item">OCCASIONS <span class="arrow">▾</span><div class="dropdown"><a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a><a href="#">Love & Romance</a><a href="#">Thank You</a><a href="#">Sympathy</a></div></div>
+  <div class="nav-item">COLLECTIONS <span class="arrow">▾</span><div class="dropdown"><a href="#">Luxury Series</a><a href="#">Handcrafted</a><a href="#">Mini Pop Cards</a><a href="#">Gift Bundles</a></div></div>
+  <div class="nav-item">SEASONAL <span class="arrow">▾</span><div class="dropdown"><a href="#">Valentine's Day</a><a href="#">Mother's Day</a><a href="#">Christmas</a><a href="#">New Year</a></div></div>
+  <div class="nav-item offers">OFFERS 🎁 <span class="arrow">▾</span><div class="dropdown"><a href="#">Bundle Deals</a><a href="#">Seasonal Sale</a><a href="#">First Order Promo</a></div></div>
 </nav>
 
 <!-- Mobile Menu Drawer -->
@@ -607,34 +640,34 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <div class="mobile-menu-header">
       <span class="drawer-logo">
         <svg viewBox="0 0 2366 805" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-          <g transform="matrix(1,0,0,1,-50.004456,-1313.716387)"><g transform="matrix(1,0,0,1,-58,1)"><g transform="matrix(0.701217,0,0,0.701217,881.204188,-29.9435)"><path d="M584.317,2190.721L583.859,2318.626C583.859,2337.386 585.842,2351.455 589.808,2360.835C594.079,2369.788 602.774,2374.265 615.892,2374.265L731.667,2374.265C745.701,2374.691 752.718,2389.613 752.718,2419.032C752.718,2441.628 750.735,2458.043 746.769,2468.275C742.803,2478.507 734.718,2483.837 722.515,2484.263C679.5,2485.968 636.942,2486.821 594.842,2486.821C552.742,2486.821 499.049,2486.395 433.763,2485.542C422.78,2485.542 413.78,2481.918 406.764,2474.67C400.052,2466.996 396.239,2456.551 395.324,2443.334C392.883,2406.241 391.663,2347.831 391.663,2268.104C391.663,2187.95 392.273,2134.017 393.493,2106.304C395.018,2078.165 397.917,2059.619 402.188,2050.666C406.459,2041.286 414.848,2036.596 427.356,2036.596L549.996,2036.596C562.809,2036.596 571.199,2041.286 575.165,2050.666C579.436,2060.045 582.029,2075.181 582.944,2096.072C583.859,2116.963 584.317,2148.513 584.317,2190.721ZM1008.065,2497.053C971.15,2497.053 937.745,2490.445 907.848,2477.228C877.95,2463.585 853.697,2445.465 835.087,2422.869C816.478,2400.272 802.292,2375.117 792.53,2347.405C782.768,2319.266 777.886,2290.061 777.886,2259.79C777.886,2229.519 782.768,2200.527 792.53,2172.815C802.597,2144.675 816.783,2119.308 835.087,2096.711C853.697,2074.115 877.95,2055.995 907.848,2042.352C937.745,2028.709 970.54,2021.887 1006.234,2021.887C1041.928,2021.887 1073.503,2028.069 1100.959,2040.433C1128.416,2052.797 1150.534,2069.638 1167.313,2090.955C1201.481,2134.443 1218.565,2186.032 1218.565,2245.721C1218.565,2275.991 1213.837,2305.623 1204.379,2334.614C1195.227,2363.606 1181.956,2390.04 1164.567,2413.915C1147.483,2437.365 1125.366,2456.764 1098.214,2472.112C1071.062,2487.034 1041.012,2495.348 1008.065,2497.053ZM1098.671,2248.918C1098.671,2228.453 1093.485,2210.76 1083.113,2195.838C1072.74,2180.489 1056.876,2172.815 1035.521,2172.815C1014.471,2172.815 997.692,2180.702 985.184,2196.477C972.676,2212.252 966.422,2231.438 966.422,2254.034C966.422,2276.631 972.981,2294.751 986.099,2308.394C999.217,2322.037 1014.929,2328.859 1033.233,2328.859C1051.843,2328.859 1067.401,2320.545 1079.909,2303.917C1092.418,2287.289 1098.671,2268.957 1098.671,2248.918ZM1528.368,2451.008C1522.876,2465.504 1513.267,2476.802 1499.539,2484.903C1486.115,2493.003 1471.472,2497.053 1455.608,2497.053C1439.744,2497.053 1425.253,2493.216 1412.135,2485.542C1399.017,2477.868 1389.559,2466.783 1383.763,2452.287C1338.002,2334.188 1295.444,2218.221 1256.089,2104.386C1251.513,2090.742 1249.225,2080.297 1249.225,2073.049C1249.225,2050.026 1256.7,2038.515 1271.648,2038.515L1403.898,2037.236C1415.186,2037.236 1423.728,2040.007 1429.524,2045.549C1435.626,2051.092 1440.964,2062.177 1445.54,2078.804L1489.929,2237.406C1491.759,2244.228 1495.115,2247.639 1499.996,2247.639C1504.877,2247.639 1508.538,2244.228 1510.979,2237.406L1570.926,2055.782C1574.892,2044.27 1579.163,2037.875 1583.739,2036.596C1585.57,2036.17 1588.773,2035.957 1593.349,2035.957L1645.974,2037.236C1651.77,2037.236 1655.889,2041.073 1658.329,2048.747C1659.245,2051.731 1659.702,2055.355 1659.702,2059.619C1659.702,2063.882 1656.194,2075.607 1649.177,2094.793C1642.466,2113.978 1624.619,2167.272 1595.637,2254.674C1566.96,2342.075 1544.537,2407.52 1528.368,2451.008ZM1740.7,2484.263C1732.157,2484.263 1724.836,2480.426 1718.734,2472.752C1712.938,2464.651 1709.124,2451.647 1707.294,2433.741C1705.768,2415.408 1705.006,2361.048 1705.006,2270.662C1705.006,2179.85 1706.074,2120.587 1708.209,2092.874C1710.65,2057.061 1721.48,2038.728 1740.7,2037.875C1762.665,2037.022 1853.729,2036.596 2013.893,2036.596C2031.892,2036.596 2040.892,2052.584 2040.892,2084.56C2040.892,2109.715 2032.96,2122.292 2017.096,2122.292L1916.422,2122.292C1910.015,2122.292 1904.829,2125.277 1900.863,2131.246C1897.202,2137.214 1895.372,2144.889 1895.372,2154.269L1895.372,2200.314C1895.372,2213.105 1899.49,2219.5 1907.727,2219.5L1991.013,2219.5C1995.894,2219.5 1999.555,2220.14 2001.995,2221.418C2004.741,2222.697 2007.182,2226.535 2009.317,2232.93C2011.453,2238.899 2012.521,2248.918 2012.521,2262.988C2012.521,2277.057 2010.69,2286.437 2007.029,2291.127C2003.673,2295.816 1998.029,2298.162 1990.097,2298.162L1915.507,2298.162C1907.88,2298.162 1902.541,2300.933 1899.49,2306.475C1896.745,2311.592 1895.372,2319.692 1895.372,2330.777L1895.372,2362.114C1895.372,2380.447 1901.626,2389.613 1914.134,2389.613L2028.079,2389.613C2033.57,2389.613 2038.452,2391.958 2042.723,2396.648C2046.994,2400.912 2049.129,2410.718 2049.129,2426.066C2049.129,2440.988 2046.536,2454.418 2041.35,2466.356C2036.164,2478.294 2030.062,2484.263 2023.045,2484.263L1740.7,2484.263ZM412.09,2594.735C440.084,2593.472 475.076,2592.841 517.066,2592.841C559.057,2592.841 588.066,2593.472 604.095,2594.735C620.349,2595.681 634.684,2604.357 647.101,2620.763C659.518,2637.169 665.726,2656.099 665.726,2677.553C665.726,2703.739 657.599,2722.985 641.344,2735.289C639.764,2736.551 638.974,2738.129 638.974,2740.022C638.974,2741.599 639.764,2742.703 641.344,2743.334C653.083,2747.751 662.904,2757.216 670.805,2771.729C678.932,2786.242 682.996,2803.437 682.996,2823.313C682.996,2848.238 676.111,2870.796 662.339,2890.988C648.568,2911.18 627.46,2922.222 599.015,2924.115C570.57,2925.693 550.027,2926.481 537.384,2926.481C524.742,2926.481 482.526,2926.008 410.736,2925.062C404.189,2925.062 398.884,2922.222 394.82,2916.543C390.757,2910.549 388.386,2903.766 387.709,2896.193C385.903,2868.429 385,2828.046 385,2775.042C385,2721.723 385.79,2676.291 387.37,2638.746C388.047,2623.287 389.966,2612.245 393.127,2605.619C396.288,2598.678 402.609,2595.05 412.09,2594.735ZM523.162,2788.293L522.823,2849.815C522.823,2852.655 523.5,2855.179 524.855,2857.387C526.209,2859.28 528.015,2860.227 530.273,2860.227C544.044,2860.227 555.332,2856.441 564.136,2848.869C573.167,2841.297 577.681,2829.465 577.681,2813.375C577.681,2796.969 573.053,2785.611 563.798,2779.301C556.348,2774.253 548.221,2771.729 539.416,2771.729C537.158,2771.729 534.901,2771.887 532.644,2772.203C526.322,2772.834 523.162,2778.197 523.162,2788.293ZM522.823,2658.15L523.162,2696.956C523.162,2702.951 525.758,2705.948 530.95,2705.948C553.752,2705.948 565.152,2696.956 565.152,2678.973C565.152,2658.15 554.993,2647.738 534.675,2647.738L530.95,2647.738C525.532,2647.738 522.823,2651.209 522.823,2658.15ZM857.044,2708.314L856.705,2802.964C856.705,2816.846 858.172,2827.257 861.107,2834.198C864.268,2840.824 870.702,2844.136 880.409,2844.136L966.083,2844.136C976.468,2844.452 981.66,2855.494 981.66,2877.264C981.66,2893.985 980.193,2906.132 977.258,2913.703C974.323,2921.276 968.341,2925.219 959.311,2925.535C927.479,2926.797 895.986,2927.428 864.832,2927.428C833.678,2927.428 793.945,2927.112 745.634,2926.481C737.506,2926.481 730.847,2923.8 725.654,2918.436C720.688,2912.757 717.866,2905.027 717.189,2895.247C715.383,2867.799 714.48,2824.575 714.48,2765.577C714.48,2706.263 714.931,2666.353 715.834,2645.845C716.963,2625.022 719.108,2611.298 722.268,2604.673C725.429,2597.732 731.637,2594.261 740.893,2594.261L831.646,2594.261C841.128,2594.261 847.336,2597.732 850.271,2604.673C853.432,2611.614 855.351,2622.814 856.028,2638.273C856.705,2653.733 857.044,2677.08 857.044,2708.314ZM1172.264,2935C1144.948,2935 1120.228,2930.11 1098.104,2920.329C1075.98,2910.233 1058.033,2896.824 1044.261,2880.103C1030.491,2863.382 1019.993,2844.767 1012.769,2824.26C1005.544,2803.437 1001.933,2781.825 1001.933,2759.425C1001.933,2737.024 1005.544,2715.571 1012.769,2695.063C1020.219,2674.24 1030.716,2655.468 1044.261,2638.746C1058.033,2622.025 1075.98,2608.617 1098.104,2598.521C1120.228,2588.425 1144.497,2583.377 1170.91,2583.377C1197.323,2583.377 1220.689,2587.951 1241.007,2597.101C1261.325,2606.25 1277.692,2618.713 1290.109,2634.487C1315.393,2666.668 1328.035,2704.844 1328.035,2749.013C1328.035,2771.414 1324.536,2793.341 1317.537,2814.795C1310.765,2836.249 1300.945,2855.81 1288.076,2873.478C1275.434,2890.83 1259.067,2905.185 1238.975,2916.543C1218.883,2927.586 1196.646,2933.738 1172.264,2935ZM1239.314,2751.38C1239.314,2736.235 1235.476,2723.143 1227.8,2712.1C1220.124,2700.742 1208.385,2695.063 1192.582,2695.063C1177.005,2695.063 1164.589,2700.9 1155.333,2712.573C1146.077,2724.247 1141.449,2738.444 1141.449,2755.166C1141.449,2771.887 1146.303,2785.296 1156.01,2795.392C1165.718,2805.487 1177.344,2810.536 1190.889,2810.536C1204.66,2810.536 1216.174,2804.383 1225.43,2792.079C1234.686,2779.775 1239.314,2766.208 1239.314,2751.38ZM1524.625,2935C1497.308,2935 1472.588,2930.11 1450.464,2920.329C1428.34,2910.233 1410.393,2896.824 1396.622,2880.103C1382.851,2863.382 1372.353,2844.767 1365.129,2824.26C1357.905,2803.437 1354.293,2781.825 1354.293,2759.425C1354.293,2737.024 1357.905,2715.571 1365.129,2695.063C1372.579,2674.24 1383.077,2655.468 1396.622,2638.746C1410.393,2622.025 1428.34,2608.617 1450.464,2598.521C1472.588,2588.425 1496.857,2583.377 1523.27,2583.377C1549.683,2583.377 1573.049,2587.951 1593.367,2597.101C1613.685,2606.25 1630.052,2618.713 1642.469,2634.487C1667.753,2666.668 1680.396,2704.844 1680.396,2749.013C1680.396,2771.414 1676.896,2793.341 1669.898,2814.795C1663.125,2836.249 1653.305,2855.81 1640.437,2873.478C1627.795,2890.83 1611.428,2905.185 1591.335,2916.543C1571.243,2927.586 1549.006,2933.738 1524.625,2935ZM1591.674,2751.38C1591.674,2736.235 1587.836,2723.143 1580.16,2712.1C1572.485,2700.742 1560.745,2695.063 1544.943,2695.063C1529.365,2695.063 1516.949,2700.9 1507.693,2712.573C1498.437,2724.247 1493.809,2738.444 1493.809,2755.166C1493.809,2771.887 1498.663,2785.296 1508.37,2795.392C1518.078,2805.487 1529.704,2810.536 1543.25,2810.536C1557.021,2810.536 1568.534,2804.383 1577.79,2792.079C1587.046,2779.775 1591.674,2766.208 1591.674,2751.38ZM1831.947,2618.87C1840.3,2633.383 1849.895,2652.155 1860.731,2675.187C1871.567,2697.903 1879.13,2713.046 1883.419,2720.619C1887.708,2728.19 1891.095,2731.976 1893.578,2731.976C1896.287,2731.976 1898.657,2729.926 1900.689,2725.824C1902.721,2721.723 1910.171,2705.948 1923.039,2678.499C1935.907,2651.051 1946.518,2630.228 1954.87,2616.031C1963.223,2601.518 1969.883,2594.104 1974.85,2593.788C1979.816,2593.472 1986.25,2593.315 1994.152,2593.315C2002.053,2593.315 2011.309,2593.63 2021.92,2594.261C2032.53,2594.892 2039.528,2598.836 2042.915,2606.092C2046.527,2613.033 2048.672,2622.972 2049.349,2635.907C2050.704,2669.034 2051.38,2713.046 2051.38,2767.943C2051.38,2822.524 2050.365,2865.59 2048.333,2897.14C2047.882,2904.712 2045.849,2911.495 2042.237,2917.49C2038.625,2923.484 2033.659,2926.481 2027.338,2926.481C2013.567,2926.797 1998.215,2926.955 1981.284,2926.955C1964.578,2926.955 1951.259,2926.481 1941.325,2925.535C1937.713,2925.219 1934.44,2923.326 1931.505,2919.856C1928.796,2916.07 1927.328,2911.18 1927.103,2905.185L1925.071,2827.099C1924.845,2819.527 1923.603,2815.268 1921.346,2814.322C1919.314,2813.375 1917.395,2815.426 1915.589,2820.474C1903.624,2850.131 1888.724,2883.258 1870.89,2919.856C1866.6,2929.005 1860.957,2933.58 1853.958,2933.58C1846.96,2933.58 1841.203,2929.005 1836.688,2919.856C1828.787,2904.081 1815.354,2870.638 1796.391,2819.527C1795.262,2816.372 1793.907,2814.479 1792.327,2813.848C1790.972,2813.218 1789.731,2814.006 1788.602,2816.214C1787.474,2818.423 1786.909,2822.051 1786.909,2827.099L1785.216,2905.185C1784.99,2911.18 1783.071,2916.07 1779.459,2919.856C1775.847,2923.326 1771.671,2925.219 1766.93,2925.535L1733.405,2925.535C1727.31,2925.219 1722.343,2922.222 1718.505,2916.543C1714.893,2910.864 1712.749,2904.397 1712.071,2897.14C1710.265,2869.061 1709.362,2825.522 1709.362,2766.523C1709.362,2707.21 1709.927,2663.671 1711.055,2635.907C1711.733,2622.656 1713.877,2612.403 1717.489,2605.146C1721.102,2597.889 1727.536,2594.261 1736.791,2594.261C1784.2,2594.261 1809.823,2594.735 1813.661,2595.681C1817.499,2596.627 1823.594,2604.357 1831.947,2618.87Z" style="fill:rgb(210,0,31);"/></g><g transform="matrix(0.491929,0,0,0.491929,52.08752,1128.175422)"><path d="M1117.044,1950.142C917.005,1916.946 504.903,1836.41 504.903,1836.41C439.315,1824.892 386.066,1764.573 386.066,1701.796L386.066,526.669C386.066,463.892 439.315,422.276 504.903,433.794C504.903,433.794 1064.237,527.18 1126.767,537.899C1189.297,548.617 1272.527,545.384 1323.724,537.899C1374.922,530.413 1933.021,436.353 1933.021,436.353C1998.609,425.069 2051.858,466.876 2051.858,529.653L2051.858,1704.78C2051.858,1767.558 1998.609,1827.686 1933.021,1838.969C1933.021,1838.969 1513.113,1919.525 1315.28,1951.413C1305.893,1952.926 1281.744,1955.71 1270.927,1946.54C1258.835,1936.289 1260.58,1913.4 1261.188,1903.551C1269.823,1763.683 1373.675,1625.015 1488.344,1559.065C1589.883,1500.666 1647.304,1499.13 1650.86,1512.638C1654.415,1526.145 1641.369,1531.069 1536.796,1608.52C1444.685,1676.742 1415.43,1729.436 1430.808,1735.691C1446.185,1741.945 1605.21,1737.479 1707.387,1676.143C1861.623,1583.555 1919.449,1379.726 1927.439,1346.105C1935.428,1312.484 1937.833,1301.501 1922.392,1295.641C1906.95,1289.78 1749.422,1278.382 1573.135,1356.198C1396.847,1434.014 1312.586,1553.791 1269.302,1667.059C1238.13,1748.629 1221.671,1830.011 1202.33,1883.084C1198.891,1892.523 1190.302,1923.169 1172.795,1936.689C1152.049,1952.711 1121.891,1950.946 1117.044,1950.142ZM574.967,525.05C520.911,525.05 477.024,568.931 477.024,622.981C477.024,677.031 520.911,720.912 574.967,720.912C629.023,720.912 672.91,677.031 672.91,622.981C672.91,568.931 629.023,525.05 574.967,525.05ZM1144.455,1647.607C1124.479,1583.182 1066.455,1456.614 906.923,1375.374C757.384,1299.224 622.008,1288.64 549.855,1289.796C515.159,1290.351 495.358,1313.521 501.6,1345.318C516.672,1422.095 566.53,1568.237 731.285,1671.096C850.571,1745.568 956.045,1745.657 1009.036,1738.866C1032.092,1735.911 1037.096,1721.419 1020.201,1704.044C988.629,1671.575 926.402,1614.168 829.198,1552C686.859,1460.966 900.814,1494.801 1122.11,1662.92C1132.813,1671.05 1152.207,1672.611 1144.455,1647.607ZM1289.967,1393.433C1352.688,1341.147 1440.477,1267.986 1511.561,1208.842C1669.57,1077.37 1714.452,963.484 1714.452,850.544C1714.452,755.771 1649.37,601.811 1471.184,596.203C1354.621,592.534 1283.709,646.282 1245.916,689.224C1240.276,695.632 1230.627,709.573 1220.957,709.801C1211.004,710.037 1201.029,696.376 1195.381,689.915C1157.742,646.861 1086.695,592.515 969.506,596.203C791.32,601.811 726.238,755.771 726.238,850.544C726.238,963.484 771.12,1077.37 929.13,1208.842C1000.489,1268.216 1088.685,1341.716 1151.454,1394.042C1163.04,1403.7 1199.883,1429.437 1220.91,1429.437C1241.936,1429.437 1278.032,1403.382 1289.967,1393.433Z" style="fill:rgb(210,0,31);"/></g></g></g>
+          <g transform="matrix(1,0,0,1,-50.004456,-1313.716387)"><g transform="matrix(1,0,0,1,-58,1)"><g transform="matrix(0.701217,0,0,0.701217,881.204188,-29.9435)"><path d="M584.317,2190.721L583.859,2318.626C583.859,2337.386 585.842,2351.455 589.808,2360.835C594.079,2369.788 602.774,2374.265 615.892,2374.265L731.667,2374.265C745.701,2374.691 752.718,2389.613 752.718,2419.032C752.718,2441.628 750.735,2458.043 746.769,2468.275C742.803,2478.507 734.718,2483.837 722.515,2484.263C679.5,2485.968 636.942,2486.821 594.842,2486.821C552.742,2486.821 499.049,2486.395 433.763,2485.542C422.78,2485.542 413.78,2481.918 406.764,2474.67C400.052,2466.996 396.239,2456.551 395.324,2443.334C392.883,2406.241 391.663,2347.831 391.663,2268.104C391.663,2187.95 392.273,2134.017 393.493,2106.304C395.018,2078.165 397.917,2059.619 402.188,2050.666C406.459,2041.286 414.848,2036.596 427.356,2036.596L549.996,2036.596C562.809,2036.596 571.199,2041.286 575.165,2050.666C579.436,2060.045 582.029,2075.181 582.944,2096.072C583.859,2116.963 584.317,2148.513 584.317,2190.721ZM1008.065,2497.053C971.15,2497.053 937.745,2490.445 907.848,2477.228C877.95,2463.585 853.697,2445.465 835.087,2422.869C816.478,2400.272 802.292,2375.117 792.53,2347.405C782.768,2319.266 777.886,2290.061 777.886,2259.79C777.886,2229.519 782.768,2200.527 792.53,2172.815C802.597,2144.675 816.783,2119.308 835.087,2096.711C853.697,2074.115 877.95,2055.995 907.848,2042.352C937.745,2028.709 970.54,2021.887 1006.234,2021.887C1041.928,2021.887 1073.503,2028.069 1100.959,2040.433C1128.416,2052.797 1150.534,2069.638 1167.313,2090.955C1201.481,2134.443 1218.565,2186.032 1218.565,2245.721C1218.565,2275.991 1213.837,2305.623 1204.379,2334.614C1195.227,2363.606 1181.956,2390.04 1164.567,2413.915C1147.483,2437.365 1125.366,2456.764 1098.214,2472.112C1071.062,2487.034 1041.012,2495.348 1008.065,2497.053ZM1098.671,2248.918C1098.671,2228.453 1093.485,2210.76 1083.113,2195.838C1072.74,2180.489 1056.876,2172.815 1035.521,2172.815C1014.471,2172.815 997.692,2180.702 985.184,2196.477C972.676,2212.252 966.422,2231.438 966.422,2254.034C966.422,2276.631 972.981,2294.751 986.099,2308.394C999.217,2322.037 1014.929,2328.859 1033.233,2328.859C1051.843,2328.859 1067.401,2320.545 1079.909,2303.917C1092.418,2287.289 1098.671,2268.957 1098.671,2248.918ZM1528.368,2451.008C1522.876,2465.504 1513.267,2476.802 1499.539,2484.903C1486.115,2493.003 1471.472,2497.053 1455.608,2497.053C1439.744,2497.053 1425.253,2493.216 1412.135,2485.542C1399.017,2477.868 1389.559,2466.783 1383.763,2452.287C1338.002,2334.188 1295.444,2218.221 1256.089,2104.386C1251.513,2090.742 1249.225,2080.297 1249.225,2073.049C1249.225,2050.026 1256.7,2038.515 1271.648,2038.515L1403.898,2037.236C1415.186,2037.236 1423.728,2040.007 1429.524,2045.549C1435.626,2051.092 1440.964,2062.177 1445.54,2078.804L1489.929,2237.406C1491.759,2244.228 1495.115,2247.639 1499.996,2247.639C1504.877,2247.639 1508.538,2244.228 1510.979,2237.406L1570.926,2055.782C1574.892,2044.27 1579.163,2037.875 1583.739,2036.596C1585.57,2036.17 1588.773,2035.957 1593.349,2035.957L1645.974,2037.236C1651.77,2037.236 1655.889,2041.073 1658.329,2048.747C1659.245,2051.731 1659.702,2055.355 1659.702,2059.619C1659.702,2063.882 1656.194,2075.607 1649.177,2094.793C1642.466,2113.978 1624.619,2167.272 1595.637,2254.674C1566.96,2342.075 1544.537,2407.52 1528.368,2451.008ZM1740.7,2484.263C1732.157,2484.263 1724.836,2480.426 1718.734,2472.752C1712.938,2464.651 1709.124,2451.647 1707.294,2433.741C1705.768,2415.408 1705.006,2361.048 1705.006,2270.662C1705.006,2179.85 1706.074,2120.587 1708.209,2092.874C1710.65,2057.061 1721.48,2038.728 1740.7,2037.875C1762.665,2037.022 1853.729,2036.596 2013.893,2036.596C2031.892,2036.596 2040.892,2052.584 2040.892,2084.56C2040.892,2109.715 2032.96,2122.292 2017.096,2122.292L1916.422,2122.292C1910.015,2122.292 1904.829,2125.277 1900.863,2131.246C1897.202,2137.214 1895.372,2144.889 1895.372,2154.269L1895.372,2200.314C1895.372,2213.105 1899.49,2219.5 1907.727,2219.5L1991.013,2219.5C1995.894,2219.5 1999.555,2220.14 2001.995,2221.418C2004.741,2222.697 2007.182,2226.535 2009.317,2232.93C2011.453,2238.899 2012.521,2248.918 2012.521,2262.988C2012.521,2277.057 2010.69,2286.437 2007.029,2291.127C2003.673,2295.816 1998.029,2298.162 1990.097,2298.162L1915.507,2298.162C1907.88,2298.162 1902.541,2300.933 1899.49,2306.475C1896.745,2311.592 1895.372,2319.692 1895.372,2330.777L1895.372,2362.114C1895.372,2380.447 1901.626,2389.613 1914.134,2389.613L2028.079,2389.613C2033.57,2389.613 2038.452,2391.958 2042.723,2396.648C2046.994,2400.912 2049.129,2410.718 2049.129,2426.066C2049.129,2440.988 2046.536,2454.418 2041.35,2466.356C2036.164,2478.294 2030.062,2484.263 2023.045,2484.263L1740.7,2484.263ZM412.09,2594.735C440.084,2593.472 475.076,2592.841 517.066,2592.841C559.057,2592.841 588.066,2593.472 604.095,2594.735C620.349,2595.681 634.684,2604.357 647.101,2620.763C659.518,2637.169 665.726,2656.099 665.726,2677.553C665.726,2703.739 657.599,2722.985 641.344,2735.289C639.764,2736.551 638.974,2738.129 638.974,2740.022C638.974,2741.599 639.764,2742.703 641.344,2743.334C653.083,2747.751 662.904,2757.216 670.805,2771.729C678.932,2786.242 682.996,2803.437 682.996,2823.313C682.996,2848.238 676.111,2870.796 662.339,2890.988C648.568,2911.18 627.46,2922.222 599.015,2924.115C570.57,2925.693 550.027,2926.481 537.384,2926.481C524.742,2926.481 482.526,2926.008 410.736,2925.062C404.189,2925.062 398.884,2922.222 394.82,2916.543C390.757,2910.549 388.386,2903.766 387.709,2896.193C385.903,2868.429 385,2828.046 385,2775.042C385,2721.723 385.79,2676.291 387.37,2638.746C388.047,2623.287 389.966,2612.245 393.127,2605.619C396.288,2598.678 402.609,2595.05 412.09,2594.735ZM523.162,2788.293L522.823,2849.815C522.823,2852.655 523.5,2855.179 524.855,2857.387C526.209,2859.28 528.015,2860.227 530.273,2860.227C544.044,2860.227 555.332,2856.441 564.136,2848.869C573.167,2841.297 577.681,2829.465 577.681,2813.375C577.681,2796.969 573.053,2785.611 563.798,2779.301C556.348,2774.253 548.221,2771.729 539.416,2771.729C537.158,2771.729 534.901,2771.887 532.644,2772.203C526.322,2772.834 523.162,2778.197 523.162,2788.293ZM522.823,2658.15L523.162,2696.956C523.162,2702.951 525.758,2705.948 530.95,2705.948C553.752,2705.948 565.152,2696.956 565.152,2678.973C565.152,2658.15 554.993,2647.738 534.675,2647.738L530.95,2647.738C525.532,2647.738 522.823,2651.209 522.823,2658.15ZM857.044,2708.314L856.705,2802.964C856.705,2816.846 858.172,2827.257 861.107,2834.198C864.268,2840.824 870.702,2844.136 880.409,2844.136L966.083,2844.136C976.468,2844.452 981.66,2855.494 981.66,2877.264C981.66,2893.985 980.193,2906.132 977.258,2913.703C974.323,2921.276 968.341,2925.219 959.311,2925.535C927.479,2926.797 895.986,2927.428 864.832,2927.428C833.678,2927.428 793.945,2927.112 745.634,2926.481C737.506,2926.481 730.847,2923.8 725.654,2918.436C720.688,2912.757 717.866,2905.027 717.189,2895.247C715.383,2867.799 714.48,2824.575 714.48,2765.577C714.48,2706.263 714.931,2666.353 715.834,2645.845C716.963,2625.022 719.108,2611.298 722.268,2604.673C725.429,2597.732 731.637,2594.261 740.893,2594.261L831.646,2594.261C841.128,2594.261 847.336,2597.732 850.271,2604.673C853.432,2611.614 855.351,2622.814 856.028,2638.273C856.705,2653.733 857.044,2677.08 857.044,2708.314ZM1172.264,2935C1144.948,2935 1120.228,2930.11 1098.104,2920.329C1075.98,2910.233 1058.033,2896.824 1044.261,2880.103C1030.491,2863.382 1019.993,2844.767 1012.769,2824.26C1005.544,2803.437 1001.933,2781.825 1001.933,2759.425C1001.933,2737.024 1005.544,2715.571 1012.769,2695.063C1020.219,2674.24 1030.716,2655.468 1044.261,2638.746C1058.033,2622.025 1075.98,2608.617 1098.104,2598.521C1120.228,2588.425 1144.497,2583.377 1170.91,2583.377C1197.323,2583.377 1220.689,2587.951 1241.007,2597.101C1261.325,2606.25 1277.692,2618.713 1290.109,2634.487C1315.393,2666.668 1328.035,2704.844 1328.035,2749.013C1328.035,2771.414 1324.536,2793.341 1317.537,2814.795C1310.765,2836.249 1300.945,2855.81 1288.076,2873.478C1275.434,2890.83 1259.067,2905.185 1238.975,2916.543C1218.883,2927.586 1196.646,2933.738 1172.264,2935ZM1239.314,2751.38C1239.314,2736.235 1235.476,2723.143 1227.8,2712.1C1220.124,2700.742 1208.385,2695.063 1192.582,2695.063C1177.005,2695.063 1164.589,2700.9 1155.333,2712.573C1146.077,2724.247 1141.449,2738.444 1141.449,2755.166C1141.449,2771.887 1146.303,2785.296 1156.01,2795.392C1165.718,2805.487 1177.344,2810.536 1190.889,2810.536C1204.66,2810.536 1216.174,2804.383 1225.43,2792.079C1234.686,2779.775 1239.314,2766.208 1239.314,2751.38ZM1524.625,2935C1497.308,2935 1472.588,2930.11 1450.464,2920.329C1428.34,2910.233 1410.393,2896.824 1396.622,2880.103C1382.851,2863.382 1372.353,2844.767 1365.129,2824.26C1357.905,2803.437 1354.293,2781.825 1354.293,2759.425C1354.293,2737.024 1357.905,2715.571 1365.129,2695.063C1372.579,2674.24 1383.077,2655.468 1396.622,2638.746C1410.393,2622.025 1428.34,2608.617 1450.464,2598.521C1472.588,2588.425 1496.857,2583.377 1523.27,2583.377C1549.683,2583.377 1573.049,2587.951 1593.367,2597.101C1613.685,2606.25 1630.052,2618.713 1642.469,2634.487C1667.753,2666.668 1680.396,2704.844 1680.396,2749.013C1680.396,2771.414 1676.896,2793.341 1669.898,2814.795C1663.125,2836.249 1653.305,2855.81 1640.437,2873.478C1627.795,2890.83 1611.428,2905.185 1591.335,2916.543C1571.243,2927.586 1549.006,2933.738 1524.625,2935ZM1591.674,2751.38C1591.674,2736.235 1587.836,2723.143 1580.16,2712.1C1572.485,2700.742 1560.745,2695.063 1544.943,2695.063C1529.365,2695.063 1516.949,2700.9 1507.693,2712.573C1498.437,2724.247 1493.809,2738.444 1493.809,2755.166C1493.809,2771.887 1498.663,2785.296 1508.37,2795.392C1518.078,2805.487 1529.704,2810.536 1543.25,2810.536C1557.021,2810.536 1568.534,2804.383 1577.79,2792.079C1587.046,2779.775 1591.674,2766.208 1591.674,2751.38ZM1831.947,2618.87C1840.3,2633.383 1849.895,2652.155 1860.731,2675.187C1871.567,2697.903 1879.13,2713.046 1883.419,2720.619C1887.708,2728.19 1891.095,2731.976 1893.578,2731.976C1896.287,2731.976 1898.657,2729.926 1900.689,2725.824C1902.721,2721.723 1910.171,2705.948 1923.039,2678.499C1935.907,2651.051 1946.518,2630.228 1954.87,2616.031C1963.223,2601.518 1969.883,2594.104 1974.85,2593.788C1979.816,2593.472 1986.25,2593.315 1994.152,2593.315C2002.053,2593.315 2011.309,2593.63 2021.92,2594.261C2032.53,2594.892 2039.528,2598.836 2042.915,2606.092C2046.527,2613.033 2048.672,2622.972 2049.349,2635.907C2050.704,2669.034 2051.38,2713.046 2051.38,2767.943C2051.38,2822.524 2050.365,2865.59 2048.333,2897.14C2047.882,2904.712 2045.849,2911.495 2042.237,2917.49C2038.625,2923.484 2033.659,2926.481 2027.338,2926.481C2013.567,2926.797 1998.215,2926.955 1981.284,2926.955C1964.578,2926.955 1951.259,2926.481 1941.325,2925.535C1937.713,2925.219 1934.44,2923.326 1931.505,2919.856C1928.796,2916.07 1927.328,2911.18 1927.103,2905.185L1925.071,2827.099C1924.845,2819.527 1923.603,2815.268 1921.346,2814.322C1919.314,2813.375 1917.395,2815.426 1915.589,2820.474C1903.624,2850.131 1888.724,2883.258 1870.89,2919.856C1866.6,2929.005 1860.957,2933.58 1853.958,2933.58C1846.96,2933.58 1841.203,2929.005 1836.688,2919.856C1828.787,2904.081 1815.354,2870.638 1796.391,2819.527C1795.262,2816.372 1793.907,2814.479 1792.327,2813.848C1790.972,2813.218 1789.731,2814.006 1788.602,2816.214C1787.474,2818.423 1786.909,2822.051 1786.909,2827.099L1785.216,2905.185C1784.99,2911.18 1783.071,2916.07 1779.459,2919.856C1775.847,2923.326 1771.671,2925.219 1766.93,2925.535L1733.405,2925.535C1727.31,2925.219 1722.343,2922.222 1718.505,2916.543C1714.893,2910.864 1712.749,2904.397 1712.071,2897.14C1710.265,2869.061 1709.362,2825.522 1709.362,2766.523C1709.362,2707.21 1709.927,2663.671 1711.055,2635.907C1711.733,2622.656 1713.877,2612.403 1717.489,2605.146C1721.102,2597.889 1727.536,2594.261 1736.791,2594.261C1784.2,2594.261 1809.823,2594.735 1813.661,2595.681C1817.499,2596.627 1823.594,2604.357 1831.947,2618.87Z" style="fill:rgb(0,165,134);"/></g><g transform="matrix(0.491929,0,0,0.491929,52.08752,1128.175422)"><path d="M1117.044,1950.142C917.005,1916.946 504.903,1836.41 504.903,1836.41C439.315,1824.892 386.066,1764.573 386.066,1701.796L386.066,526.669C386.066,463.892 439.315,422.276 504.903,433.794C504.903,433.794 1064.237,527.18 1126.767,537.899C1189.297,548.617 1272.527,545.384 1323.724,537.899C1374.922,530.413 1933.021,436.353 1933.021,436.353C1998.609,425.069 2051.858,466.876 2051.858,529.653L2051.858,1704.78C2051.858,1767.558 1998.609,1827.686 1933.021,1838.969C1933.021,1838.969 1513.113,1919.525 1315.28,1951.413C1305.893,1952.926 1281.744,1955.71 1270.927,1946.54C1258.835,1936.289 1260.58,1913.4 1261.188,1903.551C1269.823,1763.683 1373.675,1625.015 1488.344,1559.065C1589.883,1500.666 1647.304,1499.13 1650.86,1512.638C1654.415,1526.145 1641.369,1531.069 1536.796,1608.52C1444.685,1676.742 1415.43,1729.436 1430.808,1735.691C1446.185,1741.945 1605.21,1737.479 1707.387,1676.143C1861.623,1583.555 1919.449,1379.726 1927.439,1346.105C1935.428,1312.484 1937.833,1301.501 1922.392,1295.641C1906.95,1289.78 1749.422,1278.382 1573.135,1356.198C1396.847,1434.014 1312.586,1553.791 1269.302,1667.059C1238.13,1748.629 1221.671,1830.011 1202.33,1883.084C1198.891,1892.523 1190.302,1923.169 1172.795,1936.689C1152.049,1952.711 1121.891,1950.946 1117.044,1950.142ZM574.967,525.05C520.911,525.05 477.024,568.931 477.024,622.981C477.024,677.031 520.911,720.912 574.967,720.912C629.023,720.912 672.91,677.031 672.91,622.981C672.91,568.931 629.023,525.05 574.967,525.05ZM1144.455,1647.607C1124.479,1583.182 1066.455,1456.614 906.923,1375.374C757.384,1299.224 622.008,1288.64 549.855,1289.796C515.159,1290.351 495.358,1313.521 501.6,1345.318C516.672,1422.095 566.53,1568.237 731.285,1671.096C850.571,1745.568 956.045,1745.657 1009.036,1738.866C1032.092,1735.911 1037.096,1721.419 1020.201,1704.044C988.629,1671.575 926.402,1614.168 829.198,1552C686.859,1460.966 900.814,1494.801 1122.11,1662.92C1132.813,1671.05 1152.207,1672.611 1144.455,1647.607ZM1289.967,1393.433C1352.688,1341.147 1440.477,1267.986 1511.561,1208.842C1669.57,1077.37 1714.452,963.484 1714.452,850.544C1714.452,755.771 1649.37,601.811 1471.184,596.203C1354.621,592.534 1283.709,646.282 1245.916,689.224C1240.276,695.632 1230.627,709.573 1220.957,709.801C1211.004,710.037 1201.029,696.376 1195.381,689.915C1157.742,646.861 1086.695,592.515 969.506,596.203C791.32,601.811 726.238,755.771 726.238,850.544C726.238,963.484 771.12,1077.37 929.13,1208.842C1000.489,1268.216 1088.685,1341.716 1151.454,1394.042C1163.04,1403.7 1199.883,1429.437 1220.91,1429.437C1241.936,1429.437 1278.032,1403.382 1289.967,1393.433Z" style="fill:rgb(0,165,134);"/></g></g></g>
         </svg>
       </span>
       <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
     </div>
     <div class="mobile-search-row">
-      <div class="search-box" style="width:100%"><span>🔍</span><input type="text" placeholder="Search flowers, arrangements..."></div>
+      <div class="search-box" style="width:100%"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search flowers, arrangements..."></div>
     </div>
     <a href="#" class="mobile-menu-item">HOME</a>
     <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">FLOWER <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-menu-item mobile-menu-toggle">OCCASIONS <span class="toggle-arrow">▾</span></div>
       <div class="mobile-submenu">
-        <a href="#">Fresh Bouquets</a><a href="#">Luxury Roses</a><a href="#">Dried Flowers</a><a href="#">Potted Plants</a>
+        <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a><a href="#">Love & Romance</a><a href="#">Thank You</a>
       </div>
     </div>
     <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">BANQUET <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-menu-item mobile-menu-toggle">COLLECTIONS <span class="toggle-arrow">▾</span></div>
       <div class="mobile-submenu">
-        <a href="#">Wedding Decor</a><a href="#">Corporate Events</a><a href="#">Party Styling</a><a href="#">Table Centerpieces</a>
+        <a href="#">Luxury Series</a><a href="#">Handcrafted</a><a href="#">Mini Pop Cards</a><a href="#">Gift Bundles</a>
       </div>
     </div>
     <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">OCCASION <span class="toggle-arrow">▾</span></div>
+      <div class="mobile-menu-item mobile-menu-toggle">SEASONAL <span class="toggle-arrow">▾</span></div>
       <div class="mobile-submenu">
-        <a href="#">Anniversary</a><a href="#">Birthday</a><a href="#">Romance</a><a href="#">Celebrations</a>
+        <a href="#">Valentine's Day</a><a href="#">Mother's Day</a><a href="#">Christmas</a><a href="#">New Year</a>
       </div>
     </div>
-    <div class="mobile-menu-item offers-item">OFFERS 🔥</div>
+    <div class="mobile-menu-item offers-item">OFFERS 🎁</div>
   </div>
 </div>
 
@@ -642,84 +675,35 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   <div class="slides" id="slides">
 
     <div class="slide slide-1">
-      <div class="slide-bg-deco">
-        <span class="deco-star" style="top:10%;left:52%;font-size:38px;animation-delay:0s">⭐</span>
-        <span class="deco-star" style="top:16%;right:8%;font-size:24px;animation-delay:0.8s">✦</span>
-        <span class="deco-star" style="top:68%;right:10%;font-size:34px;animation-delay:0.4s">⭐</span>
-        <span class="deco-star" style="top:76%;left:55%;font-size:20px;animation-delay:1.2s">♡</span>
-        <span class="deco-star" style="top:28%;left:54%;font-size:18px;animation-delay:0.6s">♡</span>
-      </div>
-      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
-        <div class="char-cluster">
-          <div class="big-text">SKULLPANDA</div>
-          <div class="star-prop">⭐</div>
-          <div class="fig fig-1"><span class="emoji">🌸</span></div>
-          <div class="fig fig-2"><span class="emoji">🎀</span></div>
-          <div class="fig fig-3"><span class="emoji">🧸</span></div>
-          <div class="fig fig-4"><span class="emoji">🔮</span></div>
-          <div class="fig fig-5"><span class="emoji">🤍</span></div>
-          <div class="fig fig-6"><span class="emoji">🩰</span></div>
-        </div>
         <div class="slide-text">
-          <div class="collab-title">SKULLPANDA Petals in Four Acts</div>
+          <div class="collab-title">Handcrafted 3D Pop-Up Birthday Cards</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
       </div>
-      <div class="slide-copy">© 2026 POP MART. All Rights Reserved.</div>
     </div>
 
     <div class="slide slide-2">
-      <div class="slide-bg-deco">
-        <span class="deco-star" style="top:12%;left:50%;font-size:32px;animation-delay:0s">🌸</span>
-        <span class="deco-star" style="top:20%;right:10%;font-size:22px;animation-delay:0.6s">✦</span>
-        <span class="deco-star" style="top:70%;right:14%;font-size:28px;animation-delay:1s">🌸</span>
-        <span class="deco-star" style="top:54%;left:52%;font-size:16px;animation-delay:1.4s">♡</span>
-      </div>
-      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
-        <div class="char-cluster">
-          <div class="big-text">SAKURA</div>
-          <div class="fig fig-1"><span class="emoji">🌸</span></div>
-          <div class="fig fig-2"><span class="emoji">🦋</span></div>
-          <div class="fig fig-3"><span class="emoji">🌷</span></div>
-          <div class="fig fig-4"><span class="emoji">🌺</span></div>
-          <div class="fig fig-5"><span class="emoji">🍡</span></div>
-        </div>
         <div class="slide-text">
-          <div class="collab-title">SAKURA DREAM Spring Collection Burst</div>
+          <div class="collab-title">Anniversary Bloom — Luxury Pop Card Collection</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
       </div>
     </div>
 
     <div class="slide slide-3">
-      <div class="slide-bg-deco">
-        <span class="deco-star" style="top:10%;left:52%;font-size:34px;animation-delay:0s">🌊</span>
-        <span class="deco-star" style="top:20%;right:8%;font-size:24px;animation-delay:0.9s">✦</span>
-        <span class="deco-star" style="top:70%;right:12%;font-size:28px;animation-delay:0.5s">🐚</span>
-        <span class="deco-star" style="top:46%;left:50%;font-size:16px;animation-delay:1.3s">✦</span>
-      </div>
-      <div class="slide-brand-badge">LOVE BLOOM</div>
       <div class="slide-content">
-        <div class="char-cluster">
-          <div class="big-text">OCEAN</div>
-          <div class="fig fig-1"><span class="emoji">🐋</span></div>
-          <div class="fig fig-2"><span class="emoji">🐠</span></div>
-          <div class="fig fig-3"><span class="emoji">🦈</span></div>
-          <div class="fig fig-4"><span class="emoji">🐙</span></div>
-          <div class="fig fig-5"><span class="emoji">🐚</span></div>
-        </div>
         <div class="slide-text">
-          <div class="collab-title">OCEAN DRIFT Deep Sea Floral Adventure</div>
+          <div class="collab-title">Wedding Day 3D Keepsake Card Series</div>
           <button class="shop-btn">SHOP NOW</button>
         </div>
       </div>
     </div>
 
   </div>
-  <button class="slider-arrow prev" onclick="changeSlide(-1)">&#8592;</button>
-  <button class="slider-arrow next" onclick="changeSlide(1)">&#8594;</button>
+  <button class="slider-arrow prev" onclick="changeSlide(-1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="slider-arrow next" onclick="changeSlide(1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
   <div class="slider-dots" id="dots">
     <div class="dot active" onclick="goSlide(0)"></div>
     <div class="dot" onclick="goSlide(1)"></div>
@@ -734,67 +718,67 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
   
   <div class="arrival-slider-container">
-    <button class="arrival-arrow prev-arr" onclick="scrollArrivals(-1)">&#8249;</button>
+    <button class="arrival-arrow prev-arr" onclick="scrollArrivals(-1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
     <div class="arrival-track-wrapper">
       <div class="arrival-track" id="arrivalTrack">
-        
+
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#f4f5f7;">📖</div>
+          <div class="arrival-thumb" style="background:#fce4ec;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">play/GROUND Magazine Issue No.2, Fall/Winter Pack Edition</div>
-            <div class="arrival-price">199 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">Bloom Birthday — 3D Floral Burst Pop-Up Card</div>
+            <div class="arrival-price">₹499</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#e3f2fd;">☁️</div>
+          <div class="arrival-thumb" style="background:#e8f5e9;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">THE MONSTERS Forest Fairy Tale Series - Pendant Collectible</div>
-            <div class="arrival-price">429 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">Forever & Always — Luxury Anniversary Arch Pop Card</div>
+            <div class="arrival-price">₹699</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#fff3e0;">🧋</div>
+          <div class="arrival-thumb" style="background:#fff8e1;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">Twinkle Twinkle Bubble Tea & Cherry Iced Tea Pack Special</div>
-            <div class="arrival-price">599 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">Secret Admirer — Valentine Heart Cascade 3D Card</div>
+            <div class="arrival-price">₹599</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#e8f5e9;">👒</div>
+          <div class="arrival-thumb" style="background:#e3f2fd;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">THE MONSTERS Forest Fairy Tale Series - Straw Hat Rare</div>
-            <div class="arrival-price">699 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">Proud Moment — Graduation Milestone 3D Keepsake Card</div>
+            <div class="arrival-price">₹449</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#fce4ec;">🌸</div>
+          <div class="arrival-thumb" style="background:#f3e5f5;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">SAKURA Special Blossom Handcrafted Petals Set Limited</div>
-            <div class="arrival-price">299 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">Cherry Blossom — Spring Wedding Popup Card Deluxe</div>
+            <div class="arrival-price">₹799</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
         <div class="arrival-card">
-          <div class="arrival-thumb" style="background:#ede7f6;">🌙</div>
+          <div class="arrival-thumb" style="background:#fbe9e7;"></div>
           <div class="arrival-info">
-            <div class="arrival-name">LUNARA Dreamscape Midnight Crescent Charm Collector Set</div>
-            <div class="arrival-price">349 Points</div>
-            <a href="#" class="arrival-link">login to redeem&gt;</a>
+            <div class="arrival-name">With Gratitude — Thank You Layered 3D Pop-Up Card</div>
+            <div class="arrival-price">₹349</div>
+            <a href="#" class="arrival-link">add to cart &gt;</a>
           </div>
         </div>
 
       </div>
     </div>
-    <button class="arrival-arrow next-arr" onclick="scrollArrivals(1)">&#8250;</button>
+    <button class="arrival-arrow next-arr" onclick="scrollArrivals(1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
   </div>
 </div>
 
@@ -803,22 +787,35 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <h2>Shop All</h2>
   </div>
   <div class="products" id="productsGrid">
-    <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span>🐰</div><div class="prod-info"><div class="prod-series">The Monsters</div><div class="prod-name">LABUBU Blind Box</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span>🌸</div><div class="prod-info"><div class="prod-series">Sakura Dream</div><div class="prod-name">Blossom Figure</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-ltd">LIMITED</span>🌿</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Mushie Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span>⭐</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Nebula Puff</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">SECRET</span>🦋</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Flutter SP</div><div class="prod-foot"><span class="prod-price">¥399</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2">🦊</div><div class="prod-info"><div class="prod-series">Fairy Garden</div><div class="prod-name">Foxlyn Vinyl Charm</div><div class="prod-foot"><span class="prod-price">¥119</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t3">🍄</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Toadstool Cottage Box</div><div class="prod-foot"><span class="prod-price">¥89</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t1">🐸</div><div class="prod-info"><div class="prod-series">Pond Friends</div><div class="prod-name">Kero Classic Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t5">🌙</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Lunara Eclipse Edition</div><div class="prod-foot"><span class="prod-price">¥159</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4">🐻</div><div class="prod-info"><div class="prod-series">Cozy Pack</div><div class="prod-name">Cubby Plush Keychain</div><div class="prod-foot"><span class="prod-price">¥79</span><button class="prod-cart">+</button></div></div></div>
-    
-    <div class="prod-card hidden-product"><div class="prod-thumb t1">🌹</div><div class="prod-info"><div class="prod-series">Fresh Drop</div><div class="prod-name">Velvet Rose Collector Doll</div><div class="prod-foot"><span class="prod-price">¥129</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t3">🌱</div><div class="prod-info"><div class="prod-series">Forest Folk</div><div class="prod-name">Sprout Elf Vinyl Figure</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t5">🔮</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Starlight Mystic Globe</div><div class="prod-foot"><span class="prod-price">¥249</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t2">💐</div><div class="prod-info"><div class="prod-series">Botanical Art</div><div class="prod-name">Luxury Handcraft Bouquet</div><div class="prod-foot"><span class="prod-price">¥199</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t4">✨</div><div class="prod-info"><div class="prod-series">Stardust</div><div class="prod-name">Cosmic Sparkle Variant</div><div class="prod-foot"><span class="prod-price">¥179</span><button class="prod-cart">+</button></div></div></div>
+    <!-- Row 1 -->
+    <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Birthday Collection</div><div class="prod-name">Confetti Burst 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span></div><div class="prod-info"><div class="prod-series">Anniversary Series</div><div class="prod-name">Golden Arch Love Pop Card</div><div class="prod-foot"><span class="prod-price">₹699</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Wedding Collection</div><div class="prod-name">Forever Together 3D Keepsake</div><div class="prod-foot"><span class="prod-price">₹899</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span></div><div class="prod-info"><div class="prod-series">Love & Romance</div><div class="prod-name">Heart Cascade Valentine Card</div><div class="prod-foot"><span class="prod-price">₹599</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
+    <!-- Row 2 -->
+    <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">LIMITED</span></div><div class="prod-info"><div class="prod-series">Luxury Series</div><div class="prod-name">Blossom Garden Premium Card</div><div class="prod-foot"><span class="prod-price">₹1299</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Milestone Cards</div><div class="prod-name">Graduation Tower Pop Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Thank You Series</div><div class="prod-name">Gratitude Garden Pop Card</div><div class="prod-foot"><span class="prod-price">₹349</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Seasonal Specials</div><div class="prod-name">Christmas Tree 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹549</span><button class="prod-cart">+</button></div></div></div>
+    <!-- Row 3 -->
+    <div class="prod-card"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Mother's Day</div><div class="prod-name">Tulip Bouquet Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">New Year</div><div class="prod-name">Fireworks Celebration Pop Card</div><div class="prod-foot"><span class="prod-price">₹399</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Handcrafted Series</div><div class="prod-name">Butterfly Garden Luxury Card</div><div class="prod-foot"><span class="prod-price">₹799</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">New Home</div><div class="prod-name">Housewarming Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+    <!-- Row 4 -->
+    <div class="prod-card"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Baby Collection</div><div class="prod-name">Baby Shower Stroller Pop Card</div><div class="prod-foot"><span class="prod-price">₹549</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Gift Bundles</div><div class="prod-name">Triple Card Gift Set — Deluxe</div><div class="prod-foot"><span class="prod-price">₹1499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Mini Pop Cards</div><div class="prod-name">Sparkle Mini 3D Card Set of 3</div><div class="prod-foot"><span class="prod-price">₹299</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Romance Series</div><div class="prod-name">Eternal Rose 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹649</span><button class="prod-cart">+</button></div></div></div>
+    <!-- Hidden — shown on View More -->
+    <div class="prod-card hidden-product"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Celebration</div><div class="prod-name">Party Burst Confetti Pop Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Sympathy</div><div class="prod-name">Peaceful Dove Condolence Card</div><div class="prod-foot"><span class="prod-price">₹349</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Friendship</div><div class="prod-name">Sunflower Field Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹399</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Exotic Collection</div><div class="prod-name">Peacock Fan Luxury Pop Card</div><div class="prod-foot"><span class="prod-price">₹999</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Festive</div><div class="prod-name">Diwali Sparkle Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Festive</div><div class="prod-name">Red Envelope New Year Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Nature Series</div><div class="prod-name">Ocean Wave Serenity Card</div><div class="prod-foot"><span class="prod-price">₹599</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card hidden-product"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Spring Collection</div><div class="prod-name">Metamorphosis Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹699</span><button class="prod-cart">+</button></div></div></div>
   </div>
   
   <div class="view-more-container">
@@ -826,16 +823,47 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 </section>
 
-<section class="section" style="padding-top:20px; padding-bottom:80px;">
-  <div class="recommended-section-head">
-    <h2>Recommended for you</h2>
+<section class="rec-section">
+  <div class="rec-head">
+    <div class="rec-head-left">
+      <p class="rec-label">PICKED FOR YOU</p>
+      <h2>Recommended</h2>
+    </div>
+    <a href="#" class="rec-view-all">View all &rsaquo;</a>
   </div>
-  <div class="recommended-grid">
-    <div class="prod-card"><div class="prod-thumb t3">💐</div><div class="prod-info"><div class="prod-series">Botanical Art</div><div class="prod-name">Luxury Rose Banquet Arrangement</div><div class="prod-foot"><span class="prod-price">¥299</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t1">🌹</div><div class="prod-info"><div class="prod-series">Fresh Flowers</div><div class="prod-name">Classic Crimson Romance Bouquet</div><div class="prod-foot"><span class="prod-price">¥189</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t5">🌷</div><div class="prod-info"><div class="prod-series">Spring Edition</div><div class="prod-name">Pastel Tulip Wonderland Set</div><div class="prod-foot"><span class="prod-price">¥149</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4">🌻</div><div class="prod-info"><div class="prod-series">Bright Accents</div><div class="prod-name">Sunny Day Meadow Sunflower</div><div class="prod-foot"><span class="prod-price">¥99</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2">🔮</div><div class="prod-info"><div class="prod-series">Dreamland</div><div class="prod-name">Starlight Garden Crystal Globe</div><div class="prod-foot"><span class="prod-price">¥249</span><button class="prod-cart">+</button></div></div></div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-thumb" style="background:#fce4ec;"></div>
+      <div class="rec-info">
+        <p class="rec-series">Birthday Collection</p>
+        <p class="rec-name">Confetti Burst 3D Pop-Up Card</p>
+        <div class="rec-foot"><span class="rec-price">₹499</span><button class="prod-cart">+</button></div>
+      </div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-thumb" style="background:#e8f5e9;"></div>
+      <div class="rec-info">
+        <p class="rec-series">Anniversary Series</p>
+        <p class="rec-name">Golden Arch Love Pop Card</p>
+        <div class="rec-foot"><span class="rec-price">₹699</span><button class="prod-cart">+</button></div>
+      </div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-thumb" style="background:#fff8e1;"></div>
+      <div class="rec-info">
+        <p class="rec-series">Love & Romance</p>
+        <p class="rec-name">Heart Cascade Valentine Card</p>
+        <div class="rec-foot"><span class="rec-price">₹599</span><button class="prod-cart">+</button></div>
+      </div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-thumb" style="background:#f3e5f5;"></div>
+      <div class="rec-info">
+        <p class="rec-series">Luxury Series</p>
+        <p class="rec-name">Blossom Garden Premium Card</p>
+        <div class="rec-foot"><span class="rec-price">₹1299</span><button class="prod-cart">+</button></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -844,68 +872,54 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 </div>
 
 <div class="main-black-footer">
-  <div>
-    <div class="ft-social-panel">
-      <span>FOLLOW US ON</span>
-      <div class="ft-social-links">
-        <a href="#">📘</a>
-        <a href="#">📸</a>
-        <a href="#">🎵</a>
+  <div class="ft-brand-col">
+    <p class="ft-brand-desc">LoveBloom crafts premium 3D pop-up gifting cards that unfold into moments of joy. Every card is designed to be kept, not discarded.</p>
+    <div class="ft-newsletter">
+      <p class="ft-newsletter-label">Stay in the loop</p>
+      <div class="ft-input-container">
+        <input type="text" placeholder="Your email address">
+        <button class="ft-signup-btn">Subscribe</button>
       </div>
     </div>
-
-    <h4 style="margin-top: 30px;">JOIN THE COMMUNITY</h4>
-    <p>Be the first to catch our new releases, exclusive offers, and more.</p>
-    <div class="ft-input-container">
-      <input type="text" placeholder="Your email address">
-      <button class="ft-signup-btn">Sign Me Up</button>
+    <div class="ft-social-row">
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.62-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.54 1.88 1.85 0 3.27-1.95 3.27-4.76 0-2.49-1.79-4.23-4.34-4.23-2.96 0-4.69 2.22-4.69 4.51 0 .89.34 1.85.77 2.37.08.1.09.19.07.29-.08.33-.25 1.04-.28 1.18-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.44-2.17 6.21-5.18 6.21-1.01 0-1.97-.53-2.29-1.15l-.62 2.32c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
     </div>
-    
-    <h4 style="margin-bottom:12px;">Contact Us</h4>
-    <div class="ft-contact-sub">
-      <div>
-        <p class="ft-label">Chat</p>
-        <p class="ft-desc">Monday - Sunday 8:00am - 2:00am PDT</p>
-      </div>
-      <a href="#" class="ft-action-link">Chat with us</a>
-    </div>
-    
-    <div class="ft-contact-sub">
-      <div>
-        <p class="ft-label">Email</p>
-        <p class="ft-desc">na.support@popmart.com</p>
-      </div>
-      <a href="#" class="ft-action-link">Email us</a>
-    </div>
-    
-    <a href="#" class="ft-action-link" style="display:inline-block; margin-top:8px;">Visit Help Center (FAQs)</a>
-    <br>
-    <button class="ft-region-selector">CHANGE COUNTRY/REGION &nbsp;🇺🇸 US</button>
   </div>
 
   <div>
-    <h4>SUPPORT</h4>
-    <a href="#">FAQ</a><a href="#">SHIPPING INFO</a><a href="#">PRIVACY POLICY</a>
-    <a href="#">TERMS & CONDITIONS</a><a href="#">TRACK YOUR ORDER</a><a href="#">FIND A STORE</a>
-    <a href="#">RETURNS</a><a href="#">POP BLOCKS</a><a href="#">ORDER FAILURE GUIDE</a>
-    <a href="#">EXCHANGE</a><a href="#">AUTHENTICITY CHECK</a><a href="#">STORE POLICY</a>
+    <h4>OCCASIONS</h4>
+    <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a>
+    <a href="#">Love & Romance</a><a href="#">Thank You</a><a href="#">Sympathy</a>
+    <a href="#">Graduation</a><a href="#">New Baby</a><a href="#">New Home</a>
   </div>
 
   <div>
-    <h4>ABOUT US</h4>
-    <a href="#">NEWS</a><a href="#">ARTISTS</a><a href="#">ABOUT POP MART</a>
-    <a href="#">INVESTOR RELATIONS</a><a href="#">CONTACT US</a><a href="#">CAREERS</a>
+    <h4>HELP</h4>
+    <a href="#">FAQ</a><a href="#">Shipping Info</a><a href="#">Track Your Order</a>
+    <a href="#">Returns & Exchange</a><a href="#">Care Instructions</a>
+    <a href="#">Bulk & Corporate Orders</a><a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
   </div>
 
   <div>
-    <h4>SHOP</h4>
-    <a href="#">LAUNCH CALENDAR</a><a href="#">TRENDING</a><a href="#">BLIND BOXES</a>
-    <a href="#">MEGA COLLECTIONS</a><a href="#">ACCESSORIES</a>
+    <h4>COMPANY</h4>
+    <a href="#">About LoveBloom</a><a href="#">Our Designers</a>
+    <a href="#">Sustainability</a><a href="#">Press & Media</a>
+    <a href="#">Careers</a><a href="#">Contact Us</a>
+    <h4 style="margin-top:28px;">CONTACT</h4>
+    <a href="#">hello@lovebloom.in</a>
+    <a href="#">+91 98765 43210</a>
   </div>
 </div>
 
 <div class="footer-payments-bar">
-  <p>© 2026 LoveBloom Inc. All rights reserved.</p>
+  <p>© 2026 LoveBloom Inc. All rights reserved. Handcrafted with love in India.</p>
+  <div class="ft-payment-icons">
+    <span>VISA</span><span>Mastercard</span><span>UPI</span><span>Razorpay</span><span>PayPal</span>
+  </div>
 </div>
 
 <script>
@@ -1002,26 +1016,81 @@ slidesEl.addEventListener('touchend', e => {
 }, { passive: true });
 
 /* ==========================================================================
-   NEW ARRIVALS CAROUSEL TRANSLATION LOGIC
+   NEW ARRIVALS — INFINITE LOOP WITH CLONES (no auto-play)
    ========================================================================= */
-let arrivalIndex = 0;
-function scrollArrivals(direction) {
+(function() {
   const track = document.getElementById('arrivalTrack');
-  const card = document.querySelector('.arrival-card');
-  if(!card) return;
-  
-  const gapValue = 24; 
-  const cardWidth = card.offsetWidth + gapValue; 
-  const visibleCards = window.innerWidth > 1200 ? 4 : (window.innerWidth > 768 ? 3 : 1);
-  const totalCards = document.querySelectorAll('.arrival-card').length;
-  const maxIndex = totalCards - visibleCards;
-  
-  arrivalIndex += direction;
-  if (arrivalIndex < 0) arrivalIndex = 0;
-  if (arrivalIndex > maxIndex) arrivalIndex = maxIndex;
-  
-  track.style.transform = `translateX(-${arrivalIndex * cardWidth}px)`;
-}
+  if (!track) return;
+
+  const cards = Array.from(track.querySelectorAll('.arrival-card'));
+  const total = cards.length;
+  const gap = 24;
+  let isTransitioning = false;
+
+  function visibleCount() {
+    return window.innerWidth > 1200 ? 4 : window.innerWidth > 768 ? 3 : 1;
+  }
+
+  // Clone first N and last N cards for infinite loop
+  function buildClones() {
+    const n = visibleCount();
+    // Remove old clones
+    track.querySelectorAll('.arrival-clone').forEach(c => c.remove());
+    // Append clones of first n cards after last
+    cards.slice(0, n).forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('arrival-clone');
+      track.appendChild(cl);
+    });
+    // Prepend clones of last n cards before first
+    cards.slice(-n).reverse().forEach(c => {
+      const cl = c.cloneNode(true);
+      cl.classList.add('arrival-clone');
+      track.insertBefore(cl, track.firstChild);
+    });
+  }
+
+  let cur = 0; // 0-based index into real cards
+
+  function cardWidth() {
+    const c = track.querySelector('.arrival-card');
+    return c ? c.offsetWidth + gap : 0;
+  }
+
+  function setPos(animate) {
+    const n = visibleCount();
+    const clonesBefore = n;
+    const pos = (clonesBefore + cur) * cardWidth();
+    track.style.transition = animate ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+    track.style.transform = `translateX(-${pos}px)`;
+  }
+
+  function init() {
+    buildClones();
+    setPos(false);
+  }
+
+  function move(dir) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    cur += dir;
+    setPos(true);
+  }
+
+  track.addEventListener('transitionend', () => {
+    const n = visibleCount();
+    if (cur >= total) { cur = 0; setPos(false); }
+    if (cur < 0)      { cur = total - 1; setPos(false); }
+    isTransitioning = false;
+  });
+
+  // Expose to onclick handlers
+  window.scrollArrivals = (dir) => move(dir);
+
+  window.addEventListener('resize', () => { buildClones(); setPos(false); });
+
+  init();
+})();
 
 /* ==========================================================================
    VIEW MORE CLICK LOGIC FUNCTION
@@ -1037,9 +1106,7 @@ document.getElementById('viewMoreBtn').addEventListener('click', function() {
 });
 
 window.addEventListener('resize', () => {
-  arrivalIndex = 0;
-  const track = document.getElementById('arrivalTrack');
-  if(track) track.style.transform = 'translateX(0px)';
+  // arrival resize handled inside IIFE
 });
 
 /* ==========================================================================
@@ -1081,6 +1148,31 @@ document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
     }
   });
 });
+
+/* Mobile search bar scroll behavior */
+(function() {
+  const bar = document.getElementById('mobileSearchBar');
+  const iconBtn = document.getElementById('mobileSearchIconBtn');
+  if (!bar) return;
+  let lastY = 0;
+  window.addEventListener('scroll', function() {
+    const y = window.scrollY;
+    if (y > 60) {
+      bar.classList.add('hidden');
+    } else {
+      bar.classList.remove('hidden');
+    }
+    lastY = y;
+  }, { passive: true });
+  if (iconBtn) {
+    iconBtn.addEventListener('click', () => {
+      bar.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => bar.querySelector('input').focus(), 300);
+    });
+  }
+})();
+
 </script>
 </body>
 </html>
