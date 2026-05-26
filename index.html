@@ -1025,6 +1025,238 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .ft-payment-icons { justify-content: center; }
 }
 
+
+/* ================================================================
+   MOBILE ENHANCEMENTS — Pop Mart inspired (desktop untouched)
+   ================================================================ */
+
+/* Hidden by default on desktop */
+.mob-search-row { display: none; }
+.mobile-bottom-nav { display: none; }
+.ft-accordion-head { display: none; }
+.ft-accordion-section { display: block; } /* visible on desktop */
+
+/* Drawer base — hidden off-screen, only shows on mobile */
+@media (max-width: 768px) {
+
+  /* Body padding for bottom nav */
+  body { padding-bottom: 58px; }
+
+  /* ---- Header ---- */
+  header {
+    height: 56px !important;
+    padding: 0 14px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: none !important; }
+  .brand-logo {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .brand-logo svg { height: 32px !important; }
+  .header-right .mobile-search-icon-btn { display: none !important; }
+  nav { display: none !important; }
+
+  /* ---- Pill Search Bar ---- */
+  .mob-search-row {
+    display: block;
+    padding: 8px 14px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 56px;
+    z-index: 195;
+  }
+  .mob-search-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f2f2f2;
+    border-radius: 999px;
+    padding: 9px 14px;
+  }
+  .mob-search-inner input {
+    flex: 1; border: none; outline: none;
+    background: transparent;
+    font-size: 14px; font-family: 'Nunito', sans-serif; color: #333;
+  }
+  .mob-search-inner input::placeholder { color: #aaa; }
+
+  /* ---- Drawer ---- */
+  .mobile-menu-drawer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 85%; max-width: 360px; height: 100%;
+    background: #fff;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .mobile-menu-drawer.open { transform: translateX(0); }
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45); z-index: 999;
+  }
+  .mobile-menu-overlay.open { display: block; }
+  .mob-drawer-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; border-bottom: 1px solid #eee;
+  }
+  .mob-drawer-login {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 700; color: #333; cursor: pointer;
+  }
+  .mob-drawer-close {
+    background: none; border: none; font-size: 18px; color: #666; cursor: pointer;
+  }
+  .mob-drawer-body {
+    display: flex; height: calc(100% - 52px); overflow: hidden;
+  }
+  .mob-drawer-sidebar {
+    width: 110px; flex-shrink: 0;
+    background: #f7f7f7; overflow-y: auto; padding: 8px 0;
+  }
+  .mob-sidebar-item {
+    display: block; padding: 14px 16px;
+    font-size: 13px; font-weight: 700; color: #333;
+    text-decoration: none; border-left: 3px solid transparent;
+  }
+  .mob-sidebar-item.active { background: #fff; color: #111; border-left-color: rgb(0,165,134); }
+  .mob-drawer-grid {
+    flex: 1; display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; padding: 14px; overflow-y: auto; align-content: start;
+  }
+  .mob-drawer-cat {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; text-decoration: none; color: #222;
+  }
+  .mob-cat-thumb {
+    width: 100%; aspect-ratio: 1; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 36px;
+  }
+  .mob-drawer-cat span { font-size: 12px; font-weight: 700; text-align: center; }
+
+  /* ---- Bottom Nav ---- */
+  .mobile-bottom-nav {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: 58px; background: #fff;
+    border-top: 1px solid #e8e8e8; z-index: 500;
+    align-items: center;
+  }
+  .mob-nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 3px; text-decoration: none; color: #888;
+    font-size: 10px; font-weight: 700; font-family: 'Nunito', sans-serif;
+  }
+  .mob-nav-item.active { color: #111; }
+
+  /* ---- Hero ---- */
+  .slide { height: 70vw !important; min-height: 300px !important; max-height: 500px !important; }
+  .slide-content { padding: 0 16px 32px !important; }
+  .collab-title { font-size: clamp(13px, 4vw, 18px) !important; white-space: normal !important; }
+  .shop-btn { padding: 8px 24px !important; font-size: 11px !important; }
+  .slider-arrow { display: none !important; }
+
+  /* ---- New Arrivals — swipe, no arrows ---- */
+  .arrival-section-wrapper { padding: 28px 0; }
+  .arrival-section-head { padding: 0 16px; margin-bottom: 16px; }
+  .arrival-section-head h2 { font-size: 20px; }
+  .arrival-slider-container { padding: 0 16px; overflow: hidden; }
+  .arrival-arrow { display: none !important; }
+  .arrival-track-wrapper {
+    overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .arrival-track-wrapper::-webkit-scrollbar { display: none; }
+  .arrival-track { gap: 10px; transition: none !important; transform: none !important; width: max-content; }
+  .arrival-card { width: 44vw; max-width: 180px; }
+  .arrival-info { padding: 10px 0 4px; gap: 4px; }
+  .arrival-name { font-size: 12px; }
+  .arrival-price { font-size: 13px; }
+
+  /* ---- Products ---- */
+  .section { padding: 24px 12px; }
+  .shop-all-section-head h2 { font-size: 20px; }
+  .products { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .prod-thumb { font-size: 40px !important; }
+  .prod-info { padding: 8px !important; }
+  .prod-name { font-size: 11px !important; margin-bottom: 8px !important; }
+  .prod-price { font-size: 13px !important; }
+  .prod-cart { width: 26px !important; height: 26px !important; font-size: 13px !important; }
+  .view-more-btn { width: 100%; }
+
+  /* ---- Recommended ---- */
+  .rec-section { padding: 24px 12px 32px; }
+  .rec-head-left h2 { font-size: 20px; }
+  .rec-view-all { display: none; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .rec-thumb { font-size: 44px !important; }
+  .rec-info { padding: 8px !important; }
+  .rec-name { font-size: 11px !important; }
+  .rec-price { font-size: 13px !important; }
+
+  /* ---- Footer ---- */
+  .footer-top-bar { padding: 12px 16px; }
+  .main-black-footer {
+    display: flex !important; flex-direction: column;
+    padding: 28px 16px 8px; gap: 0;
+  }
+  .ft-brand-desc { display: none; }
+  .ft-newsletter-label { font-size: 18px !important; font-weight: 900 !important; color: #fff !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: 6px !important; }
+  .ft-newsletter::before {
+    content: "Be the first to know about new releases and exclusive offers.";
+    display: block; font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5;
+  }
+  .ft-input-container {
+    display: flex !important; flex-direction: row !important;
+    background: transparent; border: 1.5px solid #444;
+    border-radius: 4px; padding: 0 !important; gap: 0 !important;
+  }
+  .ft-input-container input {
+    flex: 1; background: transparent; color: #eee;
+    padding: 12px 14px; font-size: 14px; border: none; outline: none;
+  }
+  .ft-input-container input::placeholder { color: #666; }
+  .ft-signup-btn {
+    background: rgb(0,165,134) !important; color: #fff !important;
+    border: none; padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
+  }
+  .ft-social-row-label { display: block; font-size: 15px; font-weight: 900; color: #fff; margin: 20px 0 10px; }
+  .ft-social-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .ft-social-row a {
+    width: 46px; height: 46px; border-radius: 10px;
+    background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .main-black-footer > div:not(.ft-brand-col) { border-top: 1px solid #222; padding: 0; }
+  .main-black-footer > div:not(.ft-brand-col) h4 { display: none; }
+
+  /* Accordion */
+  .ft-accordion-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0; font-size: 15px; font-weight: 700; color: #fff;
+    cursor: pointer; background: none; border: none; width: 100%;
+    text-align: left; font-family: 'Nunito', sans-serif;
+  }
+  .ft-acc-icon { font-size: 20px; color: #888; font-weight: 400; }
+  .ft-accordion-section { display: none; padding-bottom: 12px; }
+  .ft-accordion-section a { display: block; font-size: 14px; color: #aaa; padding: 6px 0; text-decoration: none; }
+
+  .footer-payments-bar { flex-direction: column; padding: 16px; gap: 10px; text-align: center; }
+  .ft-payment-icons { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .arrival-card { width: 42vw; max-width: 160px; }
+  .slide { min-height: 280px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1062,6 +1294,14 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <input type="text" placeholder="Search cards, occasions...">
   </div>
 </div>
+</div>
+
+<!-- Mobile Pill Search Bar -->
+<div class="mob-search-row" id="mobileSearchBar">
+  <div class="mob-search-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" placeholder="Search cards, occasions...">
+  </div>
 </div>
 
 <nav>
@@ -1325,22 +1565,22 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 
   <div>
-    <h4>OCCASIONS</h4>
+    <h4>OCCASIONS</h4><button class="ft-accordion-head">Occasions <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
     <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a>
     <a href="#">Love & Romance</a><a href="#">Thank You</a><a href="#">Sympathy</a>
     <a href="#">Graduation</a><a href="#">New Baby</a><a href="#">New Home</a>
-  </div>
+  </div></div>
 
   <div>
-    <h4>HELP</h4>
+    <h4>HELP</h4><button class="ft-accordion-head">Help <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
     <a href="#">FAQ</a><a href="#">Shipping Info</a><a href="#">Track Your Order</a>
     <a href="#">Returns & Exchange</a><a href="#">Care Instructions</a>
     <a href="#">Bulk & Corporate Orders</a><a href="#">Privacy Policy</a>
     <a href="#">Terms & Conditions</a>
-  </div>
+  </div></div>
 
   <div>
-    <h4>COMPANY</h4>
+    <h4>COMPANY</h4><button class="ft-accordion-head">Company <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
     <button class="ft-accordion-head">Company <span class="ft-acc-icon">+</span></button>
     <div class="ft-accordion-section">
     <a href="#">About LoveBloom</a><a href="#">Our Designers</a>
@@ -1349,7 +1589,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <h4 style="margin-top:28px;">CONTACT</h4>
     <a href="#">hello@lovebloom.in</a>
     <a href="#">+91 98765 43210</a>
-    </div>
+    </div></div>
   </div>
 </div>
 
@@ -1553,7 +1793,10 @@ window.addEventListener('resize', () => {
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 const mobileMenuClose = document.getElementById('mobileMenuClose');
 
+const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+
 document.querySelector('.mobile-burger-btn').addEventListener('click', () => {
+  mobileMenuDrawer.classList.add('open');
   mobileMenuOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 });
@@ -1564,9 +1807,32 @@ mobileMenuOverlay.addEventListener('click', (e) => {
 });
 
 function closeMobileMenu() {
+  mobileMenuDrawer.classList.remove('open');
   mobileMenuOverlay.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+// Bottom nav categories
+const mobCatBtn = document.getElementById('mobCatBtn');
+if (mobCatBtn) {
+  mobCatBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    mobileMenuDrawer.classList.add('open');
+    mobileMenuOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+// Footer accordion
+document.querySelectorAll('.ft-accordion-head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.ft-acc-icon');
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    if (icon) icon.textContent = isOpen ? '+' : '−';
+  });
+});
 
 document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
   item.addEventListener('click', () => {
@@ -1612,26 +1878,6 @@ document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
 })();
 
 
-// Mobile footer accordion
-document.querySelectorAll('.ft-accordion-head').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const body = btn.nextElementSibling;
-    const icon = btn.querySelector('.ft-acc-icon');
-    const isOpen = body.style.display === 'block';
-    body.style.display = isOpen ? 'none' : 'block';
-    if (icon) icon.textContent = isOpen ? '+' : '−';
-  });
-});
-
-// Bottom nav categories button opens drawer
-const mobCatBtn = document.getElementById('mobCatBtn');
-if (mobCatBtn) {
-  mobCatBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('mobileMenuDrawer').classList.add('open');
-    document.getElementById('mobileMenuOverlay').classList.add('open');
-  });
-}
 
 </script>
 
@@ -1654,6 +1900,9 @@ if (mobCatBtn) {
     <span>My Account</span>
   </a>
 </nav>
+
+
+
 
 </body>
 </html>
