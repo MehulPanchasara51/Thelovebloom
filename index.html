@@ -708,6 +708,323 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   .ft-social-panel { display: none; }
 }
 
+
+/* ================================================================
+   MOBILE COMPLETE REDESIGN — Pop Mart inspired
+   ================================================================ */
+
+/* --- Bottom Nav Bar --- */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 58px;
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  z-index: 500;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+.mob-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  color: #888;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  padding: 6px 0;
+}
+.mob-nav-item.active { color: #111; }
+.mob-nav-item svg { stroke: currentColor; }
+
+/* --- Mobile Search Row --- */
+.mob-search-row {
+  display: none;
+  padding: 8px 14px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 56px;
+  z-index: 195;
+}
+.mob-search-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f2f2f2;
+  border-radius: 999px;
+  padding: 9px 14px;
+}
+.mob-search-inner input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  color: #333;
+}
+.mob-search-inner input::placeholder { color: #aaa; }
+
+/* --- New Drawer --- */
+.mob-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+.mob-drawer-login {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+}
+.mob-drawer-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+}
+.mob-drawer-body {
+  display: flex;
+  height: calc(100% - 52px);
+  overflow: hidden;
+}
+.mob-drawer-sidebar {
+  width: 110px;
+  flex-shrink: 0;
+  background: #f7f7f7;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+.mob-sidebar-item {
+  display: block;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+.mob-sidebar-item.active {
+  background: #fff;
+  color: #111;
+  border-left-color: rgb(0,165,134);
+}
+.mob-drawer-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 14px;
+  overflow-y: auto;
+  align-content: start;
+}
+.mob-drawer-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #222;
+}
+.mob-cat-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+.mob-drawer-cat span {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* --- Footer Accordion --- */
+.ft-accordion-section {
+  display: none;
+}
+.ft-accordion-head {
+  display: none;
+}
+
+/* ================================================================
+   MOBILE MEDIA QUERY
+   ================================================================ */
+@media (max-width: 768px) {
+  /* Body padding for bottom nav */
+  body { padding-bottom: 58px; }
+
+  /* Header — slim, logo center, search+menu right */
+  header {
+    height: 56px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+  }
+  .header-left { display: none !important; }
+  .brand-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .brand-logo svg { height: 32px; }
+  .header-right { gap: 4px; }
+  .header-right .icon-btn { width: 34px; height: 34px; }
+  /* Hide search icon from header right on mobile */
+  .mobile-search-icon-btn { display: none !important; }
+  nav { display: none !important; }
+
+  /* Show search bar and bottom nav */
+  .mob-search-row { display: block; }
+  .mobile-bottom-nav { display: grid; }
+
+  /* Hide old mobile search bar */
+  .mobile-search-bar { display: none !important; }
+
+  /* Hero */
+  .slide { height: 56vw; min-height: 280px; max-height: 420px; }
+  .slide-content { padding: 0 16px 32px; }
+  .collab-title { font-size: clamp(13px, 4vw, 18px); white-space: normal; margin-bottom: 10px; }
+  .shop-btn { padding: 8px 24px; font-size: 12px; }
+  .slider-arrow { display: none; }
+
+  /* New Arrivals */
+  .arrival-section-wrapper { padding: 28px 0; }
+  .arrival-section-head { padding: 0 16px; margin-bottom: 18px; }
+  .arrival-section-head h2 { font-size: 20px; }
+  .arrival-section-head p { font-size: 12px; }
+  .arrival-slider-container { padding: 0 44px; }
+  .arrival-arrow { width: 34px; height: 34px; }
+  .arrival-arrow.prev-arr { left: 4px; }
+  .arrival-arrow.next-arr { right: 4px; }
+  .arrival-track { gap: 10px; }
+  .arrival-card { width: calc((100% - 10px) / 2); }
+  .arrival-thumb { font-size: 0; background-size: cover; }
+  .arrival-info { padding: 10px 0 4px; gap: 4px; }
+  .arrival-name { font-size: 12px; margin-bottom: 2px; -webkit-line-clamp: 2; }
+  .arrival-price { font-size: 13px; }
+  .arrival-link { font-size: 11px; }
+
+  /* Shop All / Products */
+  .section { padding: 24px 12px; }
+  .shop-all-section-head { margin-bottom: 20px; }
+  .shop-all-section-head h2 { font-size: 20px; }
+  .products { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .prod-thumb { font-size: 40px; }
+  .prod-info { padding: 8px; }
+  .prod-series { font-size: 9px; margin-bottom: 2px; }
+  .prod-name { font-size: 11px; margin-bottom: 8px; }
+  .prod-price { font-size: 13px; }
+  .prod-cart { width: 26px; height: 26px; font-size: 13px; }
+  .view-more-btn { width: 100%; font-size: 13px; padding: 12px; }
+
+  /* Recommended */
+  .rec-section { padding: 24px 12px 32px; }
+  .rec-head-left h2 { font-size: 20px; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .rec-thumb { font-size: 44px; }
+  .rec-info { padding: 8px; }
+  .rec-name { font-size: 11px; margin-bottom: 8px; }
+  .rec-price { font-size: 13px; }
+
+  /* Footer */
+  .footer-top-bar { padding: 12px 16px; }
+  .main-black-footer {
+    display: flex !important;
+    flex-direction: column;
+    padding: 28px 16px 8px;
+    gap: 0;
+  }
+  .ft-brand-col { padding-bottom: 24px; }
+  .ft-brand-desc { display: none; }
+  .ft-newsletter-label { font-size: 20px !important; font-weight: 900 !important; color: #fff !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: 6px !important; }
+  .ft-newsletter::before {
+    content: "Be the first to know about new releases and exclusive offers.";
+    display: block; font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5;
+  }
+  .ft-input-container {
+    display: flex; flex-direction: row;
+    background: transparent; border: 1.5px solid #444;
+    border-radius: 4px; padding: 0; gap: 0;
+  }
+  .ft-input-container input {
+    flex: 1; background: transparent; color: #eee;
+    padding: 12px 14px; font-size: 14px; border: none; outline: none;
+  }
+  .ft-input-container input::placeholder { color: #666; }
+  .ft-signup-btn {
+    background: rgb(0,165,134); color: #fff; border: none;
+    padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
+  }
+  .ft-social-row-label { display: block; font-size: 15px; font-weight: 900; color: #fff; margin: 20px 0 10px; }
+  .ft-social-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 0; }
+  .ft-social-row a {
+    width: 46px; height: 46px; border-radius: 10px;
+    background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+
+  /* Accordion sections in footer */
+  .main-black-footer > div:not(.ft-brand-col) {
+    border-top: 1px solid #222;
+    padding: 0;
+  }
+  .main-black-footer > div:not(.ft-brand-col) h4 {
+    display: none;
+  }
+  .ft-accordion-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+  }
+  .ft-acc-icon { font-size: 20px; color: #888; font-weight: 400; }
+  .ft-accordion-section {
+    display: none;
+    padding-bottom: 12px;
+  }
+  .ft-accordion-section a {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    padding: 6px 0;
+    text-decoration: none;
+  }
+  .footer-payments-bar {
+    flex-direction: column;
+    padding: 16px;
+    gap: 10px;
+    text-align: center;
+  }
+  .ft-payment-icons { justify-content: center; }
+}
+
 </style>
 </head>
 <body>
@@ -738,14 +1055,13 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 </header>
 
-<!-- Mobile Sticky Search Bar -->
-<div class="mobile-search-bar" id="mobileSearchBar">
-  <div class="mobile-search-bar-inner">
+<!-- Mobile Search Bar -->
+<div class="mob-search-row" id="mobileSearchBar">
+  <div class="mob-search-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="text" placeholder="Search cards, occasions...">
-    <button class="mobile-search-bar-btn">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    </button>
   </div>
+</div>
 </div>
 
 <nav>
@@ -757,39 +1073,34 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 </nav>
 
 <!-- Mobile Menu Drawer -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay">
-  <div class="mobile-menu-drawer">
-    <div class="mobile-menu-header">
-      <span class="drawer-logo">
-        <svg viewBox="0 0 2366 805" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-          <g transform="matrix(1,0,0,1,-50.004456,-1313.716387)"><g transform="matrix(1,0,0,1,-58,1)"><g transform="matrix(0.701217,0,0,0.701217,881.204188,-29.9435)"><path d="M584.317,2190.721L583.859,2318.626C583.859,2337.386 585.842,2351.455 589.808,2360.835C594.079,2369.788 602.774,2374.265 615.892,2374.265L731.667,2374.265C745.701,2374.691 752.718,2389.613 752.718,2419.032C752.718,2441.628 750.735,2458.043 746.769,2468.275C742.803,2478.507 734.718,2483.837 722.515,2484.263C679.5,2485.968 636.942,2486.821 594.842,2486.821C552.742,2486.821 499.049,2486.395 433.763,2485.542C422.78,2485.542 413.78,2481.918 406.764,2474.67C400.052,2466.996 396.239,2456.551 395.324,2443.334C392.883,2406.241 391.663,2347.831 391.663,2268.104C391.663,2187.95 392.273,2134.017 393.493,2106.304C395.018,2078.165 397.917,2059.619 402.188,2050.666C406.459,2041.286 414.848,2036.596 427.356,2036.596L549.996,2036.596C562.809,2036.596 571.199,2041.286 575.165,2050.666C579.436,2060.045 582.029,2075.181 582.944,2096.072C583.859,2116.963 584.317,2148.513 584.317,2190.721ZM1008.065,2497.053C971.15,2497.053 937.745,2490.445 907.848,2477.228C877.95,2463.585 853.697,2445.465 835.087,2422.869C816.478,2400.272 802.292,2375.117 792.53,2347.405C782.768,2319.266 777.886,2290.061 777.886,2259.79C777.886,2229.519 782.768,2200.527 792.53,2172.815C802.597,2144.675 816.783,2119.308 835.087,2096.711C853.697,2074.115 877.95,2055.995 907.848,2042.352C937.745,2028.709 970.54,2021.887 1006.234,2021.887C1041.928,2021.887 1073.503,2028.069 1100.959,2040.433C1128.416,2052.797 1150.534,2069.638 1167.313,2090.955C1201.481,2134.443 1218.565,2186.032 1218.565,2245.721C1218.565,2275.991 1213.837,2305.623 1204.379,2334.614C1195.227,2363.606 1181.956,2390.04 1164.567,2413.915C1147.483,2437.365 1125.366,2456.764 1098.214,2472.112C1071.062,2487.034 1041.012,2495.348 1008.065,2497.053ZM1098.671,2248.918C1098.671,2228.453 1093.485,2210.76 1083.113,2195.838C1072.74,2180.489 1056.876,2172.815 1035.521,2172.815C1014.471,2172.815 997.692,2180.702 985.184,2196.477C972.676,2212.252 966.422,2231.438 966.422,2254.034C966.422,2276.631 972.981,2294.751 986.099,2308.394C999.217,2322.037 1014.929,2328.859 1033.233,2328.859C1051.843,2328.859 1067.401,2320.545 1079.909,2303.917C1092.418,2287.289 1098.671,2268.957 1098.671,2248.918ZM1528.368,2451.008C1522.876,2465.504 1513.267,2476.802 1499.539,2484.903C1486.115,2493.003 1471.472,2497.053 1455.608,2497.053C1439.744,2497.053 1425.253,2493.216 1412.135,2485.542C1399.017,2477.868 1389.559,2466.783 1383.763,2452.287C1338.002,2334.188 1295.444,2218.221 1256.089,2104.386C1251.513,2090.742 1249.225,2080.297 1249.225,2073.049C1249.225,2050.026 1256.7,2038.515 1271.648,2038.515L1403.898,2037.236C1415.186,2037.236 1423.728,2040.007 1429.524,2045.549C1435.626,2051.092 1440.964,2062.177 1445.54,2078.804L1489.929,2237.406C1491.759,2244.228 1495.115,2247.639 1499.996,2247.639C1504.877,2247.639 1508.538,2244.228 1510.979,2237.406L1570.926,2055.782C1574.892,2044.27 1579.163,2037.875 1583.739,2036.596C1585.57,2036.17 1588.773,2035.957 1593.349,2035.957L1645.974,2037.236C1651.77,2037.236 1655.889,2041.073 1658.329,2048.747C1659.245,2051.731 1659.702,2055.355 1659.702,2059.619C1659.702,2063.882 1656.194,2075.607 1649.177,2094.793C1642.466,2113.978 1624.619,2167.272 1595.637,2254.674C1566.96,2342.075 1544.537,2407.52 1528.368,2451.008ZM1740.7,2484.263C1732.157,2484.263 1724.836,2480.426 1718.734,2472.752C1712.938,2464.651 1709.124,2451.647 1707.294,2433.741C1705.768,2415.408 1705.006,2361.048 1705.006,2270.662C1705.006,2179.85 1706.074,2120.587 1708.209,2092.874C1710.65,2057.061 1721.48,2038.728 1740.7,2037.875C1762.665,2037.022 1853.729,2036.596 2013.893,2036.596C2031.892,2036.596 2040.892,2052.584 2040.892,2084.56C2040.892,2109.715 2032.96,2122.292 2017.096,2122.292L1916.422,2122.292C1910.015,2122.292 1904.829,2125.277 1900.863,2131.246C1897.202,2137.214 1895.372,2144.889 1895.372,2154.269L1895.372,2200.314C1895.372,2213.105 1899.49,2219.5 1907.727,2219.5L1991.013,2219.5C1995.894,2219.5 1999.555,2220.14 2001.995,2221.418C2004.741,2222.697 2007.182,2226.535 2009.317,2232.93C2011.453,2238.899 2012.521,2248.918 2012.521,2262.988C2012.521,2277.057 2010.69,2286.437 2007.029,2291.127C2003.673,2295.816 1998.029,2298.162 1990.097,2298.162L1915.507,2298.162C1907.88,2298.162 1902.541,2300.933 1899.49,2306.475C1896.745,2311.592 1895.372,2319.692 1895.372,2330.777L1895.372,2362.114C1895.372,2380.447 1901.626,2389.613 1914.134,2389.613L2028.079,2389.613C2033.57,2389.613 2038.452,2391.958 2042.723,2396.648C2046.994,2400.912 2049.129,2410.718 2049.129,2426.066C2049.129,2440.988 2046.536,2454.418 2041.35,2466.356C2036.164,2478.294 2030.062,2484.263 2023.045,2484.263L1740.7,2484.263ZM412.09,2594.735C440.084,2593.472 475.076,2592.841 517.066,2592.841C559.057,2592.841 588.066,2593.472 604.095,2594.735C620.349,2595.681 634.684,2604.357 647.101,2620.763C659.518,2637.169 665.726,2656.099 665.726,2677.553C665.726,2703.739 657.599,2722.985 641.344,2735.289C639.764,2736.551 638.974,2738.129 638.974,2740.022C638.974,2741.599 639.764,2742.703 641.344,2743.334C653.083,2747.751 662.904,2757.216 670.805,2771.729C678.932,2786.242 682.996,2803.437 682.996,2823.313C682.996,2848.238 676.111,2870.796 662.339,2890.988C648.568,2911.18 627.46,2922.222 599.015,2924.115C570.57,2925.693 550.027,2926.481 537.384,2926.481C524.742,2926.481 482.526,2926.008 410.736,2925.062C404.189,2925.062 398.884,2922.222 394.82,2916.543C390.757,2910.549 388.386,2903.766 387.709,2896.193C385.903,2868.429 385,2828.046 385,2775.042C385,2721.723 385.79,2676.291 387.37,2638.746C388.047,2623.287 389.966,2612.245 393.127,2605.619C396.288,2598.678 402.609,2595.05 412.09,2594.735ZM523.162,2788.293L522.823,2849.815C522.823,2852.655 523.5,2855.179 524.855,2857.387C526.209,2859.28 528.015,2860.227 530.273,2860.227C544.044,2860.227 555.332,2856.441 564.136,2848.869C573.167,2841.297 577.681,2829.465 577.681,2813.375C577.681,2796.969 573.053,2785.611 563.798,2779.301C556.348,2774.253 548.221,2771.729 539.416,2771.729C537.158,2771.729 534.901,2771.887 532.644,2772.203C526.322,2772.834 523.162,2778.197 523.162,2788.293ZM522.823,2658.15L523.162,2696.956C523.162,2702.951 525.758,2705.948 530.95,2705.948C553.752,2705.948 565.152,2696.956 565.152,2678.973C565.152,2658.15 554.993,2647.738 534.675,2647.738L530.95,2647.738C525.532,2647.738 522.823,2651.209 522.823,2658.15ZM857.044,2708.314L856.705,2802.964C856.705,2816.846 858.172,2827.257 861.107,2834.198C864.268,2840.824 870.702,2844.136 880.409,2844.136L966.083,2844.136C976.468,2844.452 981.66,2855.494 981.66,2877.264C981.66,2893.985 980.193,2906.132 977.258,2913.703C974.323,2921.276 968.341,2925.219 959.311,2925.535C927.479,2926.797 895.986,2927.428 864.832,2927.428C833.678,2927.428 793.945,2927.112 745.634,2926.481C737.506,2926.481 730.847,2923.8 725.654,2918.436C720.688,2912.757 717.866,2905.027 717.189,2895.247C715.383,2867.799 714.48,2824.575 714.48,2765.577C714.48,2706.263 714.931,2666.353 715.834,2645.845C716.963,2625.022 719.108,2611.298 722.268,2604.673C725.429,2597.732 731.637,2594.261 740.893,2594.261L831.646,2594.261C841.128,2594.261 847.336,2597.732 850.271,2604.673C853.432,2611.614 855.351,2622.814 856.028,2638.273C856.705,2653.733 857.044,2677.08 857.044,2708.314ZM1172.264,2935C1144.948,2935 1120.228,2930.11 1098.104,2920.329C1075.98,2910.233 1058.033,2896.824 1044.261,2880.103C1030.491,2863.382 1019.993,2844.767 1012.769,2824.26C1005.544,2803.437 1001.933,2781.825 1001.933,2759.425C1001.933,2737.024 1005.544,2715.571 1012.769,2695.063C1020.219,2674.24 1030.716,2655.468 1044.261,2638.746C1058.033,2622.025 1075.98,2608.617 1098.104,2598.521C1120.228,2588.425 1144.497,2583.377 1170.91,2583.377C1197.323,2583.377 1220.689,2587.951 1241.007,2597.101C1261.325,2606.25 1277.692,2618.713 1290.109,2634.487C1315.393,2666.668 1328.035,2704.844 1328.035,2749.013C1328.035,2771.414 1324.536,2793.341 1317.537,2814.795C1310.765,2836.249 1300.945,2855.81 1288.076,2873.478C1275.434,2890.83 1259.067,2905.185 1238.975,2916.543C1218.883,2927.586 1196.646,2933.738 1172.264,2935ZM1239.314,2751.38C1239.314,2736.235 1235.476,2723.143 1227.8,2712.1C1220.124,2700.742 1208.385,2695.063 1192.582,2695.063C1177.005,2695.063 1164.589,2700.9 1155.333,2712.573C1146.077,2724.247 1141.449,2738.444 1141.449,2755.166C1141.449,2771.887 1146.303,2785.296 1156.01,2795.392C1165.718,2805.487 1177.344,2810.536 1190.889,2810.536C1204.66,2810.536 1216.174,2804.383 1225.43,2792.079C1234.686,2779.775 1239.314,2766.208 1239.314,2751.38ZM1524.625,2935C1497.308,2935 1472.588,2930.11 1450.464,2920.329C1428.34,2910.233 1410.393,2896.824 1396.622,2880.103C1382.851,2863.382 1372.353,2844.767 1365.129,2824.26C1357.905,2803.437 1354.293,2781.825 1354.293,2759.425C1354.293,2737.024 1357.905,2715.571 1365.129,2695.063C1372.579,2674.24 1383.077,2655.468 1396.622,2638.746C1410.393,2622.025 1428.34,2608.617 1450.464,2598.521C1472.588,2588.425 1496.857,2583.377 1523.27,2583.377C1549.683,2583.377 1573.049,2587.951 1593.367,2597.101C1613.685,2606.25 1630.052,2618.713 1642.469,2634.487C1667.753,2666.668 1680.396,2704.844 1680.396,2749.013C1680.396,2771.414 1676.896,2793.341 1669.898,2814.795C1663.125,2836.249 1653.305,2855.81 1640.437,2873.478C1627.795,2890.83 1611.428,2905.185 1591.335,2916.543C1571.243,2927.586 1549.006,2933.738 1524.625,2935ZM1591.674,2751.38C1591.674,2736.235 1587.836,2723.143 1580.16,2712.1C1572.485,2700.742 1560.745,2695.063 1544.943,2695.063C1529.365,2695.063 1516.949,2700.9 1507.693,2712.573C1498.437,2724.247 1493.809,2738.444 1493.809,2755.166C1493.809,2771.887 1498.663,2785.296 1508.37,2795.392C1518.078,2805.487 1529.704,2810.536 1543.25,2810.536C1557.021,2810.536 1568.534,2804.383 1577.79,2792.079C1587.046,2779.775 1591.674,2766.208 1591.674,2751.38ZM1831.947,2618.87C1840.3,2633.383 1849.895,2652.155 1860.731,2675.187C1871.567,2697.903 1879.13,2713.046 1883.419,2720.619C1887.708,2728.19 1891.095,2731.976 1893.578,2731.976C1896.287,2731.976 1898.657,2729.926 1900.689,2725.824C1902.721,2721.723 1910.171,2705.948 1923.039,2678.499C1935.907,2651.051 1946.518,2630.228 1954.87,2616.031C1963.223,2601.518 1969.883,2594.104 1974.85,2593.788C1979.816,2593.472 1986.25,2593.315 1994.152,2593.315C2002.053,2593.315 2011.309,2593.63 2021.92,2594.261C2032.53,2594.892 2039.528,2598.836 2042.915,2606.092C2046.527,2613.033 2048.672,2622.972 2049.349,2635.907C2050.704,2669.034 2051.38,2713.046 2051.38,2767.943C2051.38,2822.524 2050.365,2865.59 2048.333,2897.14C2047.882,2904.712 2045.849,2911.495 2042.237,2917.49C2038.625,2923.484 2033.659,2926.481 2027.338,2926.481C2013.567,2926.797 1998.215,2926.955 1981.284,2926.955C1964.578,2926.955 1951.259,2926.481 1941.325,2925.535C1937.713,2925.219 1934.44,2923.326 1931.505,2919.856C1928.796,2916.07 1927.328,2911.18 1927.103,2905.185L1925.071,2827.099C1924.845,2819.527 1923.603,2815.268 1921.346,2814.322C1919.314,2813.375 1917.395,2815.426 1915.589,2820.474C1903.624,2850.131 1888.724,2883.258 1870.89,2919.856C1866.6,2929.005 1860.957,2933.58 1853.958,2933.58C1846.96,2933.58 1841.203,2929.005 1836.688,2919.856C1828.787,2904.081 1815.354,2870.638 1796.391,2819.527C1795.262,2816.372 1793.907,2814.479 1792.327,2813.848C1790.972,2813.218 1789.731,2814.006 1788.602,2816.214C1787.474,2818.423 1786.909,2822.051 1786.909,2827.099L1785.216,2905.185C1784.99,2911.18 1783.071,2916.07 1779.459,2919.856C1775.847,2923.326 1771.671,2925.219 1766.93,2925.535L1733.405,2925.535C1727.31,2925.219 1722.343,2922.222 1718.505,2916.543C1714.893,2910.864 1712.749,2904.397 1712.071,2897.14C1710.265,2869.061 1709.362,2825.522 1709.362,2766.523C1709.362,2707.21 1709.927,2663.671 1711.055,2635.907C1711.733,2622.656 1713.877,2612.403 1717.489,2605.146C1721.102,2597.889 1727.536,2594.261 1736.791,2594.261C1784.2,2594.261 1809.823,2594.735 1813.661,2595.681C1817.499,2596.627 1823.594,2604.357 1831.947,2618.87Z" style="fill:rgb(0,165,134);"/></g><g transform="matrix(0.491929,0,0,0.491929,52.08752,1128.175422)"><path d="M1117.044,1950.142C917.005,1916.946 504.903,1836.41 504.903,1836.41C439.315,1824.892 386.066,1764.573 386.066,1701.796L386.066,526.669C386.066,463.892 439.315,422.276 504.903,433.794C504.903,433.794 1064.237,527.18 1126.767,537.899C1189.297,548.617 1272.527,545.384 1323.724,537.899C1374.922,530.413 1933.021,436.353 1933.021,436.353C1998.609,425.069 2051.858,466.876 2051.858,529.653L2051.858,1704.78C2051.858,1767.558 1998.609,1827.686 1933.021,1838.969C1933.021,1838.969 1513.113,1919.525 1315.28,1951.413C1305.893,1952.926 1281.744,1955.71 1270.927,1946.54C1258.835,1936.289 1260.58,1913.4 1261.188,1903.551C1269.823,1763.683 1373.675,1625.015 1488.344,1559.065C1589.883,1500.666 1647.304,1499.13 1650.86,1512.638C1654.415,1526.145 1641.369,1531.069 1536.796,1608.52C1444.685,1676.742 1415.43,1729.436 1430.808,1735.691C1446.185,1741.945 1605.21,1737.479 1707.387,1676.143C1861.623,1583.555 1919.449,1379.726 1927.439,1346.105C1935.428,1312.484 1937.833,1301.501 1922.392,1295.641C1906.95,1289.78 1749.422,1278.382 1573.135,1356.198C1396.847,1434.014 1312.586,1553.791 1269.302,1667.059C1238.13,1748.629 1221.671,1830.011 1202.33,1883.084C1198.891,1892.523 1190.302,1923.169 1172.795,1936.689C1152.049,1952.711 1121.891,1950.946 1117.044,1950.142ZM574.967,525.05C520.911,525.05 477.024,568.931 477.024,622.981C477.024,677.031 520.911,720.912 574.967,720.912C629.023,720.912 672.91,677.031 672.91,622.981C672.91,568.931 629.023,525.05 574.967,525.05ZM1144.455,1647.607C1124.479,1583.182 1066.455,1456.614 906.923,1375.374C757.384,1299.224 622.008,1288.64 549.855,1289.796C515.159,1290.351 495.358,1313.521 501.6,1345.318C516.672,1422.095 566.53,1568.237 731.285,1671.096C850.571,1745.568 956.045,1745.657 1009.036,1738.866C1032.092,1735.911 1037.096,1721.419 1020.201,1704.044C988.629,1671.575 926.402,1614.168 829.198,1552C686.859,1460.966 900.814,1494.801 1122.11,1662.92C1132.813,1671.05 1152.207,1672.611 1144.455,1647.607ZM1289.967,1393.433C1352.688,1341.147 1440.477,1267.986 1511.561,1208.842C1669.57,1077.37 1714.452,963.484 1714.452,850.544C1714.452,755.771 1649.37,601.811 1471.184,596.203C1354.621,592.534 1283.709,646.282 1245.916,689.224C1240.276,695.632 1230.627,709.573 1220.957,709.801C1211.004,710.037 1201.029,696.376 1195.381,689.915C1157.742,646.861 1086.695,592.515 969.506,596.203C791.32,601.811 726.238,755.771 726.238,850.544C726.238,963.484 771.12,1077.37 929.13,1208.842C1000.489,1268.216 1088.685,1341.716 1151.454,1394.042C1163.04,1403.7 1199.883,1429.437 1220.91,1429.437C1241.936,1429.437 1278.032,1403.382 1289.967,1393.433Z" style="fill:rgb(0,165,134);"/></g></g></g>
-        </svg>
-      </span>
-      <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<div class="mobile-menu-drawer" id="mobileMenuDrawer">
+  <div class="mob-drawer-header">
+    <div class="mob-drawer-login">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>Login / Register</span>
     </div>
-    <div class="mobile-search-row">
-      <div class="search-box" style="width:100%"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search flowers, arrangements..."></div>
+    <button class="mob-drawer-close" id="mobileMenuClose">✕</button>
+  </div>
+  <div class="mob-drawer-body">
+    <div class="mob-drawer-sidebar">
+      <a href="#" class="mob-sidebar-item active">New & Hot</a>
+      <a href="#" class="mob-sidebar-item">Occasions</a>
+      <a href="#" class="mob-sidebar-item">Collections</a>
+      <a href="#" class="mob-sidebar-item" style="color:rgb(0,165,134); font-weight:900;">Categories</a>
+      <a href="#" class="mob-sidebar-item">Seasonal</a>
+      <a href="#" class="mob-sidebar-item">Store</a>
     </div>
-    <a href="#" class="mobile-menu-item">HOME</a>
-    <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">OCCASIONS <span class="toggle-arrow">▾</span></div>
-      <div class="mobile-submenu">
-        <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a><a href="#">Love & Romance</a><a href="#">Thank You</a>
-      </div>
+    <div class="mob-drawer-grid">
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#fce4ec;">🎂</div><span>Birthday</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#e8f5e9;">💍</div><span>Anniversary</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#fff8e1;">💒</div><span>Wedding</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#f3e5f5;">💌</div><span>Romance</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#e3f2fd;">🎓</div><span>Graduation</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#fbe9e7;">🙏</div><span>Thank You</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#e8f5e9;">🎄</div><span>Christmas</span></a>
+      <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#fff8e1;">✨</div><span>New Year</span></a>
     </div>
-    <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">COLLECTIONS <span class="toggle-arrow">▾</span></div>
-      <div class="mobile-submenu">
-        <a href="#">Luxury Series</a><a href="#">Handcrafted</a><a href="#">Mini Pop Cards</a><a href="#">Gift Bundles</a>
-      </div>
-    </div>
-    <div class="mobile-menu-group">
-      <div class="mobile-menu-item mobile-menu-toggle">SEASONAL <span class="toggle-arrow">▾</span></div>
-      <div class="mobile-submenu">
-        <a href="#">Valentine's Day</a><a href="#">Mother's Day</a><a href="#">Christmas</a><a href="#">New Year</a>
-      </div>
-    </div>
-    <div class="mobile-menu-item offers-item">OFFERS 🎁</div>
   </div>
 </div>
 
@@ -1004,6 +1315,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
       </div>
     </div>
     <span class="ft-social-row-label">Follow Us</span>
+    <span class="ft-social-row-label">Follow Us</span>
     <div class="ft-social-row">
       <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
@@ -1029,12 +1341,15 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
   <div>
     <h4>COMPANY</h4>
+    <button class="ft-accordion-head">Company <span class="ft-acc-icon">+</span></button>
+    <div class="ft-accordion-section">
     <a href="#">About LoveBloom</a><a href="#">Our Designers</a>
     <a href="#">Sustainability</a><a href="#">Press & Media</a>
     <a href="#">Careers</a><a href="#">Contact Us</a>
     <h4 style="margin-top:28px;">CONTACT</h4>
     <a href="#">hello@lovebloom.in</a>
     <a href="#">+91 98765 43210</a>
+    </div>
   </div>
 </div>
 
@@ -1296,6 +1611,49 @@ document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
   }
 })();
 
+
+// Mobile footer accordion
+document.querySelectorAll('.ft-accordion-head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.ft-acc-icon');
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    if (icon) icon.textContent = isOpen ? '+' : '−';
+  });
+});
+
+// Bottom nav categories button opens drawer
+const mobCatBtn = document.getElementById('mobCatBtn');
+if (mobCatBtn) {
+  mobCatBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('mobileMenuDrawer').classList.add('open');
+    document.getElementById('mobileMenuOverlay').classList.add('open');
+  });
+}
+
 </script>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav">
+  <a href="#" class="mob-nav-item active">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="#" class="mob-nav-item" id="mobCatBtn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <span>Categories</span>
+  </a>
+  <a href="#" class="mob-nav-item">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span>Cart</span>
+  </a>
+  <a href="#" class="mob-nav-item">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    <span>My Account</span>
+  </a>
+</nav>
+
 </body>
 </html>
