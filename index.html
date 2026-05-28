@@ -54,9 +54,23 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   max-height: 780px;
   position:relative; display:flex; align-items:stretch; flex-shrink:0;
 }
+/* Slide background classes — used as fallback when no media src is provided */
 .slide-1 { background:linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%); }
 .slide-2 { background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%); }
 .slide-3 { background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%); }
+.slide-4 { background:linear-gradient(135deg,#e8eaf6 0%,#c5cae9 50%,#9fa8da 100%); }
+
+/* Full-bleed image / video inside a slide */
+.slide-media-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+/* Ensure text stays above media */
+.slide .slide-content { z-index: 2; }
 
 .slide-content { 
   position:relative; 
@@ -1345,42 +1359,12 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 </div>
 
 <div class="hero-slider">
-  <div class="slides" id="slides">
-
-    <div class="slide slide-1">
-      <div class="slide-content">
-        <div class="slide-text">
-          <div class="collab-title">Handcrafted 3D Pop-Up Birthday Cards</div>
-          <button class="shop-btn">SHOP NOW</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide slide-2">
-      <div class="slide-content">
-        <div class="slide-text">
-          <div class="collab-title">Anniversary Bloom — Luxury Pop Card Collection</div>
-          <button class="shop-btn">SHOP NOW</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide slide-3">
-      <div class="slide-content">
-        <div class="slide-text">
-          <div class="collab-title">Wedding Day 3D Keepsake Card Series</div>
-          <button class="shop-btn">SHOP NOW</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <!-- Slides are injected dynamically from carousel.json -->
+  <div class="slides" id="slides"></div>
   <button class="slider-arrow prev" onclick="changeSlide(-1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
   <button class="slider-arrow next" onclick="changeSlide(1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
   <div class="slider-dots" id="dots">
-    <div class="dot active" onclick="goSlide(0)"></div>
-    <div class="dot" onclick="goSlide(1)"></div>
-    <div class="dot" onclick="goSlide(2)"></div>
+    <!-- Dots are injected dynamically from carousel.json -->
   </div>
 </div>
 
@@ -1602,96 +1586,158 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 
 <script>
 /* ==========================================================================
-   HERO BANNER CAROUSEL — INFINITE CLONE LOOP (no jump)
-   Strategy: clone last slide → prepend, clone first slide → append.
-   Track layout: [clone-last] [slide-1] [slide-2] [slide-3] [clone-first]
-   cur is 1-based (1 = real first slide). After transition hits a clone,
-   we silently snap to the real counterpart with transition disabled.
+   HERO BANNER CAROUSEL — JSON-DRIVEN, INFINITE CLONE LOOP
+   Slides are loaded from carousel.json at runtime.
+   Structure per slide: { title, description, buttonText, buttonLink,
+                          background, media: { type:"image"|"video", src:"" } }
    ========================================================================= */
-const slidesEl   = document.getElementById('slides');
-const dots       = document.querySelectorAll('.dot');
-const realSlides = Array.from(slidesEl.querySelectorAll('.slide'));
-const total      = realSlides.length; // 3
 
-// Build clones
-const cloneFirst = realSlides[0].cloneNode(true);
-const cloneLast  = realSlides[total - 1].cloneNode(true);
-slidesEl.appendChild(cloneFirst);          // position total+1
-slidesEl.insertBefore(cloneLast, realSlides[0]); // position 0
+// Exposed globally so arrow/dot onclick="" handlers work before async resolves
+window.changeSlide = function() {};
+window.goSlide     = function() {};
 
-// Total slides in DOM: total + 2  (clone-last, s1, s2, s3, clone-first)
-let cur = 1;          // start on real slide 1
-let isTransitioning = false;
-let timer;
+async function initHeroCarousel() {
+  const slidesEl      = document.getElementById('slides');
+  const dotsContainer = document.getElementById('dots');
 
-function setPos(index, animate) {
-  slidesEl.style.transition = animate
-    ? 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)'
-    : 'none';
-  slidesEl.style.transform = `translateX(-${index * 100}%)`;
-}
-
-function updateDots(index) {
-  // Convert 1-based cur to 0-based real index
-  const realIndex = (index - 1 + total) % total;
-  dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
-}
-
-// Initialise without animation
-setPos(cur, false);
-updateDots(cur);
-
-function changeSlide(dir) {
-  if (isTransitioning) return;
-  isTransitioning = true;
-  cur += dir;
-  setPos(cur, true);
-  updateDots(cur);
-}
-
-// goSlide(n) — called by dot onclick handlers (n is 0-based)
-function goSlide(n) {
-  if (isTransitioning) return;
-  isTransitioning = true;
-  cur = n + 1; // shift to 1-based
-  setPos(cur, true);
-  updateDots(cur);
-}
-
-// After each transition: silently snap from clone to real slide
-slidesEl.addEventListener('transitionend', () => {
-  if (cur === 0) {
-    // Landed on clone-of-last → snap to real last
-    setPos(total, false);
-    cur = total;
-  } else if (cur === total + 1) {
-    // Landed on clone-of-first → snap to real first
-    setPos(1, false);
-    cur = 1;
+  /* ── 1. Fetch carousel data ─────────────────────────────────────────── */
+  let carouselData;
+  try {
+    const res = await fetch('carousel.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    carouselData = await res.json();
+  } catch (err) {
+    console.warn('[Carousel] Could not load carousel.json:', err.message);
+    // Fallback — one placeholder slide so the layout doesn't break
+    carouselData = {
+      slides: [{
+        title: 'LoveBloom — Handcrafted 3D Pop-Up Cards',
+        description: '',
+        buttonText: 'SHOP NOW',
+        buttonLink: '#',
+        background: 'linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%)',
+        media: { type: 'image', src: '' }
+      }]
+    };
   }
-  isTransitioning = false;
-});
 
-function startTimer() {
-  timer = setInterval(() => changeSlide(1), 4500);
-}
-startTimer();
+  const slideItems = carouselData.slides;
 
-// Touch swipe support
-let touchStartX = 0;
+  /* ── 2. Build slide DOM ──────────────────────────────────────────────── */
+  slideItems.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = `slide slide-${i + 1}`;
 
-slidesEl.addEventListener('touchstart', e => {
-  clearInterval(timer);
-  touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
+    // Background colour / gradient (used when no image/video covers the slide)
+    if (s.background) div.style.background = s.background;
 
-slidesEl.addEventListener('touchend', e => {
-  const diff = touchStartX - e.changedTouches[0].screenX;
-  if (diff > 40)       changeSlide(1);
-  else if (diff < -40) changeSlide(-1);
-  clearInterval(timer);
+    // Full-bleed media (optional)
+    let mediaHTML = '';
+    if (s.media && s.media.src) {
+      if (s.media.type === 'video') {
+        mediaHTML = `<video class="slide-media-bg" autoplay muted loop playsinline>
+                       <source src="${s.media.src}">
+                     </video>`;
+      } else {
+        mediaHTML = `<img class="slide-media-bg" src="${s.media.src}" alt="${s.title}" loading="lazy">`;
+      }
+    }
+
+    div.innerHTML = `
+      ${mediaHTML}
+      <div class="slide-content">
+        <div class="slide-text">
+          <div class="collab-title">${s.title}</div>
+          <button class="shop-btn" onclick="location.href='${s.buttonLink || '#'}'">
+            ${s.buttonText || 'SHOP NOW'}
+          </button>
+        </div>
+      </div>`;
+
+    slidesEl.appendChild(div);
+  });
+
+  /* ── 3. Build dot DOM ────────────────────────────────────────────────── */
+  slideItems.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => window.goSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  /* ── 4. Carousel logic (infinite clone loop) ─────────────────────────── */
+  const realSlides = Array.from(slidesEl.querySelectorAll('.slide'));
+  const dots       = Array.from(dotsContainer.querySelectorAll('.dot'));
+  const total      = realSlides.length;
+
+  // Clone last → prepend | Clone first → append
+  const cloneFirst = realSlides[0].cloneNode(true);
+  const cloneLast  = realSlides[total - 1].cloneNode(true);
+  slidesEl.appendChild(cloneFirst);
+  slidesEl.insertBefore(cloneLast, realSlides[0]);
+
+  // cur is 1-based; real slides occupy positions 1 … total
+  let cur = 1;
+  let isTransitioning = false;
+  let timer;
+
+  function setPos(index, animate) {
+    slidesEl.style.transition = animate
+      ? 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)'
+      : 'none';
+    slidesEl.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function updateDots(index) {
+    const realIndex = (index - 1 + total) % total;
+    dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+  }
+
+  setPos(cur, false);
+  updateDots(cur);
+
+  window.changeSlide = function(dir) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    cur += dir;
+    setPos(cur, true);
+    updateDots(cur);
+  };
+
+  window.goSlide = function(n) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    cur = n + 1;
+    setPos(cur, true);
+    updateDots(cur);
+  };
+
+  slidesEl.addEventListener('transitionend', () => {
+    if (cur === 0)         { setPos(total, false); cur = total; }
+    else if (cur === total + 1) { setPos(1, false); cur = 1; }
+    isTransitioning = false;
+  });
+
+  function startTimer() { timer = setInterval(() => window.changeSlide(1), 4500); }
   startTimer();
-}, { passive: true });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  slidesEl.addEventListener('touchstart', e => {
+    clearInterval(timer);
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  slidesEl.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (diff > 40)        window.changeSlide(1);
+    else if (diff < -40)  window.changeSlide(-1);
+    clearInterval(timer);
+    startTimer();
+  }, { passive: true });
+}
+
+// Kick off as soon as DOM is ready
+document.addEventListener('DOMContentLoaded', initHeroCarousel);
 
 /* ==========================================================================
    NEW ARRIVALS — INFINITE LOOP WITH CLONES (no auto-play)
