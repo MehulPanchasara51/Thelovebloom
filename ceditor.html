@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Bloom - Carousel Editor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: rgb(0, 165, 134);
+      --primary-hover: rgb(0, 140, 115);
+      --bg-dark: #111;
+      --bg-light: #f7f9fa;
+      --border: #e2e8f0;
+      --text: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: #fff; color: var(--text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    button { cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s; }
+    
+    /* Header Tools */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); z-index: 10; }
+    header h1 { font-size: 20px; font-weight: 800; color: var(--bg-dark); }
+    .toolbar { display: flex; gap: 12px; }
+    .btn { padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 700; border: none; }
+    .btn-outline { background: #fff; border: 1.5px solid var(--border); color: var(--bg-dark); }
+    .btn-outline:hover { border-color: var(--bg-dark); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    /* Layout */
+    .layout { display: flex; flex: 1; overflow: hidden; }
+    
+    /* Sidebar / Slide List */
+    .sidebar { width: 320px; background: var(--bg-light); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-header h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .slide-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    
+    .slide-item { background: #fff; border: 1px solid var(--border); padding: 12px; border-radius: 8px; cursor: grab; display: flex; align-items: center; gap: 12px; transition: box-shadow 0.2s, border-color 0.2s; }
+    .slide-item:active { cursor: grabbing; }
+    .slide-item.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0, 165, 134, 0.2); }
+    .slide-item.drag-over { border-top: 3px solid var(--primary); }
+    
+    .drag-handle { color: #cbd5e1; cursor: grab; display: flex; flex-direction: column; gap: 2px; }
+    .drag-handle span { display: block; width: 12px; height: 2px; background: currentColor; }
+    .slide-thumb { width: 40px; height: 40px; border-radius: 4px; border: 1px solid var(--border); }
+    .slide-meta { flex: 1; overflow: hidden; }
+    .slide-meta strong { display: block; font-size: 13px; font-weight: 700; color: var(--bg-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .slide-meta span { display: block; font-size: 11px; color: #64748b; }
+    .delete-btn { background: none; border: none; color: #ef4444; font-size: 16px; padding: 4px; opacity: 0; transition: opacity 0.2s; }
+    .slide-item:hover .delete-btn { opacity: 1; }
+
+    /* Editor Pane */
+    .editor { flex: 1; overflow-y: auto; padding: 40px; background: #fff; }
+    .editor-inner { max-width: 600px; margin: 0 auto; display: none; }
+    .editor-inner.visible { display: block; }
+    .empty-state { text-align: center; margin-top: 100px; color: #94a3b8; font-weight: 600; }
+    
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 800; color: var(--bg-dark); margin-bottom: 8px; text-transform: uppercase; }
+    .form-control { width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 14px; transition: border-color 0.2s; outline: none; background: var(--bg-light); }
+    .form-control:focus { border-color: var(--primary); background: #fff; }
+    textarea.form-control { resize: vertical; min-height: 100px; }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Visual Preview Box */
+    .preview-box { width: 100%; height: 160px; border-radius: 8px; margin-bottom: 32px; display: flex; align-items: flex-end; justify-content: center; padding: 20px; text-align: center; border: 1px solid var(--border); position: relative; overflow: hidden; }
+    .preview-box h3 { color: #fff; font-size: 18px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); position: relative; z-index: 2; }
+    .preview-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+    
+    #fileInput { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Carousel Visual Editor</h1>
+    <div class="toolbar">
+      <input type="file" id="fileInput" accept=".json">
+      <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">Import JSON</button>
+      <button class="btn btn-primary" onclick="exportJSON()">Export JSON</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Slides</h2>
+        <button class="btn btn-outline" style="padding: 4px 10px; font-size:12px;" onclick="addSlide()">+ Add</button>
+      </div>
+      <div class="slide-list" id="slideList">
+        </div>
+    </aside>
+
+    <section class="editor">
+      <div id="emptyState" class="empty-state">Select a slide to edit or add a new one.</div>
+      
+      <div class="editor-inner" id="editorForm">
+        <div class="preview-box" id="previewBox">
+          <h3 id="previewTitle">Preview</h3>
+        </div>
+
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" id="f_title" oninput="updateCurrentSlide()">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" id="f_description" oninput="updateCurrentSlide()"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Button Text</label>
+            <input type="text" class="form-control" id="f_btnText" oninput="updateCurrentSlide()">
+          </div>
+          <div class="form-group">
+            <label>Button Link</label>
+            <input type="text" class="form-control" id="f_btnLink" oninput="updateCurrentSlide()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Background (CSS Gradient/Color)</label>
+          <input type="text" class="form-control" id="f_background" oninput="updateCurrentSlide()" placeholder="linear-gradient(...) or #hex">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Media Type</label>
+            <select class="form-control" id="f_mediaType" onchange="updateCurrentSlide()">
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Media Source (URL/Path)</label>
+            <input type="text" class="form-control" id="f_mediaSrc" oninput="updateCurrentSlide()" placeholder="assets/image.jpg">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Initial data seeded from the user's provided JSON
+    let carouselData = {
+      "slides": [
+        {
+          "id": 1,
+          "title": "Handcrafted 3D Pop-Up Birthday Cards",
+          "description": "Celebrate every birthday with a burst of joy. Our 3D pop-up cards bloom open to reveal handcrafted floral designs that leave a lasting impression.",
+          "buttonText": "SHOP NOW",
+          "buttonLink": "#",
+          "background": "linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%)",
+          "media": { "type": "video", "src": "assets/demo.mp4" }
+        },
+        {
+          "id": 2,
+          "title": "Anniversary Bloom — Luxury Pop Card Collection",
+          "description": "Mark every milestone with elegance. Our anniversary collection features premium layered cards crafted for couples who believe love deserves a keepsake.",
+          "buttonText": "EXPLORE",
+          "buttonLink": "#",
+          "background": "linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%)",
+          "media": { "type": "image", "src": "assets/jui.jpg" }
+        },
+        {
+          "id": 3,
+          "title": "Wedding Day 3D Keepsake Card Series",
+          "description": "A card as unforgettable as the day itself. Gift the couple a stunning 3D wedding pop-up they will treasure for a lifetime.",
+          "buttonText": "VIEW COLLECTION",
+          "buttonLink": "#",
+          "background": "linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%)",
+          "media": { "type": "image", "src": "assets/slide-3.jpg" }
+        },
+        {
+          "id": 4,
+          "title": "New Arrival — Valentine Heart Cascade",
+          "description": "Say it louder with our new Valentine collection. Bold, heartfelt, and crafted to make someone smile the moment they open it.",
+          "buttonText": "SHOP NOW",
+          "buttonLink": "#",
+          "background": "linear-gradient(135deg,#e8eaf6 0%,#c5cae9 50%,#9fa8da 100%)",
+          "media": { "type": "image", "src": "assets/slide-4.jpg" }
+        }
+      ]
+    };
+
+    let activeIndex = -1;
+    let dragStartIndex = null;
+
+    // UI Elements
+    const listEl = document.getElementById('slideList');
+    const editorForm = document.getElementById('editorForm');
+    const emptyState = document.getElementById('emptyState');
+
+    // DOM Inputs
+    const inputs = {
+      title: document.getElementById('f_title'),
+      description: document.getElementById('f_description'),
+      btnText: document.getElementById('f_btnText'),
+      btnLink: document.getElementById('f_btnLink'),
+      background: document.getElementById('f_background'),
+      mediaType: document.getElementById('f_mediaType'),
+      mediaSrc: document.getElementById('f_mediaSrc')
+    };
+
+    /* ==============================================
+       RENDERING & STATE MANAGEMENT
+       ============================================== */
+    function renderList() {
+      listEl.innerHTML = '';
+      carouselData.slides.forEach((slide, index) => {
+        const item = document.createElement('div');
+        item.className = `slide-item ${index === activeIndex ? 'active' : ''}`;
+        item.draggable = true;
+        
+        // Drag Events
+        item.addEventListener('dragstart', (e) => dragStart(e, index));
+        item.addEventListener('dragover', (e) => dragOver(e, index, item));
+        item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+        item.addEventListener('drop', (e) => drop(e, index));
+        
+        // Select logic
+        item.addEventListener('click', (e) => {
+          if(!e.target.closest('.delete-btn')) selectSlide(index);
+        });
+
+        item.innerHTML = `
+          <div class="drag-handle"><span></span><span></span><span></span></div>
+          <div class="slide-thumb" style="background: ${slide.background}"></div>
+          <div class="slide-meta">
+            <strong>${slide.title || 'Untitled Slide'}</strong>
+            <span>${slide.media && slide.media.type !== 'none' ? slide.media.type : 'No Media'}</span>
+          </div>
+          <button class="delete-btn" onclick="deleteSlide(${index})" title="Delete">✕</button>
+        `;
+        listEl.appendChild(item);
+      });
+    }
+
+    function selectSlide(index) {
+      activeIndex = index;
+      renderList();
+      
+      if (index >= 0 && index < carouselData.slides.length) {
+        const slide = carouselData.slides[index];
+        emptyState.style.display = 'none';
+        editorForm.classList.add('visible');
+        
+        // Populate form
+        inputs.title.value = slide.title || '';
+        inputs.description.value = slide.description || '';
+        inputs.btnText.value = slide.buttonText || '';
+        inputs.btnLink.value = slide.buttonLink || '';
+        inputs.background.value = slide.background || '';
+        inputs.mediaType.value = (slide.media && slide.media.type) ? slide.media.type : 'none';
+        inputs.mediaSrc.value = (slide.media && slide.media.src) ? slide.media.src : '';
+        
+        updatePreview(slide);
+      } else {
+        editorForm.classList.remove('visible');
+        emptyState.style.display = 'block';
+      }
+    }
+
+    function updateCurrentSlide() {
+      if (activeIndex < 0) return;
+      
+      const slide = carouselData.slides[activeIndex];
+      slide.title = inputs.title.value;
+      slide.description = inputs.description.value;
+      slide.buttonText = inputs.btnText.value;
+      slide.buttonLink = inputs.btnLink.value;
+      slide.background = inputs.background.value;
+      
+      if(inputs.mediaType.value === 'none') {
+        slide.media = null;
+      } else {
+        slide.media = {
+          type: inputs.mediaType.value,
+          src: inputs.mediaSrc.value
+        };
+      }
+      
+      updatePreview(slide);
+      
+      // Debounce the list re-render slightly to keep typing smooth
+      clearTimeout(window.renderTimeout);
+      window.renderTimeout = setTimeout(() => { renderList(); }, 300);
+    }
+
+    function updatePreview(slide) {
+      const box = document.getElementById('previewBox');
+      const title = document.getElementById('previewTitle');
+      
+      box.style.background = slide.background || '#eee';
+      title.innerText = slide.title || 'Preview Title';
+      
+      // Clean old media
+      const oldMedia = box.querySelector('.preview-media');
+      if(oldMedia) oldMedia.remove();
+      
+      // Show new media if available
+      if(slide.media && slide.media.src) {
+        if (slide.media.type === 'image') {
+          const img = document.createElement('img');
+          img.src = slide.media.src;
+          img.className = 'preview-media';
+          box.insertBefore(img, title);
+        } else if (slide.media.type === 'video') {
+          const vid = document.createElement('video');
+          vid.src = slide.media.src;
+          vid.className = 'preview-media';
+          vid.autoplay = true;
+          vid.muted = true;
+          vid.loop = true;
+          vid.playsInline = true;
+          box.insertBefore(vid, title);
+        }
+      }
+    }
+
+    /* ==============================================
+       ACTIONS (Add, Delete, Drag & Drop)
+       ============================================== */
+    function addSlide() {
+      const newId = carouselData.slides.length ? Math.max(...carouselData.slides.map(s => s.id || 0)) + 1 : 1;
+      carouselData.slides.push({
+        id: newId,
+        title: "New Slide",
+        description: "",
+        buttonText: "SHOP NOW",
+        buttonLink: "#",
+        background: "#e2e8f0",
+        media: null
+      });
+      selectSlide(carouselData.slides.length - 1);
+    }
+
+    function deleteSlide(index) {
+      if(confirm('Are you sure you want to remove this slide?')) {
+        carouselData.slides.splice(index, 1);
+        if(activeIndex === index) selectSlide(-1);
+        else if (activeIndex > index) selectSlide(activeIndex - 1);
+        else renderList();
+      }
+    }
+
+    // Drag and Drop implementation
+    function dragStart(e, index) {
+      dragStartIndex = index;
+      e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function dragOver(e, index, item) {
+      e.preventDefault();
+      if(dragStartIndex === index) return;
+      item.classList.add('drag-over');
+    }
+
+    function drop(e, targetIndex) {
+      e.preventDefault();
+      document.querySelectorAll('.slide-item').forEach(el => el.classList.remove('drag-over'));
+      
+      if (dragStartIndex !== null && dragStartIndex !== targetIndex) {
+        // Reorder Array
+        const draggedItem = carouselData.slides.splice(dragStartIndex, 1)[0];
+        carouselData.slides.splice(targetIndex, 0, draggedItem);
+        
+        // Maintain active index focus
+        if (activeIndex === dragStartIndex) activeIndex = targetIndex;
+        else if (activeIndex > dragStartIndex && activeIndex <= targetIndex) activeIndex--;
+        else if (activeIndex < dragStartIndex && activeIndex >= targetIndex) activeIndex++;
+        
+        renderList();
+      }
+      dragStartIndex = null;
+    }
+
+    /* ==============================================
+       IMPORT & EXPORT JSON
+       ============================================== */
+    // Import via File Reader
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && parsed.slides && Array.isArray(parsed.slides)) {
+            carouselData = parsed;
+            selectSlide(0);
+          } else {
+            alert('Invalid JSON structure. Missing "slides" array.');
+          }
+        } catch (err) {
+          alert('Error parsing JSON file.');
+        }
+        event.target.value = ''; // Reset input
+      };
+      reader.readAsText(file);
+    });
+
+    // Export via Blob download
+    function exportJSON() {
+      const dataStr = JSON.stringify(carouselData, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'carousel.json';
+      document.body.appendChild(a);
+      a.click();
+      
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Initialize
+    renderList();
+    if (carouselData.slides.length > 0) selectSlide(0);
+
+  </script>
+</body>
+</html>

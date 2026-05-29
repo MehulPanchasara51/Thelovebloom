@@ -33,7 +33,7 @@
       "background": "linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%)",
       "media": {
         "type": "image",
-        "src": "assets/slide-3.jpg"
+        "src": "assets/demo.mp4"
       }
     },
     {
@@ -46,6 +46,18 @@
       "media": {
         "type": "image",
         "src": "assets/slide-4.jpg"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Raju Kaju",
+      "description": "Maja aayega",
+      "buttonText": "SHOP NOW",
+      "buttonLink": "#",
+      "background": "#e2e8f0",
+      "media": {
+        "type": "video",
+        "src": "assets/demo.mp4"
       }
     }
   ]
