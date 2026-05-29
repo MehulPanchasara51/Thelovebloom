@@ -8,8 +8,8 @@
       "buttonLink": "#",
       "background": "linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%)",
       "media": {
-        "type": "image",
-        "src": "assets/slide-1.jpg"
+        "type": "video",
+        "src": "assets/demo.mp4"
       }
     },
     {
@@ -21,7 +21,7 @@
       "background": "linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%)",
       "media": {
         "type": "image",
-        "src": "assets/slide-2.jpg"
+        "src": "assets/jui.jpg"
       }
     },
     {

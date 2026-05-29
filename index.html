@@ -10,6 +10,7 @@
    BASE DESKTOP LAYOUT (Default PC View)
    ========================================================================= */
 * { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
 body { font-family:'Nunito',sans-serif; background:#fff; overflow-x:hidden; }
 
 header {
@@ -37,10 +38,28 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .nav-item:hover { color:#000; border-bottom-color:#000; }
 .nav-item .arrow { font-size:9px; color:#999; }
 .nav-item.offers { color:#000; }
-.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #000; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); }
-.nav-item:hover .dropdown { display:block; }
+.nav-item .dropdown { display:none; position:absolute; top:44px; left:0; background:#fff; border:1px solid #eee; border-top:2px solid #000; min-width:180px; padding:8px 0; z-index:300; box-shadow:0 8px 24px rgba(0,0,0,0.1); opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+.nav-item:hover .dropdown { display:block; opacity: 1; transform: translateY(0); }
 .dropdown a { display:block; padding:9px 18px; font-size:13px; font-weight:600; color:#333; text-decoration:none; text-transform:none; letter-spacing:0; transition:background 0.1s, color 0.1s; }
 .dropdown a:hover { background:#f5f5f5; color:#000; }
+
+/* ==========================================================================
+   SCROLL ANIMATION CLASSES
+   ========================================================================= */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delays for grid items */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
 
 /* ==========================================================================
    HERO BANNER CAROUSEL SLIDER 
@@ -54,62 +73,14 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   max-height: 780px;
   position:relative; display:flex; align-items:stretch; flex-shrink:0;
 }
-/* Slide background classes — used as fallback when no media src is provided */
-.slide-1 { background:linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%); }
-.slide-2 { background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%); }
-.slide-3 { background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%); }
-.slide-4 { background:linear-gradient(135deg,#e8eaf6 0%,#c5cae9 50%,#9fa8da 100%); }
+.slide-media-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; transition: transform 6s ease-out; transform: scale(1.05); }
+.slide.active-slide .slide-media-bg { transform: scale(1); }
 
-/* Full-bleed image / video inside a slide */
-.slide-media-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-/* Ensure text stays above media */
-.slide .slide-content { z-index: 2; }
+.slide-content { position:relative; z-index:2; width:100%; max-width:1400px; margin:0 auto; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:0 40px 60px; height:100%; }
+.slide-text { position:relative; z-index:5; width: 100%; max-width: 95%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity: 0; transform: translateY(20px); transition: all 0.8s ease 0.3s; }
+.slide.active-slide .slide-text { opacity: 1; transform: translateY(0); }
 
-.slide-content { 
-  position:relative; 
-  z-index:2; 
-  width:100%; 
-  max-width:1400px; 
-  margin:0 auto; 
-  display:flex; 
-  flex-direction:column;
-  align-items:center; 
-  justify-content:flex-end; 
-  padding:0 40px 60px; 
-  height:100%; 
-}
-
-.slide-text { 
-  position:relative;
-  z-index:5;
-  width: 100%;
-  max-width: 95%;
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
-  justify-content:center; 
-  text-align:center; 
-}
-.collab-title { 
-  font-family:'Nunito',sans-serif; 
-  font-weight:800; 
-  font-size:clamp(16px, 2.4vw, 32px); 
-  line-height:1.2; 
-  letter-spacing:1px; 
-  color:#fff; 
-  text-shadow:0 2px 16px rgba(0,0,0,0.25); 
-  margin-bottom:28px; 
-  text-align:center;
-  text-transform:uppercase;
-}
-
+.collab-title { font-family:'Nunito',sans-serif; font-weight:800; font-size:clamp(16px, 2.4vw, 32px); line-height:1.2; letter-spacing:1px; color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.25); margin-bottom:28px; text-align:center; text-transform:uppercase; }
 .shop-btn { display:inline-block; border:1px solid rgba(255,255,255,0.85); background:transparent; color:#fff; padding:12px 46px; font-family:'Nunito',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, border-color 0.2s, color 0.2s; outline:none; }
 .shop-btn:hover { background:#fff; color:#333; border-color:#fff; }
 
@@ -133,27 +104,27 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .arrival-section-head p { font-size: 14.5px; color: #555; font-weight: 600; }
 
 .arrival-slider-container { position: relative; width: 100%; max-width: 1680px; margin: 0 auto; padding: 0 70px; }
-.arrival-track-wrapper { width: 100%; overflow: hidden; }
 
-.arrival-track { display: flex; gap: 24px; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.arrival-card { width: calc((100% - 72px) / 4); flex-shrink: 0; display: flex; flex-direction: column; background: #fff; text-decoration: none; }
+.arrival-track-wrapper { width: 100%; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.arrival-track-wrapper::-webkit-scrollbar { display: none; }
 
-.arrival-thumb { width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 160px; border-radius: 0; overflow: hidden; transition: transform 0.2s ease; user-select: none; }
-.arrival-card:hover .arrival-thumb { transform: translateY(-5px); }
+.arrival-track { display: flex; gap: 24px; padding-bottom: 10px; }
+.arrival-card { width: calc((100% - 72px) / 4); flex-shrink: 0; display: flex; flex-direction: column; background: #fff; text-decoration: none; cursor: pointer; }
+
+.arrival-thumb { width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 160px; border-radius: 0; overflow: hidden; transition: transform 0.4s ease; user-select: none; }
+.arrival-card:hover .arrival-thumb { transform: translateY(-8px); }
 
 .arrival-info { padding: 26px 0 4px; display: flex; flex-direction: column; gap: 14px; text-align: left; }
-.arrival-name { font-size: 16px; font-weight: 600; color: #111; line-height: 1.5; margin-bottom: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; font-family: 'Nunito', sans-serif; }
+.arrival-name { font-size: 16px; font-weight: 600; color: #111; line-height: 1.5; margin-bottom: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; font-family: 'Nunito', sans-serif; transition: color 0.2s; }
+.arrival-card:hover .arrival-name { color: rgb(0,165,134); }
 .arrival-price { font-size: 18px; font-weight: 700; color: #111; letter-spacing: 0.1px; font-family: 'Nunito', sans-serif; }
 .arrival-link { font-size: 14.5px; font-weight: 600; color: #333; text-decoration: underline; text-underline-offset: 4px; display: inline-block; width: max-content; text-transform: lowercase; }
 .arrival-link:hover { color: #000; }
 
-.arrival-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.15); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); z-index: 10; transition: background 0.2s; }
-.arrival-arrow:hover { background: rgba(0,0,0,0.25); }
+.arrival-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.15); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); z-index: 10; transition: background 0.2s, transform 0.2s; }
+.arrival-arrow:hover { background: rgba(0,0,0,0.4); transform: translateY(-50%) scale(1.05); }
 .arrival-arrow.prev-arr { left: 13px; }
 .arrival-arrow.next-arr { right: 13px; }
-
-.arrival-cta { display: none; }
-.arrival-signin-btn { display: none; }
 
 /* ==========================================================================
    SHOP ALL PRODUCTS STYLES
@@ -162,418 +133,32 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .shop-all-section-head h2 { font-size: 38px; font-weight: 800; color: #000; letter-spacing: -0.2px; font-family: 'Nunito', sans-serif; }
 
 .products { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-.prod-card { border:1.5px solid #e8e8e8; border-radius:0; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; background:#fff; display: block; }
-.prod-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.1); transform:translateY(-3px); }
+.prod-card { border:1.5px solid #e8e8e8; border-radius:0; overflow:hidden; cursor:pointer; transition:box-shadow 0.3s ease, transform 0.3s ease; background:#fff; display: block; }
+.prod-card:hover { box-shadow:0 12px 30px rgba(0,0,0,0.08); transform:translateY(-5px); }
 
-.prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:52px; position:relative; }
+.prod-thumb { width:100%; aspect-ratio:1 / 1; display:flex; align-items:center; justify-content:center; font-size:52px; position:relative; overflow: hidden; }
+.prod-thumb::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.03); opacity: 0; transition: opacity 0.3s; }
+.prod-card:hover .prod-thumb::after { opacity: 1; }
 .t1{background:#fff5f8} .t2{background:#f5f0ff} .t3{background:#f0fff5} .t4{background:#fffff0} .t5{background:#f0f8ff}
-.prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; }
+.prod-badge { position:absolute; top:8px; left:8px; font-size:9px; font-weight:800; padding:3px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.5px; z-index: 2; }
 .badge-new{background:#e00;color:#fff} .badge-hot{background:#ff6600;color:#fff} .badge-ltd{background:#7b2fff;color:#fff} .badge-sold{background:#555;color:#fff}
 .prod-info { padding:12px; }
 .prod-series { font-size:10px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px; }
-.prod-name { font-size:12px; font-weight:800; color:#222; margin-bottom:10px; }
+.prod-name { font-size:12px; font-weight:800; color:#222; margin-bottom:10px; transition: color 0.2s; }
+.prod-card:hover .prod-name { color: rgb(0,165,134); }
 .prod-foot { display:flex; justify-content:space-between; align-items:center; }
 .prod-price { font-size:13px; font-weight:900; color:#111; }
-.prod-cart { width:26px; height:26px; border-radius:0; background:#111; border:none; color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.15s; }
-.prod-cart:hover { background:#333; }
+.prod-cart { width:26px; height:26px; border-radius:0; background:#111; border:none; color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s, transform 0.2s; }
+.prod-cart:hover { background:rgb(0,165,134); transform: scale(1.1); }
 
 .prod-card.hidden-product { display: none; }
 
 .view-more-container { display:flex; justify-content:center; margin-top:50px; }
-.view-more-btn { background:transparent; color:#222; border:2px solid #222; padding:12px 50px; font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; letter-spacing:1px; cursor:pointer; border-radius:4px; transition:background 0.2s, color 0.2s, border-color 0.2s; text-transform:uppercase; }
-.view-more-btn:hover { background:#222; color:#fff; }
+.view-more-btn { background:transparent; color:#222; border:2px solid #222; padding:12px 50px; font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; letter-spacing:1px; cursor:pointer; border-radius:4px; transition:all 0.3s ease; text-transform:uppercase; }
+.view-more-btn:hover { background:#222; color:#fff; padding: 12px 60px; }
 
 /* ==========================================================================
-   RECOMMENDED FOR YOU SECTION
-   ========================================================================= */
-
-
-/* ==========================================================================
-   PREMIUM LUXURY BLACK BRAND FOOTER MODULE
-   ========================================================================= */
-.footer-top-bar {
-  background: #fff;
-  border-top: 1px solid #e8e8e8;
-  padding: 20px 40px;
-  position: relative;
-  text-align: center;
-}
-.back-to-top-btn {
-  display: inline-block;
-  font-size: 12px;
-  color: #555;
-  text-decoration: none;
-  font-weight: 600;
-}
-.back-to-top-btn:hover { color: #000; }
-
-.main-black-footer {
-  background: #000;
-  color: #888;
-  padding: 64px 60px 40px;
-  display: grid;
-  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr;
-  gap: 48px;
-}
-.main-black-footer h4 {
-  font-size: 13px;
-  font-weight: 800;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
-}
-.main-black-footer p { font-size: 13px; line-height: 1.6; color: #888; margin-bottom: 14px; }
-.main-black-footer a {
-  display: block;
-  font-size: 13px;
-  color: #888;
-  text-decoration: none;
-  margin-bottom: 10px;
-  transition: color 0.15s;
-}
-.main-black-footer a:hover { color: #fff; }
-
-.ft-input-container {
-  display: flex;
-  background: #fff;
-  border-radius: 2px;
-  padding: 2px;
-  margin-bottom: 32px;
-  align-items: center;
-  border: 1px solid #333;
-}
-.ft-input-container input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px 14px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 13px;
-}
-.ft-signup-btn {
-  background: transparent;
-  color: #000;
-  border: none;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 0 14px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.ft-signup-btn:hover { color: #e00; }
-
-.ft-contact-sub {
-  border: 1px solid #222;
-  border-radius: 4px;
-  padding: 14px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.ft-contact-sub div p { margin-bottom: 0; }
-.ft-contact-sub div p.ft-label { font-size: 13px; font-weight: 700; color: #fff; }
-.ft-contact-sub div p.ft-desc { font-size: 12px; color: #666; margin-top: 2px; }
-.ft-action-link { font-size: 13px; font-weight: 700; color: #fff; text-decoration: underline; }
-
-.ft-region-selector {
-  margin-top: 24px;
-  margin-bottom: 36px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #222;
-  padding: 10px 16px;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  background: transparent;
-}
-
-.ft-social-panel {
-  border-top: 1px solid #161616;
-  padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
-.ft-social-panel span { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-.ft-social-links { display: flex; gap: 16px; }
-.ft-social-links a { display: inline-block; font-size: 20px; color: #fff; text-decoration: none; transition: opacity 0.15s; margin-bottom: 0; }
-.ft-social-links a:hover { opacity: 0.7; }
-
-.footer-payments-bar {
-  background: #000;
-  border-top: 1px solid #161616;
-  padding: 24px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer-payments-bar p { font-size: 11px; color: #555; }
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES (Isolates and fixes Mobile/Tablet views)
-   ========================================================================== */
-@media (max-width: 1200px) {
-  .arrival-slider-container { padding: 0 80px; }
-  .arrival-arrow { width: 44px; height: 44px; font-size: 26px; }
-  .arrival-arrow.prev-arr { left: 16px; }
-  .arrival-arrow.next-arr { right: 16px; }
-  .arrival-track { gap: 24px; }
-  .arrival-card { width: calc((100% - 48px) / 3); }
-}
-
-@media (max-width: 1024px) {
-  .section { padding: 48px 80px; }
-  .products { grid-template-columns: repeat(2, 1fr); }
-  .rec-grid { grid-template-columns: repeat(2, 1fr); }
-  .main-black-footer { grid-template-columns: 1fr; gap: 32px; }
-  .arrival-slider-container { padding: 0 45px; }
-  .arrival-card { width: calc((100% - 48px) / 3); gap: 24px; }
-}
-
-/* ==========================================================================
-   MOBILE MENU DRAWER
-   ========================================================================== */
-.mobile-menu-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 500;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.mobile-menu-overlay.open { display: block; opacity: 1; }
-.mobile-menu-drawer {
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 82vw; max-width: 300px;
-  background: #fff;
-  overflow-y: auto;
-  transform: translateX(-100%);
-  transition: transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94);
-  display: flex; flex-direction: column;
-}
-.mobile-menu-overlay.open .mobile-menu-drawer { transform: translateX(0); }
-.mobile-menu-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 20px;
-  border-bottom: 1px solid #eee;
-}
-.mobile-menu-header .drawer-logo {
-  display:flex; align-items:center;
-}
-.mobile-menu-header .drawer-logo svg { height:45px; width:auto; display:block; }
-.mobile-menu-close {
-  background: transparent; border: none;
-  font-size: 22px; color: #555; cursor: pointer; padding: 4px 6px;
-}
-.mobile-menu-close:hover { color: #000; }
-.mobile-menu-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 15px 20px;
-  font-size: 13px; font-weight: 800; color: #222;
-  letter-spacing: 0.6px; text-transform: uppercase;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer; text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-}
-.mobile-menu-item:hover, .mobile-menu-item.active { background: #f5f5f5; color: #000; }
-.mobile-menu-item.offers-item { color: #000; }
-.mobile-menu-item .toggle-arrow { font-size: 10px; color: #aaa; transition: transform 0.2s; }
-.mobile-menu-item.expanded .toggle-arrow { transform: rotate(180deg); }
-.mobile-submenu {
-  display: none; background: #fafafa;
-  border-bottom: 1px solid #f0f0f0;
-}
-.mobile-submenu.open { display: block; }
-.mobile-submenu a {
-  display: block; padding: 11px 20px 11px 34px;
-  font-size: 13px; font-weight: 600; color: #555;
-  text-decoration: none; border-bottom: 1px solid #f0f0f0;
-  transition: color 0.15s;
-}
-.mobile-submenu a:last-child { border-bottom: none; }
-.mobile-submenu a:hover { color: #000; }
-.mobile-search-row {
-  padding: 16px 20px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.mobile-search-row .search-box {
-  display: flex !important;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  /* Header */
-  header { 
-    height: 72px; 
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px; 
-    border-bottom: 1px solid #e8e8e8;
-    position: relative;
-  }
-  .header-left, .search-box { display: none !important; }
-  .brand-logo { 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .brand-logo svg { height: 42px; width: auto; }
-  .header-right { gap: 4px; }
-  .header-right .icon-btn { width: 34px; height: 34px; font-size: 16px; }
-  /* Show search icon on mobile (was hidden as nth-child(1)) */
-  .header-right .icon-btn:nth-child(1) { display: flex; }
-  .mobile-burger-btn {
-    display: flex;
-    background: transparent;
-    border: none;
-    font-size: 22px;
-    color: #222;
-    cursor: pointer;
-    padding: 4px 6px;
-    align-items: center;
-    justify-content: center;
-  }
-  nav { display: none !important; }
-
-  /* Hero slider */
-  .slide { height: 55vw; min-height: 300px; max-height: 480px; }
-  .slide-content { padding: 0 16px 36px 16px; justify-content: flex-end; }
-  .slide-text { max-width: 100%; text-align: center; }
-  .collab-title { 
-    font-size: clamp(13px, 4vw, 18px); 
-    white-space: normal; 
-    margin-bottom: 12px;
-  }
-  .shop-btn { padding: 9px 28px; font-size: 11px; }
-  .slider-arrow { display: none; }
-  .slider-dots { bottom: 10px; }
-  /* Sections */
-  .section { padding: 32px 24px; }
-  .shop-all-section-head h2,
-  .recommended-section-head h2 { font-size: 24px; }
-
-  /* New Arrivals — KEY FIX: wrapper must allow horizontal scroll */
-  .arrival-section-wrapper { padding: 32px 0; }
-  .arrival-section-head { margin-bottom: 20px; padding: 0 16px; }
-  .arrival-section-head h2 { font-size: 24px; margin-bottom: 6px; }
-  .arrival-section-head p { font-size: 13px; }
-  .arrival-slider-container { padding: 0 48px; }
-  .arrival-track-wrapper { overflow: hidden; }
-  .arrival-arrow { width: 36px; height: 36px; }
-  .arrival-arrow.prev-arr { left: 6px; }
-  .arrival-arrow.next-arr { right: 6px; }
-  .arrival-track { gap: 12px; }
-  .arrival-card { width: calc((100% - 12px) / 2); }
-  .arrival-thumb { font-size: 60px; border-radius: 0; }
-  .arrival-info { padding: 10px 0 4px; gap: 5px; }
-  .arrival-name { font-size: 12px; margin-bottom: 3px; }
-  .arrival-price { font-size: 13px; }
-  .arrival-link { font-size: 12px; }
-
-  /* Products grid */
-  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .prod-thumb { font-size: 50px; }
-  .prod-info { padding: 10px 10px 12px; }
-  .prod-series { font-size: 10px; }
-  .prod-name { font-size: 12px; margin-bottom: 10px; }
-  .prod-price { font-size: 14px; }
-  .prod-cart { width: 30px; height: 30px; font-size: 15px; min-width: 30px; }
-
-  /* View More */
-  .view-more-container { margin-top: 32px; }
-  .view-more-btn { width: 100%; padding: 14px 20px; }
-
-  /* Footer */
-  .footer-top-bar { padding: 16px 20px; }
-  .footer-payments-bar { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
-  .main-black-footer { 
-    grid-template-columns: 1fr; 
-    padding: 36px 20px 24px; 
-    gap: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .main-black-footer > div { padding-bottom: 28px; }
-  .main-black-footer > div:nth-child(2),
-  .main-black-footer > div:nth-child(3),
-  .main-black-footer > div:nth-child(4) { border-top: 1px solid #1a1a1a; padding-top: 28px; }
-  .ft-social-panel { margin-top: 0; border-top: none; padding-top: 0; text-align: center; }
-  .ft-social-links { justify-content: center; }
-  .ft-region-selector { width: 100%; justify-content: center; }
-  .ft-input-container { margin-bottom: 24px; }
-}
-
-@media (max-width: 480px) {
-  .products, .recommended-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .slide { min-height: 380px; }
-  .arrival-card { width: 170px; }
-  .arrival-thumb { font-size: 66px; }
-}
-
-/* Mobile Search Bar */
-.mobile-search-bar {
-  display: none;
-  position: sticky;
-  top: 72px;
-  z-index: 195;
-  background: #fff;
-  border-bottom: 1px solid #e8e8e8;
-  padding: 8px 14px;
-}
-.mobile-search-bar.hidden {
-  display: none;
-}
-.mobile-search-bar-inner {
-  display: flex;
-  gap: 0;
-  align-items: center;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #f5f5f5;
-}
-.mobile-search-bar-inner input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 12px;
-  font-size: 14px;
-  font-family: 'Nunito', sans-serif;
-  color: #333;
-}
-.mobile-search-bar-inner input::placeholder { color: #aaa; }
-.mobile-search-bar-btn {
-  background: rgb(0,165,134);
-  border: none;
-  padding: 10px 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-.mobile-search-icon-btn { display: none; }
-
-@media (max-width: 768px) {
-  .mobile-search-bar { display: block; }
-  .mobile-search-icon-btn { display: flex; }
-}
-
-
-/* ==========================================================================
-   RECOMMENDED SECTION — redesigned
+   RECOMMENDED SECTION
    ========================================================================== */
 .rec-section { padding: 60px 240px 80px; background: #fafafa; border-top: 1px solid #efefef; }
 .rec-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
@@ -582,467 +167,163 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .rec-view-all { font-size: 13px; font-weight: 700; color: #333; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; margin-bottom: 6px; }
 .rec-view-all:hover { color: #000; }
 .rec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.rec-card { background: #fff; cursor: pointer; border: 1px solid #efefef; transition: box-shadow 0.2s, transform 0.2s; }
-.rec-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-3px); }
-.rec-thumb { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 50px; }
-.rec-info { padding: 10px 10px 12px; }
+.rec-card { background: #fff; cursor: pointer; border: 1px solid #efefef; transition: box-shadow 0.3s, transform 0.3s; }
+.rec-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.06); transform: translateY(-5px); }
+.rec-card:hover .rec-name { color: rgb(0,165,134); }
+.rec-thumb { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 50px; transition: transform 0.3s; }
+.rec-card:hover .rec-thumb { transform: scale(1.03); }
+.rec-info { padding: 10px 10px 12px; position: relative; z-index: 2; background: #fff; }
 .rec-series { font-size: 10px; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
-.rec-name { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 10px; line-height: 1.4; }
+.rec-name { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 10px; line-height: 1.4; transition: color 0.2s; }
 .rec-foot { display: flex; justify-content: space-between; align-items: center; }
 .rec-price { font-size: 13px; font-weight: 900; color: #111; }
 
 /* ==========================================================================
-   FOOTER — redesigned
+   FOOTER
    ========================================================================== */
+.footer-top-bar { background: #fff; border-top: 1px solid #e8e8e8; padding: 20px 40px; position: relative; text-align: center; }
+.back-to-top-btn { display: inline-block; font-size: 12px; color: #555; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+.back-to-top-btn:hover { color: rgb(0,165,134); }
+
+.main-black-footer { background: #000; color: #888; padding: 64px 60px 40px; display: grid; grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr; gap: 48px; }
+.main-black-footer h4 { font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px; }
+.main-black-footer p { font-size: 13px; line-height: 1.6; color: #888; margin-bottom: 14px; }
+.main-black-footer a { display: block; font-size: 13px; color: #888; text-decoration: none; margin-bottom: 10px; transition: color 0.2s, transform 0.2s; }
+.main-black-footer a:hover { color: #fff; transform: translateX(3px); }
+
+.ft-input-container { display: flex; background: #fff; border-radius: 2px; padding: 2px; margin-bottom: 32px; align-items: center; border: 1px solid #333; transition: box-shadow 0.2s; }
+.ft-input-container:focus-within { box-shadow: 0 0 0 2px rgb(0,165,134); }
+.ft-input-container input { flex: 1; border: none; outline: none; padding: 10px 14px; font-family: 'Nunito', sans-serif; font-size: 13px; }
+.ft-signup-btn { background: transparent; color: #000; border: none; font-size: 13px; font-weight: 700; padding: 0 14px; cursor: pointer; text-decoration: underline; transition: color 0.2s; }
+.ft-signup-btn:hover { color: rgb(0,165,134); }
+
 .ft-brand-col { display: flex; flex-direction: column; gap: 24px; }
 .ft-brand-desc { font-size: 13px; color: #777; line-height: 1.7; max-width: 280px; }
 .ft-newsletter-label { font-size: 11px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
 .ft-social-row { display: flex; gap: 16px; align-items: center; margin-top: 4px; }
-.ft-social-row a { color: #888; transition: color 0.15s; }
-.ft-social-row a:hover { color: #fff; }
+.ft-social-row a { color: #888; transition: color 0.3s, transform 0.3s; }
+.ft-social-row a:hover { color: #fff; transform: translateY(-3px); }
+
 .ft-payment-icons { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .ft-payment-icons span { font-size: 10px; font-weight: 800; color: #555; border: 1px solid #333; padding: 3px 8px; letter-spacing: 0.5px; }
 .footer-payments-bar { background: #000; border-top: 1px solid #1a1a1a; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 .footer-payments-bar p { font-size: 11px; color: #555; }
 
-@media (max-width: 768px) {
-  .rec-section { padding: 40px 24px 48px; }
-  .rec-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .rec-head-left h2 { font-size: 22px; }
-  .ft-brand-col { gap: 16px; }
-  .ft-brand-desc { max-width: 100%; }
-  .footer-payments-bar { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .arrival-slider-container { padding: 0 80px; }
+  .arrival-card { width: calc((100% - 48px) / 3); }
 }
 
-
-/* =====================================================
-   MOBILE FOOTER — Lovepop-inspired stacked layout
-   ===================================================== */
-@media (max-width: 768px) {
-  .main-black-footer {
-    display: flex !important;
-    flex-direction: column;
-    padding: 32px 20px 24px;
-    gap: 0;
-  }
-  .ft-brand-col { gap: 20px; }
-  .ft-brand-desc { display: none; }
-  .ft-newsletter { order: -1; }
-  .ft-newsletter-label {
-    font-size: 16px !important;
-    font-weight: 900 !important;
-    color: #fff !important;
-    letter-spacing: 0 !important;
-    margin-bottom: 6px !important;
-    text-transform: none !important;
-  }
-  .ft-newsletter::before {
-    content: "Keep me up to date on news and exclusive offers!";
-    display: block;
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 14px;
-    line-height: 1.5;
-  }
-  .ft-input-container {
-    display: flex;
-    flex-direction: row;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1.5px solid #555;
-    background: #2a2a2a;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .ft-input-container input {
-    flex: 1;
-    background: transparent;
-    color: #eee;
-    padding: 12px 14px;
-    font-size: 14px;
-    border: none;
-    outline: none;
-  }
-  .ft-input-container input::placeholder { color: #888; }
-  .ft-signup-btn {
-    background: rgb(0,165,134);
-    color: #fff;
-    border: none;
-    padding: 12px 18px;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 0;
-  }
-  .ft-social-row {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-    margin-bottom: 4px;
-  }
-  .ft-social-row-label {
-    display: block;
-    font-size: 15px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-  .ft-social-row a {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background: #2a2a2a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    transition: background 0.15s;
-  }
-  .ft-social-row a:hover { background: #333; }
-  .main-black-footer > div {
-    border-top: 1px solid #222;
-    padding: 20px 0;
-  }
-  .main-black-footer > div:first-child { border-top: none; }
-  .main-black-footer h4 {
-    font-size: 15px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 14px;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-  .main-black-footer a {
-    font-size: 14px;
-    color: #bbb;
-    margin-bottom: 12px;
-    display: block;
-  }
-  .ft-social-panel { display: none; }
+@media (max-width: 1024px) {
+  .section { padding: 48px 80px; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .rec-section { padding: 60px 80px; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr); }
+  .main-black-footer { grid-template-columns: 1fr; gap: 32px; }
+  .arrival-slider-container { padding: 0 45px; }
 }
 
-
-/* ================================================================
-   MOBILE COMPLETE REDESIGN — Pop Mart inspired
-   ================================================================ */
-
-/* --- Bottom Nav Bar --- */
-.mobile-bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 58px;
-  background: #fff;
-  border-top: 1px solid #e8e8e8;
-  z-index: 500;
-  display: none;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-}
-.mob-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  text-decoration: none;
-  color: #888;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  padding: 6px 0;
-}
-.mob-nav-item.active { color: #111; }
-.mob-nav-item svg { stroke: currentColor; }
-
-/* --- Mobile Search Row --- */
-.mob-search-row {
-  display: none;
-  padding: 8px 14px;
-  background: #fff;
-  border-bottom: 1px solid #f0f0f0;
-  position: sticky;
-  top: 56px;
-  z-index: 195;
-}
-.mob-search-inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f2f2f2;
-  border-radius: 999px;
-  padding: 9px 14px;
-}
-.mob-search-inner input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px;
-  font-family: 'Nunito', sans-serif;
-  color: #333;
-}
-.mob-search-inner input::placeholder { color: #aaa; }
-
-/* --- New Drawer --- */
-.mob-drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-}
-.mob-drawer-login {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #333;
-  cursor: pointer;
-}
-.mob-drawer-close {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
-  padding: 4px;
-}
-.mob-drawer-body {
-  display: flex;
-  height: calc(100% - 52px);
-  overflow: hidden;
-}
-.mob-drawer-sidebar {
-  width: 110px;
-  flex-shrink: 0;
-  background: #f7f7f7;
-  overflow-y: auto;
-  padding: 8px 0;
-}
-.mob-sidebar-item {
-  display: block;
-  padding: 14px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #333;
-  text-decoration: none;
-  border-left: 3px solid transparent;
-}
-.mob-sidebar-item.active {
-  background: #fff;
-  color: #111;
-  border-left-color: rgb(0,165,134);
-}
-.mob-drawer-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 14px;
-  overflow-y: auto;
-  align-content: start;
-}
-.mob-drawer-cat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #222;
-}
-.mob-cat-thumb {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-}
-.mob-drawer-cat span {
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-}
-
-/* --- Footer Accordion --- */
-.ft-accordion-section {
-  display: none;
-}
-.ft-accordion-head {
-  display: none;
-}
-
-/* ================================================================
-   MOBILE MEDIA QUERY
-   ================================================================ */
 @media (max-width: 768px) {
   /* Body padding for bottom nav */
   body { padding-bottom: 58px; }
 
   /* Header — slim, logo center, search+menu right */
-  header {
-    height: 56px;
-    padding: 0 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-  }
+  header { height: 56px !important; padding: 0 14px !important; display: flex !important; align-items: center; justify-content: space-between; position: sticky; top: 0; }
   .header-left { display: none !important; }
-  .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .brand-logo svg { height: 32px; }
-  .header-right { gap: 4px; }
-  .header-right .icon-btn { width: 34px; height: 34px; }
-  /* Hide search icon from header right on mobile */
-  .mobile-search-icon-btn { display: none !important; }
+  .brand-logo { position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; }
+  .brand-logo svg { height: 32px !important; }
+  .header-right .mobile-search-icon-btn { display: none !important; }
   nav { display: none !important; }
 
-  /* Show search bar and bottom nav */
-  .mob-search-row { display: block; }
-  .mobile-bottom-nav { display: grid; }
-
-  /* Hide old mobile search bar */
-  .mobile-search-bar { display: none !important; }
+  /* Pill Search Bar */
+  .mob-search-row { display: block; padding: 8px 14px; background: #fff; border-bottom: 1px solid #f0f0f0; position: sticky; top: 56px; z-index: 195; }
+  .mob-search-inner { display: flex; align-items: center; gap: 8px; background: #f2f2f2; border-radius: 999px; padding: 9px 14px; }
+  .mob-search-inner input { flex: 1; border: none; outline: none; background: transparent; font-size: 14px; font-family: 'Nunito', sans-serif; color: #333; }
+  .mob-search-inner input::placeholder { color: #aaa; }
 
   /* Hero */
-  .slide { height: 56vw; min-height: 280px; max-height: 420px; }
-  .slide-content { padding: 0 16px 32px; }
-  .collab-title { font-size: clamp(13px, 4vw, 18px); white-space: normal; margin-bottom: 10px; }
-  .shop-btn { padding: 8px 24px; font-size: 12px; }
-  .slider-arrow { display: none; }
+  .slide { height: 70vw !important; min-height: 300px !important; max-height: 500px !important; }
+  .slide-content { padding: 0 16px 32px !important; }
+  .collab-title { font-size: clamp(13px, 4vw, 18px) !important; white-space: normal !important; margin-bottom: 10px; }
+  .shop-btn { padding: 8px 24px !important; font-size: 11px !important; }
+  .slider-arrow { display: none !important; }
 
   /* New Arrivals */
   .arrival-section-wrapper { padding: 28px 0; }
-  .arrival-section-head { padding: 0 16px; margin-bottom: 18px; }
-  .arrival-section-head h2 { font-size: 20px; }
-  .arrival-section-head p { font-size: 12px; }
-  .arrival-slider-container { padding: 0 44px; }
-  .arrival-arrow { width: 34px; height: 34px; }
-  .arrival-arrow.prev-arr { left: 4px; }
-  .arrival-arrow.next-arr { right: 4px; }
-  .arrival-track { gap: 10px; }
-  .arrival-card { width: calc((100% - 10px) / 2); }
-  .arrival-thumb { font-size: 0; background-size: cover; }
+  .arrival-section-head { padding: 0 16px; margin-bottom: 16px; }
+  .arrival-section-head h2 { font-size: 24px; }
+  .arrival-slider-container { padding: 0 16px; overflow: hidden; }
+  .arrival-arrow { display: none !important; }
+  .arrival-track { gap: 12px; }
+  .arrival-card { width: 44vw; max-width: 180px; }
+  .arrival-thumb { font-size: 0; background-size: cover; border-radius: 6px; }
   .arrival-info { padding: 10px 0 4px; gap: 4px; }
-  .arrival-name { font-size: 12px; margin-bottom: 2px; -webkit-line-clamp: 2; }
-  .arrival-price { font-size: 13px; }
-  .arrival-link { font-size: 11px; }
+  .arrival-name { font-size: 13px; }
 
-  /* Shop All / Products */
-  .section { padding: 24px 12px; }
-  .shop-all-section-head { margin-bottom: 20px; }
-  .shop-all-section-head h2 { font-size: 20px; }
-  .products { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .prod-thumb { font-size: 40px; }
-  .prod-info { padding: 8px; }
-  .prod-series { font-size: 9px; margin-bottom: 2px; }
-  .prod-name { font-size: 11px; margin-bottom: 8px; }
-  .prod-price { font-size: 13px; }
-  .prod-cart { width: 26px; height: 26px; font-size: 13px; }
-  .view-more-btn { width: 100%; font-size: 13px; padding: 12px; }
+  /* Products */
+  .section { padding: 32px 16px; }
+  .shop-all-section-head h2 { font-size: 24px; }
+  .products { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .prod-thumb { font-size: 40px !important; }
+  .prod-info { padding: 10px !important; }
+  .prod-name { font-size: 12px !important; margin-bottom: 8px !important; }
+  .view-more-btn { width: 100%; padding: 14px; }
 
   /* Recommended */
-  .rec-section { padding: 24px 12px 32px; }
-  .rec-head-left h2 { font-size: 20px; }
-  .rec-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .rec-thumb { font-size: 44px; }
-  .rec-info { padding: 8px; }
-  .rec-name { font-size: 11px; margin-bottom: 8px; }
-  .rec-price { font-size: 13px; }
+  .rec-section { padding: 32px 16px 40px; }
+  .rec-head-left h2 { font-size: 24px; }
+  .rec-view-all { display: none; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
 
   /* Footer */
   .footer-top-bar { padding: 12px 16px; }
-  .main-black-footer {
-    display: flex !important;
-    flex-direction: column;
-    padding: 28px 16px 8px;
-    gap: 0;
-  }
-  .ft-brand-col { padding-bottom: 24px; }
+  .main-black-footer { display: flex !important; flex-direction: column; padding: 28px 16px 8px; gap: 0; }
   .ft-brand-desc { display: none; }
-  .ft-newsletter-label { font-size: 20px !important; font-weight: 900 !important; color: #fff !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: 6px !important; }
-  .ft-newsletter::before {
-    content: "Be the first to know about new releases and exclusive offers.";
-    display: block; font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5;
-  }
-  .ft-input-container {
-    display: flex; flex-direction: row;
-    background: transparent; border: 1.5px solid #444;
-    border-radius: 4px; padding: 0; gap: 0;
-  }
-  .ft-input-container input {
-    flex: 1; background: transparent; color: #eee;
-    padding: 12px 14px; font-size: 14px; border: none; outline: none;
-  }
-  .ft-input-container input::placeholder { color: #666; }
-  .ft-signup-btn {
-    background: rgb(0,165,134); color: #fff; border: none;
-    padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
-  }
+  .ft-newsletter-label { font-size: 18px !important; font-weight: 900 !important; color: #fff !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: 6px !important; }
+  .ft-newsletter::before { content: "Be the first to know about new releases and exclusive offers."; display: block; font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5; }
+  .ft-input-container { display: flex !important; flex-direction: row !important; background: transparent; border: 1.5px solid #444; border-radius: 4px; padding: 0 !important; gap: 0 !important; }
+  .ft-input-container input { flex: 1; background: transparent; color: #eee; padding: 12px 14px; font-size: 14px; border: none; outline: none; }
+  .ft-signup-btn { background: rgb(0,165,134) !important; color: #fff !important; padding: 12px 18px; font-size: 14px; cursor: pointer; text-decoration: none; }
   .ft-social-row-label { display: block; font-size: 15px; font-weight: 900; color: #fff; margin: 20px 0 10px; }
-  .ft-social-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 0; }
-  .ft-social-row a {
-    width: 46px; height: 46px; border-radius: 10px;
-    background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: #fff;
-  }
+  .ft-social-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .ft-social-row a { width: 46px; height: 46px; border-radius: 10px; background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: #fff; }
+  
+  .main-black-footer > div:not(.ft-brand-col) { border-top: 1px solid #222; padding: 0; }
+  .main-black-footer > div:not(.ft-brand-col) h4 { display: none; }
+  .ft-accordion-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; font-size: 15px; font-weight: 700; color: #fff; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'Nunito', sans-serif; }
+  .ft-acc-icon { font-size: 20px; color: #888; font-weight: 400; transition: transform 0.3s; }
+  .ft-accordion-head.active .ft-acc-icon { transform: rotate(45deg); color: rgb(0,165,134); }
+  .ft-accordion-section { display: none; padding-bottom: 12px; }
+  .ft-accordion-section a { display: block; font-size: 14px; color: #aaa; padding: 6px 0; text-decoration: none; }
 
-  /* Accordion sections in footer */
-  .main-black-footer > div:not(.ft-brand-col) {
-    border-top: 1px solid #222;
-    padding: 0;
-  }
-  .main-black-footer > div:not(.ft-brand-col) h4 {
-    display: none;
-  }
-  .ft-accordion-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 0;
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    cursor: pointer;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    font-family: 'Nunito', sans-serif;
-  }
-  .ft-acc-icon { font-size: 20px; color: #888; font-weight: 400; }
-  .ft-accordion-section {
-    display: none;
-    padding-bottom: 12px;
-  }
-  .ft-accordion-section a {
-    display: block;
-    font-size: 14px;
-    color: #aaa;
-    padding: 6px 0;
-    text-decoration: none;
-  }
-  .footer-payments-bar {
-    flex-direction: column;
-    padding: 16px;
-    gap: 10px;
-    text-align: center;
-  }
-  .ft-payment-icons { justify-content: center; }
+  .footer-payments-bar { flex-direction: column; padding: 16px; gap: 10px; text-align: center; }
+
+  /* Mobile Drawer */
+  .mobile-menu-drawer { position: fixed; top: 0; left: 0; width: 85%; max-width: 360px; height: 100%; background: #fff; z-index: 1000; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; overflow: hidden; }
+  .mobile-menu-drawer.open { transform: translateX(0); }
+  .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 999; opacity: 0; transition: opacity 0.3s; }
+  .mobile-menu-overlay.open { display: block; opacity: 1; }
+  .mob-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #eee; }
+  .mob-drawer-login { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #333; cursor: pointer; }
+  .mob-drawer-close { background: none; border: none; font-size: 18px; color: #666; cursor: pointer; }
+  .mob-drawer-body { display: flex; height: calc(100% - 52px); overflow: hidden; }
+  .mob-drawer-sidebar { width: 110px; flex-shrink: 0; background: #f7f7f7; overflow-y: auto; padding: 8px 0; }
+  .mob-sidebar-item { display: block; padding: 14px 16px; font-size: 13px; font-weight: 700; color: #333; text-decoration: none; border-left: 3px solid transparent; }
+  .mob-sidebar-item.active { background: #fff; color: #111; border-left-color: rgb(0,165,134); }
+  .mob-drawer-grid { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 14px; overflow-y: auto; align-content: start; }
+  .mob-drawer-cat { display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: #222; transition: transform 0.2s; }
+  .mob-drawer-cat:active { transform: scale(0.95); }
+  .mob-cat-thumb { width: 100%; aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .mob-drawer-cat span { font-size: 12px; font-weight: 700; text-align: center; }
+
+  /* Bottom Nav */
+  .mobile-bottom-nav { display: grid !important; grid-template-columns: repeat(4, 1fr); position: fixed; bottom: 0; left: 0; right: 0; height: 58px; background: #fff; border-top: 1px solid #e8e8e8; z-index: 500; align-items: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+  .mob-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #888; font-size: 10px; font-weight: 700; font-family: 'Nunito', sans-serif; transition: color 0.2s; }
+  .mob-nav-item.active { color: rgb(0,165,134); }
 }
-
-
-/* ================================================================
-   MOBILE ENHANCEMENTS — Pop Mart inspired (desktop untouched)
-   ================================================================ */
 
 /* Hidden by default on desktop */
 .mob-search-row { display: none; }
@@ -1050,237 +331,18 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 .ft-accordion-head { display: none; }
 .ft-accordion-section { display: block; } /* visible on desktop */
 
-/* Drawer base — hidden off-screen, only shows on mobile */
-@media (max-width: 768px) {
-
-  /* Body padding for bottom nav */
-  body { padding-bottom: 58px; }
-
-  /* ---- Header ---- */
-  header {
-    height: 56px !important;
-    padding: 0 14px !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header-left { display: none !important; }
-  .brand-logo {
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-  .brand-logo svg { height: 32px !important; }
-  .header-right .mobile-search-icon-btn { display: none !important; }
-  nav { display: none !important; }
-
-  /* ---- Pill Search Bar ---- */
-  .mob-search-row {
-    display: block;
-    padding: 8px 14px;
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
-    position: sticky;
-    top: 56px;
-    z-index: 195;
-  }
-  .mob-search-inner {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f2f2f2;
-    border-radius: 999px;
-    padding: 9px 14px;
-  }
-  .mob-search-inner input {
-    flex: 1; border: none; outline: none;
-    background: transparent;
-    font-size: 14px; font-family: 'Nunito', sans-serif; color: #333;
-  }
-  .mob-search-inner input::placeholder { color: #aaa; }
-
-  /* ---- Drawer ---- */
-  .mobile-menu-drawer {
-    position: fixed;
-    top: 0; left: 0;
-    width: 85%; max-width: 360px; height: 100%;
-    background: #fff;
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    display: flex; flex-direction: column; overflow: hidden;
-  }
-  .mobile-menu-drawer.open { transform: translateX(0); }
-  .mobile-menu-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.45); z-index: 999;
-  }
-  .mobile-menu-overlay.open { display: block; }
-  .mob-drawer-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 16px; border-bottom: 1px solid #eee;
-  }
-  .mob-drawer-login {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 14px; font-weight: 700; color: #333; cursor: pointer;
-  }
-  .mob-drawer-close {
-    background: none; border: none; font-size: 18px; color: #666; cursor: pointer;
-  }
-  .mob-drawer-body {
-    display: flex; height: calc(100% - 52px); overflow: hidden;
-  }
-  .mob-drawer-sidebar {
-    width: 110px; flex-shrink: 0;
-    background: #f7f7f7; overflow-y: auto; padding: 8px 0;
-  }
-  .mob-sidebar-item {
-    display: block; padding: 14px 16px;
-    font-size: 13px; font-weight: 700; color: #333;
-    text-decoration: none; border-left: 3px solid transparent;
-  }
-  .mob-sidebar-item.active { background: #fff; color: #111; border-left-color: rgb(0,165,134); }
-  .mob-drawer-grid {
-    flex: 1; display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 12px; padding: 14px; overflow-y: auto; align-content: start;
-  }
-  .mob-drawer-cat {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 8px; text-decoration: none; color: #222;
-  }
-  .mob-cat-thumb {
-    width: 100%; aspect-ratio: 1; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; font-size: 36px;
-  }
-  .mob-drawer-cat span { font-size: 12px; font-weight: 700; text-align: center; }
-
-  /* ---- Bottom Nav ---- */
-  .mobile-bottom-nav {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr);
-    position: fixed; bottom: 0; left: 0; right: 0;
-    height: 58px; background: #fff;
-    border-top: 1px solid #e8e8e8; z-index: 500;
-    align-items: center;
-  }
-  .mob-nav-item {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 3px; text-decoration: none; color: #888;
-    font-size: 10px; font-weight: 700; font-family: 'Nunito', sans-serif;
-  }
-  .mob-nav-item.active { color: #111; }
-
-  /* ---- Hero ---- */
-  .slide { height: 70vw !important; min-height: 300px !important; max-height: 500px !important; }
-  .slide-content { padding: 0 16px 32px !important; }
-  .collab-title { font-size: clamp(13px, 4vw, 18px) !important; white-space: normal !important; }
-  .shop-btn { padding: 8px 24px !important; font-size: 11px !important; }
-  .slider-arrow { display: none !important; }
-
-  /* ---- New Arrivals — swipe, no arrows ---- */
-  .arrival-section-wrapper { padding: 28px 0; }
-  .arrival-section-head { padding: 0 16px; margin-bottom: 16px; }
-  .arrival-section-head h2 { font-size: 20px; }
-  .arrival-slider-container { padding: 0 16px; overflow: hidden; }
-  .arrival-arrow { display: none !important; }
-  .arrival-track-wrapper {
-    overflow-x: auto; overflow-y: hidden;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  }
-  .arrival-track-wrapper::-webkit-scrollbar { display: none; }
-  .arrival-track { gap: 10px; transition: none !important; transform: none !important; width: max-content; }
-  .arrival-card { width: 44vw; max-width: 180px; }
-  .arrival-info { padding: 10px 0 4px; gap: 4px; }
-  .arrival-name { font-size: 12px; }
-  .arrival-price { font-size: 13px; }
-
-  /* ---- Products ---- */
-  .section { padding: 24px 12px; }
-  .shop-all-section-head h2 { font-size: 20px; }
-  .products { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-  .prod-thumb { font-size: 40px !important; }
-  .prod-info { padding: 8px !important; }
-  .prod-name { font-size: 11px !important; margin-bottom: 8px !important; }
-  .prod-price { font-size: 13px !important; }
-  .prod-cart { width: 26px !important; height: 26px !important; font-size: 13px !important; }
-  .view-more-btn { width: 100%; }
-
-  /* ---- Recommended ---- */
-  .rec-section { padding: 24px 12px 32px; }
-  .rec-head-left h2 { font-size: 20px; }
-  .rec-view-all { display: none; }
-  .rec-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-  .rec-thumb { font-size: 44px !important; }
-  .rec-info { padding: 8px !important; }
-  .rec-name { font-size: 11px !important; }
-  .rec-price { font-size: 13px !important; }
-
-  /* ---- Footer ---- */
-  .footer-top-bar { padding: 12px 16px; }
-  .main-black-footer {
-    display: flex !important; flex-direction: column;
-    padding: 28px 16px 8px; gap: 0;
-  }
-  .ft-brand-desc { display: none; }
-  .ft-newsletter-label { font-size: 18px !important; font-weight: 900 !important; color: #fff !important; text-transform: none !important; letter-spacing: 0 !important; margin-bottom: 6px !important; }
-  .ft-newsletter::before {
-    content: "Be the first to know about new releases and exclusive offers.";
-    display: block; font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5;
-  }
-  .ft-input-container {
-    display: flex !important; flex-direction: row !important;
-    background: transparent; border: 1.5px solid #444;
-    border-radius: 4px; padding: 0 !important; gap: 0 !important;
-  }
-  .ft-input-container input {
-    flex: 1; background: transparent; color: #eee;
-    padding: 12px 14px; font-size: 14px; border: none; outline: none;
-  }
-  .ft-input-container input::placeholder { color: #666; }
-  .ft-signup-btn {
-    background: rgb(0,165,134) !important; color: #fff !important;
-    border: none; padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
-  }
-  .ft-social-row-label { display: block; font-size: 15px; font-weight: 900; color: #fff; margin: 20px 0 10px; }
-  .ft-social-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .ft-social-row a {
-    width: 46px; height: 46px; border-radius: 10px;
-    background: #2a2a2a; display: flex; align-items: center; justify-content: center; color: #fff;
-  }
-  .main-black-footer > div:not(.ft-brand-col) { border-top: 1px solid #222; padding: 0; }
-  .main-black-footer > div:not(.ft-brand-col) h4 { display: none; }
-
-  /* Accordion */
-  .ft-accordion-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 0; font-size: 15px; font-weight: 700; color: #fff;
-    cursor: pointer; background: none; border: none; width: 100%;
-    text-align: left; font-family: 'Nunito', sans-serif;
-  }
-  .ft-acc-icon { font-size: 20px; color: #888; font-weight: 400; }
-  .ft-accordion-section { display: none; padding-bottom: 12px; }
-  .ft-accordion-section a { display: block; font-size: 14px; color: #aaa; padding: 6px 0; text-decoration: none; }
-
-  .footer-payments-bar { flex-direction: column; padding: 16px; gap: 10px; text-align: center; }
-  .ft-payment-icons { justify-content: center; }
-}
-
-@media (max-width: 480px) {
-  .arrival-card { width: 42vw; max-width: 160px; }
-  .slide { min-height: 280px !important; }
-}
-
 </style>
 </head>
 <body>
 
 <header>
-  <button class="mobile-burger-btn">☰</button>
+  <button class="mobile-burger-btn" id="mobileBurgerBtn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
   <div class="header-left">
     <div class="search-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search flowers, arrangements..."></div>
   </div>
-  <div class="brand-logo">
+  <div class="brand-logo" onclick="window.scrollTo(0,0)">
     <svg viewBox="0 0 2366 805" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
       <g transform="matrix(1,0,0,1,-50.004456,-1313.716387)">
         <g transform="matrix(1,0,0,1,-58,1)">
@@ -1301,16 +363,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 </header>
 
-<!-- Mobile Search Bar -->
-<div class="mob-search-row" id="mobileSearchBar">
-  <div class="mob-search-inner">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" placeholder="Search cards, occasions...">
-  </div>
-</div>
-</div>
-
-<!-- Mobile Pill Search Bar -->
 <div class="mob-search-row" id="mobileSearchBar">
   <div class="mob-search-inner">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1326,8 +378,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   <div class="nav-item offers">OFFERS 🎁 <span class="arrow">▾</span><div class="dropdown"><a href="#">Bundle Deals</a><a href="#">Seasonal Sale</a><a href="#">First Order Promo</a></div></div>
 </nav>
 
-<!-- Mobile Menu Drawer -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<!-- <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <div class="mobile-menu-drawer" id="mobileMenuDrawer">
   <div class="mob-drawer-header">
     <div class="mob-drawer-login">
@@ -1356,19 +407,16 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
       <a href="#" class="mob-drawer-cat"><div class="mob-cat-thumb" style="background:#fff8e1;">✨</div><span>New Year</span></a>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="hero-slider">
-  <!-- Slides are injected dynamically from carousel.json -->
   <div class="slides" id="slides"></div>
   <button class="slider-arrow prev" onclick="changeSlide(-1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
   <button class="slider-arrow next" onclick="changeSlide(1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-  <div class="slider-dots" id="dots">
-    <!-- Dots are injected dynamically from carousel.json -->
-  </div>
+  <div class="slider-dots" id="dots"></div>
 </div>
 
-<div class="arrival-section-wrapper">
+<div class="arrival-section-wrapper animate-on-scroll">
   <div class="arrival-section-head">
     <h2>New Arrival</h2>
     <p>Earn points on every purchase. Redeem for exclusive rewards!</p>
@@ -1376,10 +424,10 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   
   <div class="arrival-slider-container">
     <button class="arrival-arrow prev-arr" onclick="scrollArrivals(-1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <div class="arrival-track-wrapper">
+    <div class="arrival-track-wrapper" id="arrivalTrackWrapper">
       <div class="arrival-track" id="arrivalTrack">
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-1">
           <div class="arrival-thumb" style="background:#fce4ec;"></div>
           <div class="arrival-info">
             <div class="arrival-name">Bloom Birthday — 3D Floral Burst Pop-Up Card</div>
@@ -1388,7 +436,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
           </div>
         </div>
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-2">
           <div class="arrival-thumb" style="background:#e8f5e9;"></div>
           <div class="arrival-info">
             <div class="arrival-name">Forever & Always — Luxury Anniversary Arch Pop Card</div>
@@ -1397,7 +445,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
           </div>
         </div>
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-3">
           <div class="arrival-thumb" style="background:#fff8e1;"></div>
           <div class="arrival-info">
             <div class="arrival-name">Secret Admirer — Valentine Heart Cascade 3D Card</div>
@@ -1406,7 +454,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
           </div>
         </div>
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-4">
           <div class="arrival-thumb" style="background:#e3f2fd;"></div>
           <div class="arrival-info">
             <div class="arrival-name">Proud Moment — Graduation Milestone 3D Keepsake Card</div>
@@ -1415,7 +463,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
           </div>
         </div>
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-1">
           <div class="arrival-thumb" style="background:#f3e5f5;"></div>
           <div class="arrival-info">
             <div class="arrival-name">Cherry Blossom — Spring Wedding Popup Card Deluxe</div>
@@ -1424,7 +472,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
           </div>
         </div>
 
-        <div class="arrival-card">
+        <div class="arrival-card animate-on-scroll delay-2">
           <div class="arrival-thumb" style="background:#fbe9e7;"></div>
           <div class="arrival-info">
             <div class="arrival-name">With Gratitude — Thank You Layered 3D Pop-Up Card</div>
@@ -1440,47 +488,37 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
 </div>
 
 <section class="section" style="padding-top:0; padding-bottom:40px;">
-  <div class="shop-all-section-head">
+  <div class="shop-all-section-head animate-on-scroll">
     <h2>Shop All</h2>
   </div>
   <div class="products" id="productsGrid">
-    <!-- Row 1 -->
-    <div class="prod-card"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Birthday Collection</div><div class="prod-name">Confetti Burst 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span></div><div class="prod-info"><div class="prod-series">Anniversary Series</div><div class="prod-name">Golden Arch Love Pop Card</div><div class="prod-foot"><span class="prod-price">₹699</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t3"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Wedding Collection</div><div class="prod-name">Forever Together 3D Keepsake</div><div class="prod-foot"><span class="prod-price">₹899</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span></div><div class="prod-info"><div class="prod-series">Love & Romance</div><div class="prod-name">Heart Cascade Valentine Card</div><div class="prod-foot"><span class="prod-price">₹599</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
-    <!-- Row 2 -->
-    <div class="prod-card"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">LIMITED</span></div><div class="prod-info"><div class="prod-series">Luxury Series</div><div class="prod-name">Blossom Garden Premium Card</div><div class="prod-foot"><span class="prod-price">₹1299</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Milestone Cards</div><div class="prod-name">Graduation Tower Pop Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Thank You Series</div><div class="prod-name">Gratitude Garden Pop Card</div><div class="prod-foot"><span class="prod-price">₹349</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Seasonal Specials</div><div class="prod-name">Christmas Tree 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹549</span><button class="prod-cart">+</button></div></div></div>
-    <!-- Row 3 -->
-    <div class="prod-card"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Mother's Day</div><div class="prod-name">Tulip Bouquet Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">New Year</div><div class="prod-name">Fireworks Celebration Pop Card</div><div class="prod-foot"><span class="prod-price">₹399</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Handcrafted Series</div><div class="prod-name">Butterfly Garden Luxury Card</div><div class="prod-foot"><span class="prod-price">₹799</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">New Home</div><div class="prod-name">Housewarming Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
-    <!-- Row 4 -->
-    <div class="prod-card"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Baby Collection</div><div class="prod-name">Baby Shower Stroller Pop Card</div><div class="prod-foot"><span class="prod-price">₹549</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Gift Bundles</div><div class="prod-name">Triple Card Gift Set — Deluxe</div><div class="prod-foot"><span class="prod-price">₹1499</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Mini Pop Cards</div><div class="prod-name">Sparkle Mini 3D Card Set of 3</div><div class="prod-foot"><span class="prod-price">₹299</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Romance Series</div><div class="prod-name">Eternal Rose 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹649</span><button class="prod-cart">+</button></div></div></div>
-    <!-- Hidden — shown on View More -->
+    <div class="prod-card animate-on-scroll delay-1"><div class="prod-thumb t1"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Birthday Collection</div><div class="prod-name">Confetti Burst 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-2"><div class="prod-thumb t2"><span class="prod-badge badge-hot">HOT</span></div><div class="prod-info"><div class="prod-series">Anniversary Series</div><div class="prod-name">Golden Arch Love Pop Card</div><div class="prod-foot"><span class="prod-price">₹699</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-3"><div class="prod-thumb t3"><span class="prod-badge badge-new">NEW</span></div><div class="prod-info"><div class="prod-series">Wedding Collection</div><div class="prod-name">Forever Together 3D Keepsake</div><div class="prod-foot"><span class="prod-price">₹899</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-4"><div class="prod-thumb t4"><span class="prod-badge badge-sold">SOLD OUT</span></div><div class="prod-info"><div class="prod-series">Love & Romance</div><div class="prod-name">Heart Cascade Valentine Card</div><div class="prod-foot"><span class="prod-price">₹599</span><button class="prod-cart" disabled style="background:#bbb">·</button></div></div></div>
+    
+    <div class="prod-card animate-on-scroll delay-1"><div class="prod-thumb t5"><span class="prod-badge badge-ltd">LIMITED</span></div><div class="prod-info"><div class="prod-series">Luxury Series</div><div class="prod-name">Blossom Garden Premium Card</div><div class="prod-foot"><span class="prod-price">₹1299</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-2"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Milestone Cards</div><div class="prod-name">Graduation Tower Pop Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-3"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Thank You Series</div><div class="prod-name">Gratitude Garden Pop Card</div><div class="prod-foot"><span class="prod-price">₹349</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-4"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Seasonal Specials</div><div class="prod-name">Christmas Tree 3D Pop Card</div><div class="prod-foot"><span class="prod-price">₹549</span><button class="prod-cart">+</button></div></div></div>
+
+    <div class="prod-card animate-on-scroll delay-1"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Mother's Day</div><div class="prod-name">Tulip Bouquet Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-2"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">New Year</div><div class="prod-name">Fireworks Celebration Pop Card</div><div class="prod-foot"><span class="prod-price">₹399</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-3"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Handcrafted Series</div><div class="prod-name">Butterfly Garden Luxury Card</div><div class="prod-foot"><span class="prod-price">₹799</span><button class="prod-cart">+</button></div></div></div>
+    <div class="prod-card animate-on-scroll delay-4"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">New Home</div><div class="prod-name">Housewarming Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
+
     <div class="prod-card hidden-product"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Celebration</div><div class="prod-name">Party Burst Confetti Pop Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card hidden-product"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Sympathy</div><div class="prod-name">Peaceful Dove Condolence Card</div><div class="prod-foot"><span class="prod-price">₹349</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card hidden-product"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Friendship</div><div class="prod-name">Sunflower Field Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹399</span><button class="prod-cart">+</button></div></div></div>
     <div class="prod-card hidden-product"><div class="prod-thumb t5"></div><div class="prod-info"><div class="prod-series">Exotic Collection</div><div class="prod-name">Peacock Fan Luxury Pop Card</div><div class="prod-foot"><span class="prod-price">₹999</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t1"></div><div class="prod-info"><div class="prod-series">Festive</div><div class="prod-name">Diwali Sparkle Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹499</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t2"></div><div class="prod-info"><div class="prod-series">Festive</div><div class="prod-name">Red Envelope New Year Card</div><div class="prod-foot"><span class="prod-price">₹449</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t3"></div><div class="prod-info"><div class="prod-series">Nature Series</div><div class="prod-name">Ocean Wave Serenity Card</div><div class="prod-foot"><span class="prod-price">₹599</span><button class="prod-cart">+</button></div></div></div>
-    <div class="prod-card hidden-product"><div class="prod-thumb t4"></div><div class="prod-info"><div class="prod-series">Spring Collection</div><div class="prod-name">Metamorphosis Pop-Up Card</div><div class="prod-foot"><span class="prod-price">₹699</span><button class="prod-cart">+</button></div></div></div>
   </div>
   
-  <div class="view-more-container">
+  <div class="view-more-container animate-on-scroll">
     <button class="view-more-btn" id="viewMoreBtn">View More</button>
   </div>
 </section>
 
-<section class="rec-section">
+<section class="rec-section animate-on-scroll">
   <div class="rec-head">
     <div class="rec-head-left">
       <p class="rec-label">PICKED FOR YOU</p>
@@ -1489,37 +527,21 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
     <a href="#" class="rec-view-all">View all &rsaquo;</a>
   </div>
   <div class="rec-grid">
-    <div class="rec-card">
+    <div class="rec-card animate-on-scroll delay-1">
       <div class="rec-thumb" style="background:#fce4ec;"></div>
-      <div class="rec-info">
-        <p class="rec-series">Birthday Collection</p>
-        <p class="rec-name">Confetti Burst 3D Pop-Up Card</p>
-        <div class="rec-foot"><span class="rec-price">₹499</span><button class="prod-cart">+</button></div>
-      </div>
+      <div class="rec-info"><p class="rec-series">Birthday Collection</p><p class="rec-name">Confetti Burst 3D Pop-Up Card</p><div class="rec-foot"><span class="rec-price">₹499</span><button class="prod-cart">+</button></div></div>
     </div>
-    <div class="rec-card">
+    <div class="rec-card animate-on-scroll delay-2">
       <div class="rec-thumb" style="background:#e8f5e9;"></div>
-      <div class="rec-info">
-        <p class="rec-series">Anniversary Series</p>
-        <p class="rec-name">Golden Arch Love Pop Card</p>
-        <div class="rec-foot"><span class="rec-price">₹699</span><button class="prod-cart">+</button></div>
-      </div>
+      <div class="rec-info"><p class="rec-series">Anniversary Series</p><p class="rec-name">Golden Arch Love Pop Card</p><div class="rec-foot"><span class="rec-price">₹699</span><button class="prod-cart">+</button></div></div>
     </div>
-    <div class="rec-card">
+    <div class="rec-card animate-on-scroll delay-3">
       <div class="rec-thumb" style="background:#fff8e1;"></div>
-      <div class="rec-info">
-        <p class="rec-series">Love & Romance</p>
-        <p class="rec-name">Heart Cascade Valentine Card</p>
-        <div class="rec-foot"><span class="rec-price">₹599</span><button class="prod-cart">+</button></div>
-      </div>
+      <div class="rec-info"><p class="rec-series">Love & Romance</p><p class="rec-name">Heart Cascade Valentine Card</p><div class="rec-foot"><span class="rec-price">₹599</span><button class="prod-cart">+</button></div></div>
     </div>
-    <div class="rec-card">
+    <div class="rec-card animate-on-scroll delay-4">
       <div class="rec-thumb" style="background:#f3e5f5;"></div>
-      <div class="rec-info">
-        <p class="rec-series">Luxury Series</p>
-        <p class="rec-name">Blossom Garden Premium Card</p>
-        <div class="rec-foot"><span class="rec-price">₹1299</span><button class="prod-cart">+</button></div>
-      </div>
+      <div class="rec-info"><p class="rec-series">Luxury Series</p><p class="rec-name">Blossom Garden Premium Card</p><div class="rec-foot"><span class="rec-price">₹1299</span><button class="prod-cart">+</button></div></div>
     </div>
   </div>
 </section>
@@ -1528,7 +550,7 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   <a href="#" class="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to top</a>
 </div>
 
-<div class="main-black-footer">
+<div class="main-black-footer animate-on-scroll">
   <div class="ft-brand-col">
     <p class="ft-brand-desc">LoveBloom crafts premium 3D pop-up gifting cards that unfold into moments of joy. Every card is designed to be kept, not discarded.</p>
     <div class="ft-newsletter">
@@ -1539,7 +561,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
       </div>
     </div>
     <span class="ft-social-row-label">Follow Us</span>
-    <span class="ft-social-row-label">Follow Us</span>
     <div class="ft-social-row">
       <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
@@ -1549,31 +570,37 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 
   <div>
-    <h4>OCCASIONS</h4><button class="ft-accordion-head">Occasions <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
-    <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a>
-    <a href="#">Love & Romance</a><a href="#">Thank You</a><a href="#">Sympathy</a>
-    <a href="#">Graduation</a><a href="#">New Baby</a><a href="#">New Home</a>
-  </div></div>
+    <h4>OCCASIONS</h4>
+    <button class="ft-accordion-head">Occasions <span class="ft-acc-icon">+</span></button>
+    <div class="ft-accordion-section">
+      <a href="#">Birthday</a><a href="#">Anniversary</a><a href="#">Wedding</a>
+      <a href="#">Love & Romance</a><a href="#">Thank You</a><a href="#">Sympathy</a>
+      <a href="#">Graduation</a><a href="#">New Baby</a><a href="#">New Home</a>
+    </div>
+  </div>
 
   <div>
-    <h4>HELP</h4><button class="ft-accordion-head">Help <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
-    <a href="#">FAQ</a><a href="#">Shipping Info</a><a href="#">Track Your Order</a>
-    <a href="#">Returns & Exchange</a><a href="#">Care Instructions</a>
-    <a href="#">Bulk & Corporate Orders</a><a href="#">Privacy Policy</a>
-    <a href="#">Terms & Conditions</a>
-  </div></div>
+    <h4>HELP</h4>
+    <button class="ft-accordion-head">Help <span class="ft-acc-icon">+</span></button>
+    <div class="ft-accordion-section">
+      <a href="#">FAQ</a><a href="#">Shipping Info</a><a href="#">Track Your Order</a>
+      <a href="#">Returns & Exchange</a><a href="#">Care Instructions</a>
+      <a href="#">Bulk & Corporate Orders</a><a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+  </div>
 
   <div>
-    <h4>COMPANY</h4><button class="ft-accordion-head">Company <span class="ft-acc-icon">+</span></button><div class="ft-accordion-section">
+    <h4>COMPANY</h4>
     <button class="ft-accordion-head">Company <span class="ft-acc-icon">+</span></button>
     <div class="ft-accordion-section">
-    <a href="#">About LoveBloom</a><a href="#">Our Designers</a>
-    <a href="#">Sustainability</a><a href="#">Press & Media</a>
-    <a href="#">Careers</a><a href="#">Contact Us</a>
-    <h4 style="margin-top:28px;">CONTACT</h4>
-    <a href="#">hello@lovebloom.in</a>
-    <a href="#">+91 98765 43210</a>
-    </div></div>
+      <a href="#">About LoveBloom</a><a href="#">Our Designers</a>
+      <a href="#">Sustainability</a><a href="#">Press & Media</a>
+      <a href="#">Careers</a><a href="#">Contact Us</a>
+      <h4 style="margin-top:28px;">CONTACT</h4>
+      <a href="#">hello@lovebloom.in</a>
+      <a href="#">+91 98765 43210</a>
+    </div>
   </div>
 </div>
 
@@ -1584,350 +611,6 @@ nav { background:#fff; border-bottom:2px solid #eee; display:flex; align-items:c
   </div>
 </div>
 
-<script>
-/* ==========================================================================
-   HERO BANNER CAROUSEL — JSON-DRIVEN, INFINITE CLONE LOOP
-   Slides are loaded from carousel.json at runtime.
-   Structure per slide: { title, description, buttonText, buttonLink,
-                          background, media: { type:"image"|"video", src:"" } }
-   ========================================================================= */
-
-// Exposed globally so arrow/dot onclick="" handlers work before async resolves
-window.changeSlide = function() {};
-window.goSlide     = function() {};
-
-async function initHeroCarousel() {
-  const slidesEl      = document.getElementById('slides');
-  const dotsContainer = document.getElementById('dots');
-
-  /* ── 1. Fetch carousel data ─────────────────────────────────────────── */
-  let carouselData;
-  try {
-    const res = await fetch('carousel.json');
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    carouselData = await res.json();
-  } catch (err) {
-    console.warn('[Carousel] Could not load carousel.json:', err.message);
-    // Fallback — one placeholder slide so the layout doesn't break
-    carouselData = {
-      slides: [{
-        title: 'LoveBloom — Handcrafted 3D Pop-Up Cards',
-        description: '',
-        buttonText: 'SHOP NOW',
-        buttonLink: '#',
-        background: 'linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%)',
-        media: { type: 'image', src: '' }
-      }]
-    };
-  }
-
-  const slideItems = carouselData.slides;
-
-  /* ── 2. Build slide DOM ──────────────────────────────────────────────── */
-  slideItems.forEach((s, i) => {
-    const div = document.createElement('div');
-    div.className = `slide slide-${i + 1}`;
-
-    // Background colour / gradient (used when no image/video covers the slide)
-    if (s.background) div.style.background = s.background;
-
-    // Full-bleed media (optional)
-    let mediaHTML = '';
-    if (s.media && s.media.src) {
-      if (s.media.type === 'video') {
-        mediaHTML = `<video class="slide-media-bg" autoplay muted loop playsinline>
-                       <source src="${s.media.src}">
-                     </video>`;
-      } else {
-        mediaHTML = `<img class="slide-media-bg" src="${s.media.src}" alt="${s.title}" loading="lazy">`;
-      }
-    }
-
-    div.innerHTML = `
-      ${mediaHTML}
-      <div class="slide-content">
-        <div class="slide-text">
-          <div class="collab-title">${s.title}</div>
-          <button class="shop-btn" onclick="location.href='${s.buttonLink || '#'}'">
-            ${s.buttonText || 'SHOP NOW'}
-          </button>
-        </div>
-      </div>`;
-
-    slidesEl.appendChild(div);
-  });
-
-  /* ── 3. Build dot DOM ────────────────────────────────────────────────── */
-  slideItems.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => window.goSlide(i));
-    dotsContainer.appendChild(dot);
-  });
-
-  /* ── 4. Carousel logic (infinite clone loop) ─────────────────────────── */
-  const realSlides = Array.from(slidesEl.querySelectorAll('.slide'));
-  const dots       = Array.from(dotsContainer.querySelectorAll('.dot'));
-  const total      = realSlides.length;
-
-  // Clone last → prepend | Clone first → append
-  const cloneFirst = realSlides[0].cloneNode(true);
-  const cloneLast  = realSlides[total - 1].cloneNode(true);
-  slidesEl.appendChild(cloneFirst);
-  slidesEl.insertBefore(cloneLast, realSlides[0]);
-
-  // cur is 1-based; real slides occupy positions 1 … total
-  let cur = 1;
-  let isTransitioning = false;
-  let timer;
-
-  function setPos(index, animate) {
-    slidesEl.style.transition = animate
-      ? 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)'
-      : 'none';
-    slidesEl.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  function updateDots(index) {
-    const realIndex = (index - 1 + total) % total;
-    dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
-  }
-
-  setPos(cur, false);
-  updateDots(cur);
-
-  window.changeSlide = function(dir) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    cur += dir;
-    setPos(cur, true);
-    updateDots(cur);
-  };
-
-  window.goSlide = function(n) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    cur = n + 1;
-    setPos(cur, true);
-    updateDots(cur);
-  };
-
-  slidesEl.addEventListener('transitionend', () => {
-    if (cur === 0)         { setPos(total, false); cur = total; }
-    else if (cur === total + 1) { setPos(1, false); cur = 1; }
-    isTransitioning = false;
-  });
-
-  function startTimer() { timer = setInterval(() => window.changeSlide(1), 4500); }
-  startTimer();
-
-  // Touch / swipe support
-  let touchStartX = 0;
-  slidesEl.addEventListener('touchstart', e => {
-    clearInterval(timer);
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-  slidesEl.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].screenX;
-    if (diff > 40)        window.changeSlide(1);
-    else if (diff < -40)  window.changeSlide(-1);
-    clearInterval(timer);
-    startTimer();
-  }, { passive: true });
-}
-
-// Kick off as soon as DOM is ready
-document.addEventListener('DOMContentLoaded', initHeroCarousel);
-
-/* ==========================================================================
-   NEW ARRIVALS — INFINITE LOOP WITH CLONES (no auto-play)
-   ========================================================================= */
-(function() {
-  const track = document.getElementById('arrivalTrack');
-  if (!track) return;
-
-  const cards = Array.from(track.querySelectorAll('.arrival-card'));
-  const total = cards.length;
-  const gap = 24;
-  let isTransitioning = false;
-
-  function visibleCount() {
-    return window.innerWidth > 1200 ? 4 : window.innerWidth > 768 ? 3 : 1;
-  }
-
-  // Clone first N and last N cards for infinite loop
-  function buildClones() {
-    const n = visibleCount();
-    // Remove old clones
-    track.querySelectorAll('.arrival-clone').forEach(c => c.remove());
-    // Append clones of first n cards after last
-    cards.slice(0, n).forEach(c => {
-      const cl = c.cloneNode(true);
-      cl.classList.add('arrival-clone');
-      track.appendChild(cl);
-    });
-    // Prepend clones of last n cards before first
-    cards.slice(-n).reverse().forEach(c => {
-      const cl = c.cloneNode(true);
-      cl.classList.add('arrival-clone');
-      track.insertBefore(cl, track.firstChild);
-    });
-  }
-
-  let cur = 0; // 0-based index into real cards
-
-  function cardWidth() {
-    const c = track.querySelector('.arrival-card');
-    return c ? c.offsetWidth + gap : 0;
-  }
-
-  function setPos(animate) {
-    const n = visibleCount();
-    const clonesBefore = n;
-    const pos = (clonesBefore + cur) * cardWidth();
-    track.style.transition = animate ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
-    track.style.transform = `translateX(-${pos}px)`;
-  }
-
-  function init() {
-    buildClones();
-    setPos(false);
-  }
-
-  function move(dir) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    cur += dir;
-    setPos(true);
-  }
-
-  track.addEventListener('transitionend', () => {
-    const n = visibleCount();
-    if (cur >= total) { cur = 0; setPos(false); }
-    if (cur < 0)      { cur = total - 1; setPos(false); }
-    isTransitioning = false;
-  });
-
-  // Expose to onclick handlers
-  window.scrollArrivals = (dir) => move(dir);
-
-  window.addEventListener('resize', () => { buildClones(); setPos(false); });
-
-  init();
-})();
-
-/* ==========================================================================
-   VIEW MORE CLICK LOGIC FUNCTION
-   ========================================================================= */
-document.getElementById('viewMoreBtn').addEventListener('click', function() {
-  const hiddenProducts = document.querySelectorAll('#productsGrid .hidden-product');
-  
-  hiddenProducts.forEach(product => {
-    product.style.display = 'block';
-  });
-  
-  this.style.display = 'none';
-});
-
-window.addEventListener('resize', () => {
-  // arrival resize handled inside IIFE
-});
-
-/* ==========================================================================
-   MOBILE MENU DRAWER LOGIC
-   ========================================================================== */
-const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
-
-document.querySelector('.mobile-burger-btn').addEventListener('click', () => {
-  mobileMenuDrawer.classList.add('open');
-  mobileMenuOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-});
-
-mobileMenuClose.addEventListener('click', closeMobileMenu);
-mobileMenuOverlay.addEventListener('click', (e) => {
-  if (e.target === mobileMenuOverlay) closeMobileMenu();
-});
-
-function closeMobileMenu() {
-  mobileMenuDrawer.classList.remove('open');
-  mobileMenuOverlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// Bottom nav categories
-const mobCatBtn = document.getElementById('mobCatBtn');
-if (mobCatBtn) {
-  mobCatBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    mobileMenuDrawer.classList.add('open');
-    mobileMenuOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-}
-
-// Footer accordion
-document.querySelectorAll('.ft-accordion-head').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const body = btn.nextElementSibling;
-    const icon = btn.querySelector('.ft-acc-icon');
-    const isOpen = body.style.display === 'block';
-    body.style.display = isOpen ? 'none' : 'block';
-    if (icon) icon.textContent = isOpen ? '+' : '−';
-  });
-});
-
-document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
-  item.addEventListener('click', () => {
-    const submenu = item.nextElementSibling;
-    const arrow = item.querySelector('.toggle-arrow');
-    const isOpen = submenu.classList.contains('open');
-    // Close all other submenus
-    document.querySelectorAll('.mobile-submenu.open').forEach(s => s.classList.remove('open'));
-    document.querySelectorAll('.mobile-menu-toggle.expanded').forEach(t => {
-      t.classList.remove('expanded');
-      t.querySelector('.toggle-arrow').textContent = '▾';
-    });
-    if (!isOpen) {
-      submenu.classList.add('open');
-      item.classList.add('expanded');
-      arrow.textContent = '▴';
-    }
-  });
-});
-
-/* Mobile search bar scroll behavior */
-(function() {
-  const bar = document.getElementById('mobileSearchBar');
-  const iconBtn = document.getElementById('mobileSearchIconBtn');
-  if (!bar) return;
-  let lastY = 0;
-  window.addEventListener('scroll', function() {
-    const y = window.scrollY;
-    if (y > 60) {
-      bar.classList.add('hidden');
-    } else {
-      bar.classList.remove('hidden');
-    }
-    lastY = y;
-  }, { passive: true });
-  if (iconBtn) {
-    iconBtn.addEventListener('click', () => {
-      bar.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(() => bar.querySelector('input').focus(), 300);
-    });
-  }
-})();
-
-
-
-</script>
-
-<!-- Mobile Bottom Navigation Bar -->
 <nav class="mobile-bottom-nav" id="mobileBottomNav">
   <a href="#" class="mob-nav-item active">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -1943,12 +626,184 @@ document.querySelectorAll('.mobile-menu-toggle').forEach(item => {
   </a>
   <a href="#" class="mob-nav-item">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-    <span>My Account</span>
+    <span>Account</span>
   </a>
 </nav>
 
+<script>
+/* ==========================================================================
+   INTERSECTION OBSERVER (Scroll Animations)
+   ========================================================================= */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
 
+/* ==========================================================================
+   HERO BANNER CAROUSEL — JSON DATA EMBEDDED TO BYPASS LOCAL CORS ISSUES
+   ========================================================================= */
+const carouselData = {
+  "slides": [
+    {
+      "title": "Handcrafted 3D Pop-Up Birthday Cards",
+      "buttonText": "SHOP NOW",
+      "background": "linear-gradient(135deg,#fce4ec 0%,#f8bbd0 50%,#f48fb1 100%)"
+    },
+    {
+      "title": "Anniversary Bloom — Luxury Pop Card Collection",
+      "buttonText": "EXPLORE",
+      "background": "linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%)"
+    },
+    {
+      "title": "Wedding Day 3D Keepsake Card Series",
+      "buttonText": "VIEW COLLECTION",
+      "background": "linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%)"
+    },
+    {
+      "title": "New Arrival — Valentine Heart Cascade",
+      "buttonText": "SHOP NOW",
+      "background": "linear-gradient(135deg,#e8eaf6 0%,#c5cae9 50%,#9fa8da 100%)"
+    }
+  ]
+};
 
+let curSlide = 0;
+let isTransitioning = false;
+let slideTimer;
+
+function initHeroCarousel() {
+  const slidesEl = document.getElementById('slides');
+  const dotsContainer = document.getElementById('dots');
+
+  // Build slides
+  carouselData.slides.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = `slide ${i === 0 ? 'active-slide' : ''}`;
+    div.style.background = s.background;
+    div.innerHTML = `
+      <div class="slide-content">
+        <div class="slide-text">
+          <div class="collab-title">${s.title}</div>
+          <button class="shop-btn">${s.buttonText}</button>
+        </div>
+      </div>`;
+    slidesEl.appendChild(div);
+
+    // Build dots
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  startTimer();
+}
+
+function updateSlider() {
+  const slidesEl = document.getElementById('slides');
+  const dots = document.querySelectorAll('.dot');
+  const allSlides = document.querySelectorAll('.slide');
+  
+  slidesEl.style.transform = `translateX(-${curSlide * 100}%)`;
+  
+  dots.forEach((d, i) => d.classList.toggle('active', i === curSlide));
+  allSlides.forEach((s, i) => s.classList.toggle('active-slide', i === curSlide));
+}
+
+window.changeSlide = function(dir) {
+  const total = carouselData.slides.length;
+  curSlide = (curSlide + dir + total) % total;
+  updateSlider();
+  resetTimer();
+};
+
+window.goSlide = function(n) {
+  curSlide = n;
+  updateSlider();
+  resetTimer();
+};
+
+function startTimer() { slideTimer = setInterval(() => changeSlide(1), 5000); }
+function resetTimer() { clearInterval(slideTimer); startTimer(); }
+
+document.addEventListener('DOMContentLoaded', initHeroCarousel);
+
+
+/* ==========================================================================
+   NEW ARRIVALS — REFACTORED TO NATIVE SMOOTH SCROLL (No Clones / Bugs)
+   ========================================================================= */
+window.scrollArrivals = function(dir) {
+  const wrapper = document.getElementById('arrivalTrackWrapper');
+  const cardWidth = document.querySelector('.arrival-card').offsetWidth + 24; // Width + Gap
+  wrapper.scrollBy({ left: dir * cardWidth * 2, behavior: 'smooth' });
+};
+
+
+/* ==========================================================================
+   VIEW MORE CLICK LOGIC FUNCTION
+   ========================================================================= */
+document.getElementById('viewMoreBtn').addEventListener('click', function() {
+  const hiddenProducts = document.querySelectorAll('#productsGrid .hidden-product');
+  hiddenProducts.forEach(product => {
+    product.style.display = 'block';
+    // Trigger intersection observer animation manually for newly revealed items
+    setTimeout(() => product.classList.add('is-visible'), 50);
+  });
+  this.style.display = 'none';
+});
+
+
+/* ==========================================================================
+   MOBILE MENU DRAWER & UI LOGIC
+   ========================================================================== */
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+
+function openMobileMenu() {
+  mobileMenuDrawer.classList.add('open');
+  mobileMenuOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  mobileMenuDrawer.classList.remove('open');
+  mobileMenuOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('mobileBurgerBtn').addEventListener('click', openMobileMenu);
+document.getElementById('mobCatBtn').addEventListener('click', (e) => { e.preventDefault(); openMobileMenu(); });
+document.getElementById('mobileMenuClose').addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+// Footer Accordion (Fixed for Mobile)
+document.querySelectorAll('.ft-accordion-head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const body = btn.nextElementSibling;
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+  });
+});
+
+// Mobile search bar hide-on-scroll behavior
+let lastY = 0;
+window.addEventListener('scroll', function() {
+  const bar = document.getElementById('mobileSearchBar');
+  if (!bar) return;
+  const y = window.scrollY;
+  if (y > 60) bar.style.display = 'none';
+  else bar.style.display = 'block';
+  lastY = y;
+}, { passive: true });
+
+</script>
 </body>
 </html>
