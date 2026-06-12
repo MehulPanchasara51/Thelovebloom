@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Bloom — Pop-Up Greeting Cards</title>
     <meta name="description" content="Love Bloom creates beautiful pop-up greeting cards for birthdays, anniversaries, and every occasion worth celebrating.">
-    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════
            RESET & VARIABLES
@@ -23,7 +23,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Dongle', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text);
             background: #fff;
             overflow-x: hidden;
@@ -80,8 +80,8 @@
             padding: 4px 14px 4px 30px;
             height: 30px;
             width: 170px;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 400;
             outline: none;
             color: var(--text);
@@ -117,7 +117,7 @@
         .header-icons svg:hover { stroke: var(--pink); }
         .icon-badge {
             display: flex; align-items: center; gap: 4px;
-            font-size: 24px; font-weight: 700; cursor: pointer;
+            font-size: 14px; font-weight: 700; cursor: pointer;
             transition: color .25s;
         }
         .icon-badge:hover { color: var(--pink); }
@@ -126,10 +126,11 @@
         /* Nav */
         .main-nav {
             display: flex;
+            border-top: 1px solid var(--border);
             justify-content: center;
             gap: 36px;
-            padding: 3px 0 7px;
-            font-size: 24px;
+            padding: 14px 0;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -171,10 +172,10 @@
         }
         .hero-slide h1 {
             color: #fff;
-            font-size: 42px;
+            font-size: 25px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-align: center;
             line-height: 1;
             margin-bottom: 22px;
@@ -188,9 +189,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 6px;
-            font-family: 'Dongle', sans-serif;
-            font-size: 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -225,30 +225,16 @@
         .hero-arrow.right { right: 20px; }
         .hero-arrow svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; }
 
-        /* Indicators */
         .hero-dots {
-            position: absolute;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex; gap: 10px;
-            z-index: 10;
+            display: none;
         }
-        .dot {
-            width: 40px; height: 3px;
-            background: rgba(255,255,255,.35);
-            cursor: pointer;
-            transition: background .3s;
-            border-radius: 2px;
-        }
-        .dot.active { background: #fff; }
 
         /* ═══════════════════════════════════════════
            SECTION TITLES
         ═══════════════════════════════════════════ */
         .section-title {
             text-align: center;
-            font-size: 42px;
+            font-size: 25px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2.5px;
@@ -291,7 +277,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,.12);
         }
         .explore-label {
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             text-align: center;
@@ -307,7 +293,7 @@
             width: 30px; height: 30px;
             border-radius: 50%;
             background: #e2e2e2;
-            display: none;
+            display: flex;
             align-items: center; justify-content: center;
             cursor: pointer;
             z-index: 5;
@@ -363,24 +349,26 @@
             color: #fff;
             display: flex; align-items: center; justify-content: center;
             text-align: center;
-            font-size: 17px; font-weight: 700;
+            font-size: 10px; font-weight: 700;
             line-height: 1.05;
             box-shadow: 0 3px 8px rgba(242,42,89,.35);
             z-index: 2;
         }
 
         .product-title {
-            font-size: 24px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-top: 10px;
-            line-height: 1.05;
-            letter-spacing: .3px;
+            margin-top: 12px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            text-align: left;
         }
         .product-price {
-            font-size: 26px;
+            font-size: 12px;
             font-weight: 700;
-            margin: 2px 0 8px;
+            margin: 4px 0 12px;
+            text-align: left;
         }
         .btn-cart {
             width: 100%;
@@ -389,12 +377,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 6px;
             background: transparent;
             border: 2px solid var(--pink);
             color: var(--pink);
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -416,11 +403,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding-top: 6px;
             border: 2px solid #222;
             background: transparent;
-            font-family: 'Dongle', sans-serif;
-            font-size: 26px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -439,7 +425,7 @@
             gap: 4px;
             margin: 28px auto 36px;
             cursor: pointer;
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -471,15 +457,16 @@
             padding-right: 120px;
         }
         .footer-col h4 {
-            font-size: 28px;
+            font-size: 16px;
             font-weight: 700;
             margin-bottom: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
             line-height: 1.1;
+            font-size: 14px;
         }
         .footer-col p {
-            font-size: 22px;
+            font-size: 13px;
             color: #aaa;
             margin-bottom: 14px;
             font-weight: 400;
@@ -502,8 +489,8 @@
             background: transparent;
             border: 1px solid #fff;
             color: #fff;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             outline: none;
             border-radius: 6px;
             box-sizing: border-box;
@@ -514,12 +501,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 6px;
             background: #fff;
             color: #000;
             border: none;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -558,7 +544,7 @@
         .footer-links a {
             color: #aaa;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: .8px;
@@ -573,7 +559,7 @@
             padding-top: 20px;
         }
         .footer-bottom p {
-            font-size: 20px;
+            font-size: 12px;
             color: #666;
             font-weight: 400;
             letter-spacing: .8px;
@@ -588,7 +574,7 @@
         .footer-bottom-links a {
             color: #666;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 12px;
             letter-spacing: .8px;
             text-transform: uppercase;
             transition: color .25s;
@@ -619,15 +605,15 @@
             .search-wrap, .header-icons { justify-content: center; width: 100%; }
             .search-wrap svg { left: calc(50% - 85px); }
             .search-input { width: 100%; max-width: 200px; text-align: center; padding-left: 14px; }
-            .main-nav { flex-wrap: wrap; gap: 16px; padding-bottom: 16px; font-size: 20px; }
+            .main-nav { flex-wrap: wrap; gap: 16px; padding-bottom: 16px; font-size: 12px; }
             .hero { height: 500px; }
-            .hero-slide h1 { font-size: 32px; letter-spacing: 2px; }
-            .hero-btn { font-size: 24px; padding: 0 24px; }
+            .hero-slide h1 { font-size: 19px; letter-spacing: 2px; }
+            .hero-btn { font-size: 14px; padding: 0 24px; }
             .explore-wrap { padding: 0 20px; }
             .explore-track { justify-content: center; gap: 16px; }
             .explore-item { flex: 0 0 calc(33.333% - 12px); }
             .explore-box { width: 100%; height: auto; aspect-ratio: 1; }
-            .explore-label { font-size: 18px; }
+            .explore-label { font-size: 11px; }
             .products-section { padding: 0 20px 10px; }
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .footer { padding: 40px 20px 20px; }
@@ -636,7 +622,7 @@
 
         @media (max-width: 480px) {
             .hero { height: 420px; }
-            .hero-slide h1 { font-size: 28px; }
+            .hero-slide h1 { font-size: 16px; }
             .products-grid { grid-template-columns: 1fr; gap: 24px; }
             .explore-item { flex: 0 0 calc(50% - 10px); }
             .footer-grid { text-align: center; }
