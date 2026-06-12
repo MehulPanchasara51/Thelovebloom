@@ -13,6 +13,18 @@
       }
     },
     {
+      "id":3,
+      "title": "Raju Bhai Vegda",
+      "description": "Kaju Ni Dukaan",
+      "buttonText": "Sunil",
+      "buttonLink": "#",
+      "background": "#e2e82",
+      "media": {
+        "type": "image",
+        "src": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Frandom-image_590832-8566.jpg&f=1&nofb=1&ipt=1f63445f4c13482e228224741429b2f8d2302dc308a3ce96e14437a441e67525"
+      }
+    },
+    {
       "id": 2,
       "title": "Anniversary Bloom — Luxury Pop Card Collection",
       "description": "Mark every milestone with elegance. Our anniversary collection features premium layered cards crafted for couples who believe love deserves a keepsake.",
@@ -25,7 +37,8 @@
       }
     },
     {
-      "id": 3,
+      "id": 5
+,
       "title": "Wedding Day 3D Keepsake Card Series",
       "description": "A card as unforgettable as the day itself. Gift the couple a stunning 3D wedding pop-up they will treasure for a lifetime.",
       "buttonText": "VIEW COLLECTION",
@@ -33,7 +46,7 @@
       "background": "linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%)",
       "media": {
         "type": "image",
-        "src": "assets/demo.mp4"
+        "src": "assets/slide-3.jpg"
       }
     },
     {
@@ -46,18 +59,6 @@
       "media": {
         "type": "image",
         "src": "assets/slide-4.jpg"
-      }
-    },
-    {
-      "id": 5,
-      "title": "Raju Kaju",
-      "description": "Maja aayega",
-      "buttonText": "SHOP NOW",
-      "buttonLink": "#",
-      "background": "#e2e8f0",
-      "media": {
-        "type": "video",
-        "src": "assets/demo.mp4"
       }
     }
   ]
