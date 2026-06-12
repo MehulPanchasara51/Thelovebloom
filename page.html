@@ -185,7 +185,10 @@
             border: 2px solid #fff;
             padding: 0 32px;
             height: 40px;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 6px;
             font-family: 'Dongle', sans-serif;
             font-size: 28px;
             font-weight: 700;
@@ -319,7 +322,7 @@
         /* ═══════════════════════════════════════════
            PRODUCT GRID
         ═══════════════════════════════════════════ */
-        .products-section { padding: 0 100px 10px; }
+        .products-section { padding: 0 160px 10px; }
 
         .products-grid {
             display: grid;
@@ -383,7 +386,10 @@
             width: 100%;
             padding: 0;
             height: 40px;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 6px;
             background: transparent;
             border: 2px solid var(--pink);
             color: var(--pink);
@@ -407,7 +413,10 @@
         .btn-view-more {
             padding: 0 36px;
             height: 40px;
-            line-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 6px;
             border: 2px solid #222;
             background: transparent;
             font-family: 'Dongle', sans-serif;
@@ -455,8 +464,11 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 1.6fr 1fr 1fr 1fr;
-            gap: 60px;
+            gap: 40px;
             margin-bottom: 44px;
+        }
+        .footer-col:first-child {
+            padding-right: 120px;
         }
         .footer-col h4 {
             font-size: 28px;
@@ -485,14 +497,16 @@
             flex: 1;
             padding: 0 14px;
             height: 40px;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
             background: transparent;
-            border: 1px solid #555;
+            border: 1px solid #fff;
             color: #fff;
             font-family: 'Dongle', sans-serif;
             font-size: 24px;
             outline: none;
             border-radius: 6px;
+            box-sizing: border-box;
         }
         .email-row button {
             padding: 0 20px;
@@ -500,6 +514,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-top: 6px;
             background: #fff;
             color: #000;
             border: none;
@@ -511,6 +526,8 @@
             cursor: pointer;
             border-radius: 6px;
             text-align: center;
+            white-space: nowrap;
+            flex-shrink: 0;
             transition: background .3s, color .3s;
         }
         .email-row button:hover { background: var(--pink); color: #fff; }
@@ -521,15 +538,16 @@
             margin-top: 6px;
         }
         .social-icon {
-            width: 38px; height: 38px;
+            width: 40px; height: 40px;
             background: #fff;
-            border-radius: 10px;
+            border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            transition: transform .25s;
+            transition: transform .25s, background .25s;
         }
-        .social-icon:hover { transform: scale(1.12); }
-        .social-icon svg { width: 20px; height: 20px; fill: #222; }
+        .social-icon:hover { transform: scale(1.12); background: #eee; }
+        .social-icon svg { width: 22px; height: 22px; }
+        .social-icon svg:not([fill="none"]) { fill: #222; }
 
         /* Footer links */
         .footer-links {
@@ -580,35 +598,52 @@
         /* ═══════════════════════════════════════════
            RESPONSIVE
         ═══════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            .products-section { padding: 0 80px 10px; }
+            .footer-col:first-child { padding-right: 40px; }
+            .explore-wrap { padding: 0 40px; }
+        }
+
         @media (max-width: 1024px) {
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .top-bar { padding: 12px 20px; }
+            .search-input { width: 140px; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .products-section { padding: 0 40px 10px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .footer-col:first-child { padding-right: 0; }
+            footer { padding: 40px 40px 20px; }
         }
+
         @media (max-width: 768px) {
-            .top-bar { padding: 10px 20px; }
-            .main-nav { gap: 20px; font-size: 20px; }
+            .top-bar { flex-direction: column; gap: 16px; padding: 16px 20px; }
+            .search-wrap, .header-icons { justify-content: center; width: 100%; }
+            .search-wrap svg { left: calc(50% - 85px); }
+            .search-input { width: 100%; max-width: 200px; text-align: center; padding-left: 14px; }
+            .main-nav { flex-wrap: wrap; gap: 16px; padding-bottom: 16px; font-size: 20px; }
             .hero { height: 500px; }
-            .hero-slide h1 { font-size: 28px; }
+            .hero-slide h1 { font-size: 32px; letter-spacing: 2px; }
+            .hero-btn { font-size: 24px; padding: 0 24px; }
             .explore-wrap { padding: 0 20px; }
-            .explore-track {
-                justify-content: center;
-                gap: 16px;
-            }
-            .explore-item {
-                flex: 0 0 calc(33.333% - 12px);
-            }
-            .explore-box {
-                width: 100%; height: auto; aspect-ratio: 1;
-            }
+            .explore-track { justify-content: center; gap: 16px; }
+            .explore-item { flex: 0 0 calc(33.333% - 12px); }
+            .explore-box { width: 100%; height: auto; aspect-ratio: 1; }
+            .explore-label { font-size: 18px; }
             .products-section { padding: 0 20px 10px; }
-            .products-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .footer { padding: 40px 20px 20px; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .search-input { width: 130px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
         }
+
         @media (max-width: 480px) {
-            .header-icons { gap: 12px; }
-            .main-nav { gap: 14px; font-size: 15px; }
+            .hero { height: 420px; }
+            .hero-slide h1 { font-size: 28px; }
+            .products-grid { grid-template-columns: 1fr; gap: 24px; }
+            .explore-item { flex: 0 0 calc(50% - 10px); }
+            .footer-grid { text-align: center; }
+            .social-row { justify-content: center; }
+            .email-row { flex-direction: column; }
+            .email-row input, .email-row button { width: 100%; }
+            .footer-bottom-links { flex-direction: column; gap: 8px; }
         }
     </style>
 </head>
@@ -790,7 +825,6 @@
             card.innerHTML = `
                 <div class="card-img">
                     <img src="assets/cake_card.png" alt="Sprinkles Birthday Cake Pop-Up Card" loading="lazy">
-                    <div class="badge">Lights<br>Up &<br>Plays<br>Music</div>
                 </div>
                 <div class="product-title">Sprinkles Birthday Cake Pop-Up Card</div>
                 <div class="product-price">$13</div>
