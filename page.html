@@ -59,6 +59,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 48px;
+            border-bottom: 1px solid var(--border);
         }
 
         /* Search */
@@ -68,7 +69,14 @@
             align-items: center;
             position: relative;
         }
-        .search-wrap svg {
+        .hamburger {
+            display: none;
+            width: 24px; height: 24px;
+            cursor: pointer;
+            margin-right: 16px;
+            stroke: var(--text);
+        }
+        .search-icon {
             position: absolute;
             left: 10px;
             width: 14px; height: 14px;
@@ -126,7 +134,6 @@
         /* Nav */
         .main-nav {
             display: flex;
-            border-top: 1px solid var(--border);
             justify-content: center;
             gap: 36px;
             padding: 14px 0;
@@ -554,32 +561,33 @@
 
         /* Bottom bar */
         .footer-bottom {
+            margin-top: 40px;
             text-align: center;
-            border-top: 1px solid #3a3a3a;
-            padding-top: 20px;
         }
         .footer-bottom p {
-            font-size: 12px;
+            font-size: 10px;
             color: #666;
-            font-weight: 400;
-            letter-spacing: .8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            letter-spacing: .5px;
         }
         .footer-bottom-links {
             display: flex;
             justify-content: center;
             gap: 18px;
+            flex-wrap: wrap;
         }
         .footer-bottom-links a {
-            color: #666;
+            color: #ccc;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 10px;
+            font-weight: 600;
             letter-spacing: .8px;
             text-transform: uppercase;
             transition: color .25s;
         }
         .footer-bottom-links a:hover { color: #fff; }
+        .about-mobile { display: none; }
 
         /* ═══════════════════════════════════════════
            RESPONSIVE
@@ -601,17 +609,22 @@
         }
 
         @media (max-width: 768px) {
-            .top-bar { flex-direction: column; gap: 16px; padding: 16px 20px; }
-            .search-wrap, .header-icons { justify-content: center; width: 100%; }
-            .search-wrap svg { left: calc(50% - 85px); }
-            .search-input { width: 100%; max-width: 200px; text-align: center; padding-left: 14px; }
-            .main-nav { flex-wrap: wrap; gap: 16px; padding-bottom: 16px; font-size: 12px; }
+            .top-bar { flex-direction: row; padding: 12px 20px; }
+            .search-wrap { flex: 1; justify-content: flex-start; }
+            .hamburger { display: block; }
+            .search-icon { position: static; width: 22px; height: 22px; stroke: #222; }
+            .search-input { display: none; }
+            .logo img { height: 36px; }
+            .header-icons { gap: 14px; }
+            .header-icons svg { width: 18px; height: 18px; }
+            .icon-badge { font-size: 14px; }
+            .main-nav { display: none; }
             .hero { height: 500px; }
             .hero-slide h1 { font-size: 19px; letter-spacing: 2px; }
             .hero-btn { font-size: 14px; padding: 0 24px; }
             .explore-wrap { padding: 0 20px; }
-            .explore-track { justify-content: center; gap: 16px; }
-            .explore-item { flex: 0 0 calc(33.333% - 12px); }
+            .explore-track { justify-content: flex-start; gap: 16px; overflow-x: auto; padding-bottom: 10px; }
+            .explore-item { flex: 0 0 calc(40% - 12px); }
             .explore-box { width: 100%; height: auto; aspect-ratio: 1; }
             .explore-label { font-size: 11px; }
             .products-section { padding: 0 20px 10px; }
@@ -623,13 +636,12 @@
         @media (max-width: 480px) {
             .hero { height: 420px; }
             .hero-slide h1 { font-size: 16px; }
-            .products-grid { grid-template-columns: 1fr; gap: 24px; }
             .explore-item { flex: 0 0 calc(50% - 10px); }
-            .footer-grid { text-align: center; }
-            .social-row { justify-content: center; }
             .email-row { flex-direction: column; }
             .email-row input, .email-row button { width: 100%; }
-            .footer-bottom-links { flex-direction: column; gap: 8px; }
+            .about-mobile { display: inline-block; font-weight: 700; color: #fff !important; }
+            .about-desktop { display: none; }
+            .footer-bottom-links { flex-direction: row; justify-content: center; gap: 14px; }
         }
     </style>
 </head>
@@ -639,7 +651,8 @@
     <div class="sticky-top">
         <div class="top-bar">
             <div class="search-wrap">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg class="hamburger" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 <input type="text" class="search-input" placeholder="">
             </div>
             <div class="logo">
@@ -787,13 +800,14 @@
                     <a href="#">Track Your Order</a>
                 </div>
             </div>
-            <div class="footer-col">
+            <div class="footer-col about-desktop">
                 <h4>About Us</h4>
             </div>
         </div>
         <div class="footer-bottom">
             <p>2026 LoveBloom All Rights Reserved</p>
             <div class="footer-bottom-links">
+                <a href="#" class="about-mobile">About Us</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
             </div>
