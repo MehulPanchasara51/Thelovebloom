@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Bloom — Pop-Up Greeting Cards</title>
     <meta name="description" content="Love Bloom creates beautiful pop-up greeting cards for birthdays, anniversaries, and every occasion worth celebrating.">
-    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════
            RESET & VARIABLES
@@ -23,7 +23,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Dongle', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text);
             background: #fff;
             overflow-x: hidden;
@@ -59,6 +59,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 48px;
+            border-bottom: 1px solid var(--border);
         }
 
         /* Search */
@@ -68,7 +69,14 @@
             align-items: center;
             position: relative;
         }
-        .search-wrap svg {
+        .hamburger {
+            display: none;
+            width: 24px; height: 24px;
+            cursor: pointer;
+            margin-right: 16px;
+            stroke: var(--text);
+        }
+        .search-icon {
             position: absolute;
             left: 10px;
             width: 14px; height: 14px;
@@ -80,8 +88,8 @@
             padding: 4px 14px 4px 30px;
             height: 30px;
             width: 170px;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 400;
             outline: none;
             color: var(--text);
@@ -117,7 +125,7 @@
         .header-icons svg:hover { stroke: var(--pink); }
         .icon-badge {
             display: flex; align-items: center; gap: 4px;
-            font-size: 24px; font-weight: 700; cursor: pointer;
+            font-size: 14px; font-weight: 700; cursor: pointer;
             transition: color .25s;
         }
         .icon-badge:hover { color: var(--pink); }
@@ -128,8 +136,8 @@
             display: flex;
             justify-content: center;
             gap: 36px;
-            padding: 3px 0 7px;
-            font-size: 24px;
+            padding: 14px 0;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -171,10 +179,10 @@
         }
         .hero-slide h1 {
             color: #fff;
-            font-size: 42px;
+            font-size: 25px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-align: center;
             line-height: 1;
             margin-bottom: 22px;
@@ -185,9 +193,11 @@
             border: 2px solid #fff;
             padding: 0 32px;
             height: 40px;
-            line-height: 40px;
-            font-family: 'Dongle', sans-serif;
-            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -222,30 +232,16 @@
         .hero-arrow.right { right: 20px; }
         .hero-arrow svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; }
 
-        /* Indicators */
         .hero-dots {
-            position: absolute;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex; gap: 10px;
-            z-index: 10;
+            display: none;
         }
-        .dot {
-            width: 40px; height: 3px;
-            background: rgba(255,255,255,.35);
-            cursor: pointer;
-            transition: background .3s;
-            border-radius: 2px;
-        }
-        .dot.active { background: #fff; }
 
         /* ═══════════════════════════════════════════
            SECTION TITLES
         ═══════════════════════════════════════════ */
         .section-title {
             text-align: center;
-            font-size: 42px;
+            font-size: 25px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2.5px;
@@ -288,7 +284,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,.12);
         }
         .explore-label {
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             text-align: center;
@@ -304,7 +300,7 @@
             width: 30px; height: 30px;
             border-radius: 50%;
             background: #e2e2e2;
-            display: none;
+            display: flex;
             align-items: center; justify-content: center;
             cursor: pointer;
             z-index: 5;
@@ -319,7 +315,7 @@
         /* ═══════════════════════════════════════════
            PRODUCT GRID
         ═══════════════════════════════════════════ */
-        .products-section { padding: 0 100px 10px; }
+        .products-section { padding: 0 160px 10px; }
 
         .products-grid {
             display: grid;
@@ -360,35 +356,39 @@
             color: #fff;
             display: flex; align-items: center; justify-content: center;
             text-align: center;
-            font-size: 17px; font-weight: 700;
+            font-size: 10px; font-weight: 700;
             line-height: 1.05;
             box-shadow: 0 3px 8px rgba(242,42,89,.35);
             z-index: 2;
         }
 
         .product-title {
-            font-size: 24px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-top: 10px;
-            line-height: 1.05;
-            letter-spacing: .3px;
+            margin-top: 12px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            text-align: left;
         }
         .product-price {
-            font-size: 26px;
+            font-size: 12px;
             font-weight: 700;
-            margin: 2px 0 8px;
+            margin: 4px 0 12px;
+            text-align: left;
         }
         .btn-cart {
             width: 100%;
             padding: 0;
             height: 40px;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: transparent;
             border: 2px solid var(--pink);
             color: var(--pink);
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -407,11 +407,13 @@
         .btn-view-more {
             padding: 0 36px;
             height: 40px;
-            line-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 2px solid #222;
             background: transparent;
-            font-family: 'Dongle', sans-serif;
-            font-size: 26px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -430,7 +432,7 @@
             gap: 4px;
             margin: 28px auto 36px;
             cursor: pointer;
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -455,19 +457,23 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 1.6fr 1fr 1fr 1fr;
-            gap: 60px;
+            gap: 40px;
             margin-bottom: 44px;
         }
+        .footer-col:first-child {
+            padding-right: 120px;
+        }
         .footer-col h4 {
-            font-size: 28px;
+            font-size: 16px;
             font-weight: 700;
             margin-bottom: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
             line-height: 1.1;
+            font-size: 14px;
         }
         .footer-col p {
-            font-size: 22px;
+            font-size: 13px;
             color: #aaa;
             margin-bottom: 14px;
             font-weight: 400;
@@ -485,14 +491,16 @@
             flex: 1;
             padding: 0 14px;
             height: 40px;
-            line-height: 40px;
+            display: flex;
+            align-items: center;
             background: transparent;
-            border: 1px solid #555;
+            border: 1px solid #fff;
             color: #fff;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             outline: none;
             border-radius: 6px;
+            box-sizing: border-box;
         }
         .email-row button {
             padding: 0 20px;
@@ -503,14 +511,16 @@
             background: #fff;
             color: #000;
             border: none;
-            font-family: 'Dongle', sans-serif;
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
             border-radius: 6px;
             text-align: center;
+            white-space: nowrap;
+            flex-shrink: 0;
             transition: background .3s, color .3s;
         }
         .email-row button:hover { background: var(--pink); color: #fff; }
@@ -521,15 +531,16 @@
             margin-top: 6px;
         }
         .social-icon {
-            width: 38px; height: 38px;
+            width: 40px; height: 40px;
             background: #fff;
-            border-radius: 10px;
+            border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            transition: transform .25s;
+            transition: transform .25s, background .25s;
         }
-        .social-icon:hover { transform: scale(1.12); }
-        .social-icon svg { width: 20px; height: 20px; fill: #222; }
+        .social-icon:hover { transform: scale(1.12); background: #eee; }
+        .social-icon svg { width: 22px; height: 22px; }
+        .social-icon svg:not([fill="none"]) { fill: #222; }
 
         /* Footer links */
         .footer-links {
@@ -540,7 +551,7 @@
         .footer-links a {
             color: #aaa;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: .8px;
@@ -550,65 +561,87 @@
 
         /* Bottom bar */
         .footer-bottom {
+            margin-top: 40px;
             text-align: center;
-            border-top: 1px solid #3a3a3a;
-            padding-top: 20px;
         }
         .footer-bottom p {
-            font-size: 20px;
+            font-size: 10px;
             color: #666;
-            font-weight: 400;
-            letter-spacing: .8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            letter-spacing: .5px;
         }
         .footer-bottom-links {
             display: flex;
             justify-content: center;
             gap: 18px;
+            flex-wrap: wrap;
         }
         .footer-bottom-links a {
-            color: #666;
+            color: #ccc;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 10px;
+            font-weight: 600;
             letter-spacing: .8px;
             text-transform: uppercase;
             transition: color .25s;
         }
         .footer-bottom-links a:hover { color: #fff; }
+        .about-mobile { display: none; }
 
         /* ═══════════════════════════════════════════
            RESPONSIVE
         ═══════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            .products-section { padding: 0 80px 10px; }
+            .footer-col:first-child { padding-right: 40px; }
+            .explore-wrap { padding: 0 40px; }
+        }
+
         @media (max-width: 1024px) {
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .top-bar { padding: 12px 20px; }
+            .search-input { width: 140px; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .products-section { padding: 0 40px 10px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .footer-col:first-child { padding-right: 0; }
+            footer { padding: 40px 40px 20px; }
         }
+
         @media (max-width: 768px) {
-            .top-bar { padding: 10px 20px; }
-            .main-nav { gap: 20px; font-size: 20px; }
+            .top-bar { flex-direction: row; padding: 12px 20px; }
+            .search-wrap { flex: 1; justify-content: flex-start; }
+            .hamburger { display: block; }
+            .search-icon { position: static; width: 22px; height: 22px; stroke: #222; }
+            .search-input { display: none; }
+            .logo img { height: 36px; }
+            .header-icons { gap: 14px; }
+            .header-icons svg { width: 18px; height: 18px; }
+            .icon-badge { font-size: 14px; }
+            .main-nav { display: none; }
             .hero { height: 500px; }
-            .hero-slide h1 { font-size: 28px; }
+            .hero-slide h1 { font-size: 19px; letter-spacing: 2px; }
+            .hero-btn { font-size: 14px; padding: 0 24px; }
             .explore-wrap { padding: 0 20px; }
-            .explore-track {
-                justify-content: center;
-                gap: 16px;
-            }
-            .explore-item {
-                flex: 0 0 calc(33.333% - 12px);
-            }
-            .explore-box {
-                width: 100%; height: auto; aspect-ratio: 1;
-            }
+            .explore-track { justify-content: flex-start; gap: 16px; overflow-x: auto; padding-bottom: 10px; }
+            .explore-item { flex: 0 0 calc(40% - 12px); }
+            .explore-box { width: 100%; height: auto; aspect-ratio: 1; }
+            .explore-label { font-size: 11px; }
             .products-section { padding: 0 20px 10px; }
-            .products-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .footer { padding: 40px 20px 20px; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .search-input { width: 130px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
         }
+
         @media (max-width: 480px) {
-            .header-icons { gap: 12px; }
-            .main-nav { gap: 14px; font-size: 15px; }
+            .hero { height: 420px; }
+            .hero-slide h1 { font-size: 16px; }
+            .explore-item { flex: 0 0 calc(50% - 10px); }
+            .email-row { flex-direction: column; }
+            .email-row input, .email-row button { width: 100%; }
+            .about-mobile { display: inline-block; font-weight: 700; color: #fff !important; }
+            .about-desktop { display: none; }
+            .footer-bottom-links { flex-direction: row; justify-content: center; gap: 14px; }
         }
     </style>
 </head>
@@ -618,7 +651,8 @@
     <div class="sticky-top">
         <div class="top-bar">
             <div class="search-wrap">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg class="hamburger" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 <input type="text" class="search-input" placeholder="">
             </div>
             <div class="logo">
@@ -766,13 +800,14 @@
                     <a href="#">Track Your Order</a>
                 </div>
             </div>
-            <div class="footer-col">
+            <div class="footer-col about-desktop">
                 <h4>About Us</h4>
             </div>
         </div>
         <div class="footer-bottom">
             <p>2026 LoveBloom All Rights Reserved</p>
             <div class="footer-bottom-links">
+                <a href="#" class="about-mobile">About Us</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
             </div>
@@ -790,7 +825,6 @@
             card.innerHTML = `
                 <div class="card-img">
                     <img src="assets/cake_card.png" alt="Sprinkles Birthday Cake Pop-Up Card" loading="lazy">
-                    <div class="badge">Lights<br>Up &<br>Plays<br>Music</div>
                 </div>
                 <div class="product-title">Sprinkles Birthday Cake Pop-Up Card</div>
                 <div class="product-price">$13</div>
