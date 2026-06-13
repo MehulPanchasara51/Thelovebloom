@@ -405,24 +405,23 @@
             padding: 16px 0 10px;
         }
         .btn-view-more {
-            padding: 0 36px;
-            height: 40px;
             display: inline-flex;
+            background: #222;
+            color: #fff;
+            border: none;
+            padding: 0 32px;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             align-items: center;
             justify-content: center;
-            border: 2px solid #222;
-            background: transparent;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
             border-radius: 6px;
-            text-align: center;
-            transition: background .3s, color .3s;
+            cursor: pointer;
+            transition: opacity .3s;
         }
-        .btn-view-more:hover { background: #222; color: #fff; }
+        .btn-view-more:hover { opacity: 0.8; }
 
         /* Back to top */
         .back-top {
@@ -494,53 +493,51 @@
             display: flex;
             align-items: center;
             background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            outline: none;
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 6px;
-            box-sizing: border-box;
+            color: #fff;
+            font-size: 12px;
+            font-family: inherit;
         }
+        .email-row input:focus { outline: none; border-color: #fff; }
         .email-row button {
-            padding: 0 20px;
             height: 40px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #fff;
-            color: #000;
+            color: #222;
             border: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            border-radius: 6px;
-            text-align: center;
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: background .3s, color .3s;
+            transition: opacity .3s;
         }
-        .email-row button:hover { background: var(--pink); color: #fff; }
+        .email-row button:hover { opacity: 0.8; }
 
-        /* Social icons */
+        /* Social */
         .social-row {
-            display: flex; gap: 12px;
-            margin-top: 6px;
+            display: flex;
+            gap: 12px;
         }
         .social-icon {
-            width: 40px; height: 40px;
+            width: 44px; height: 44px;
             background: #fff;
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            transition: transform .25s, background .25s;
+            transition: opacity .3s;
         }
-        .social-icon:hover { transform: scale(1.12); background: #eee; }
-        .social-icon svg { width: 22px; height: 22px; }
-        .social-icon svg:not([fill="none"]) { fill: #222; }
+        .social-icon svg {
+            width: 20px; height: 20px;
+            stroke: #222;
+        }
+        .social-icon:hover { opacity: 0.8; }
 
         /* Footer links */
         .footer-links {
@@ -635,6 +632,7 @@
             .explore-item { flex: 0 0 calc(33.333% - 8px); scroll-snap-align: start; }
             .explore-box { width: 100%; height: auto; aspect-ratio: 1; }
             .explore-label { font-size: 11px; }
+            .explore-arrow { display: none !important; }
 
             .products-section { padding: 0 20px 10px; }
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -660,8 +658,8 @@
     <!-- ═══════ STICKY HEADER ═══════ -->
     <div class="sticky-top">
         <div class="top-bar">
+            <svg class="hamburger" onclick="toggleMobileMenu()" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             <div class="search-wrap">
-                <svg class="hamburger" onclick="toggleMobileMenu()" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
                 <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 <input type="text" class="search-input" placeholder="">
             </div>
